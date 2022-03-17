@@ -1,7 +1,7 @@
 package com.jgbravo.actiasystemsmobile.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.jgbravo.actiasystemsmobile.R
 
 class MainActivity : AppCompatActivity() {

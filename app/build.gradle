@@ -55,6 +55,9 @@ android {
 }
 
 dependencies {
+
+    implementation(project(":core"))
+
     implementation libraryDependencies.values()
     kapt compilerDependencies.values()
     testImplementation testLibraryDependencies.values()

@@ -116,4 +116,8 @@ ext {
             supportJunit: testLibrary.supportJunitLib,
             espresso    : testLibrary.espressoLib,
     ]
+
+    coreDependencies = [
+            timber: library.timberLib
+    ]
 }
