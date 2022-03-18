@@ -1,4 +1,4 @@
-package com.jgbravo.core.timber
+package com.jgbravo.core.timber.trees
 
 import android.util.Log
 import timber.log.Timber

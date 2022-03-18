@@ -2,6 +2,7 @@ package com.jgbravo.core.timber
 
 import android.os.Build
 import android.os.SystemClock
+import com.jgbravo.core.timber.ActiaLogger.Companion.API_CALL
 import com.jgbravo.core.timber.ActiaLogger.Companion.MAX_TAG_LENGTH
 import com.jgbravo.core.timber.ActiaLogger.Companion.PACKAGE_APP
 import com.jgbravo.core.timber.ActiaLogger.Companion.PATTERN_CLASS
@@ -57,6 +58,10 @@ class ActiaLoggerImpl : ActiaLogger {
         Timber.tag(customTag).d(message, *objects)
     }
 
+    override fun d(tag: String, message: String, vararg objects: Any) {
+        Timber.tag(tag).d(message, *objects)
+    }
+
     override fun i(message: String, vararg objects: Any) {
         Timber.tag(customTag).i(message, *objects)
     }
@@ -85,5 +90,9 @@ class ActiaLoggerImpl : ActiaLogger {
         val time = if (lastLogTime == 0L) 0 else SystemClock.elapsedRealtime() - lastLogTime
         Timber.tag(customTag).i("[LogTime: ${time / 1000.0}s] $message")
         lastLogTime = SystemClock.elapsedRealtime()
+    }
+
+    override fun http(message: String, vararg objects: Any) {
+        Timber.tag(API_CALL).d(message, *objects)
     }
 }

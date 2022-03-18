@@ -26,12 +26,13 @@ ext {
             lifecycle       : "2.4.1",
             glide           : "4.13.1",
 
+            // API
+            okHttp          : "4.9.3",
+            retrofit        : "2.9.0",
+
             // JSON
             moshi           : "1.13.0",
-
-            // API
-            okHttp          : "4.9.0",
-            retrofit        : "2.9.0",
+            converterMoshi  : "2.4.0",
 
             // Dependency injection
             dagger          : "2.41",
@@ -65,11 +66,14 @@ ext {
             hiltDaggerCompilerLib: "com.google.dagger:hilt-android-compiler:$version.dagger",
             hiltCompilerLib      : "androidx.hilt:hilt-compiler:$version.hilt",
 
-            moshiLib             : "com.squareup.moshi:moshi-kotlin:$version.moshi",
-            moshiCodegenLib      : "com.squareup.moshi:moshi-kotlin-codegen:$version.moshi",
-
             okHttpLib            : "com.squareup.okhttp3:okhttp:$version.okHttp",
-            retrofitLib          : "com.squareup.retrofit2:retrofit:$version.retrofit"
+            logginInterceptorLib : "com.squareup.okhttp3:logging-interceptor:$version.okHttp",
+            retrofitLib          : "com.squareup.retrofit2:retrofit:$version.retrofit",
+
+            moshiLib             : "com.squareup.moshi:moshi:$version.moshi",
+            moshiKtLib           : "com.squareup.moshi:moshi-kotlin:$version.moshi",
+            moshiCodegenLib      : "com.squareup.moshi:moshi-kotlin-codegen:$version.moshi",
+            moshiConverterLib    : "com.squareup.retrofit2:converter-moshi:$version.converterMoshi"
     ]
 
     testLibrary = [
@@ -95,16 +99,19 @@ ext {
             daggerHilt        : library.daggerHiltLib,
             hiltDaggerCompiler: library.hiltDaggerCompilerLib,
             hiltCompiler      : library.hiltCompilerLib,
+            moshiKt           : library.moshiKtLib,
             moshi             : library.moshiLib,
-            moshiCodegen      : library.moshiCodegenLib,
+            moshiConverter    : library.moshiConverterLib,
             okHttp            : library.okHttpLib,
+            logginInterceptor : library.logginInterceptorLib,
             retrofit          : library.retrofitLib
     ]
 
     compilerDependencies = [
             glideCompiler     : library.glideCompilerLib,
             hiltCompiler      : library.hiltCompilerLib,
-            hiltDaggerCompiler: library.hiltDaggerCompilerLib
+            hiltDaggerCompiler: library.hiltDaggerCompilerLib,
+            moshiCodegen      : library.moshiCodegenLib
     ]
 
     testLibraryDependencies = [
@@ -119,5 +126,25 @@ ext {
 
     coreDependencies = [
             timber: library.timberLib
+    ]
+
+    dataDependencies = [
+            coroutinesCore    : library.coroutinesCoreLib,
+            coroutinesAndroid : library.coroutinesAndroidLib,
+            daggerHilt        : library.daggerHiltLib,
+            hiltDaggerCompiler: library.hiltDaggerCompilerLib,
+            hiltCompiler      : library.hiltCompilerLib,
+            moshi             : library.moshiLib,
+            moshiKt           : library.moshiKtLib,
+            moshiConverter    : library.moshiConverterLib,
+            okHttp            : library.okHttpLib,
+            logginInterceptor : library.logginInterceptorLib,
+            retrofit          : library.retrofitLib
+    ]
+
+    dataCompilerDependencies = [
+            moshiCodegen      : library.moshiCodegenLib,
+            hiltCompiler      : library.hiltCompilerLib,
+            hiltDaggerCompiler: library.hiltDaggerCompilerLib
     ]
 }

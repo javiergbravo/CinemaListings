@@ -1,9 +1,9 @@
 package com.jgbravo.actiasystemsmobile
 
 import android.app.Application
-import com.jgbravo.core.timber.ActiaDebugTree
+import com.jgbravo.core.timber.trees.ActiaDebugTree
 import com.jgbravo.core.timber.ActiaLogger
-import com.jgbravo.core.timber.ActiaReleaseTree
+import com.jgbravo.core.timber.trees.ActiaReleaseTree
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 import javax.inject.Inject
