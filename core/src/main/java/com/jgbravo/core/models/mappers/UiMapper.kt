@@ -7,5 +7,5 @@ abstract class UiMapper<DOMAIN : DomainModel, UI : UiModel> : BaseMapper<DOMAIN,
 
     override fun map(inModel: DOMAIN, moreInfo: HashMap<String, Any>?): UI = mapToUi(inModel, moreInfo)
 
-    abstract fun mapToUi(domainModel: DOMAIN, moreInfo: HashMap<String, Any>? = null): UI
+    protected abstract fun mapToUi(domainModel: DOMAIN, moreInfo: HashMap<String, Any>? = null): UI
 }

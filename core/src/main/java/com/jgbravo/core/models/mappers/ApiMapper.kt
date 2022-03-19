@@ -7,5 +7,5 @@ abstract class ApiMapper<DTO : DTOModel, DATA : DataModel> : BaseMapper<DTO, DAT
 
     override fun map(inModel: DTO, moreInfo: HashMap<String, Any>?): DATA = mapToData(inModel, moreInfo)
 
-    abstract fun mapToData(dtoModel: DTO, moreInfo: HashMap<String, Any>? = null): DATA
+    protected abstract fun mapToData(dtoModel: DTO, moreInfo: HashMap<String, Any>? = null): DATA
 }

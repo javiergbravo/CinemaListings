@@ -7,5 +7,5 @@ abstract class DomainMapper<DATA : DataModel, DOMAIN : DomainModel> : BaseMapper
 
     override fun map(inModel: DATA, moreInfo: HashMap<String, Any>?): DOMAIN = mapToDomain(inModel, moreInfo)
 
-    abstract fun mapToDomain(dataModel: DATA, moreInfo: HashMap<String, Any>? = null): DOMAIN
+    protected abstract fun mapToDomain(dataModel: DATA, moreInfo: HashMap<String, Any>? = null): DOMAIN
 }

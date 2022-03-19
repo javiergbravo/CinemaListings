@@ -18,7 +18,7 @@ abstract class BaseRepository {
         return when {
             response.isSuccessful && response.body() != null -> {
                 try {
-                    val data = mapper.mapToData(response.body()!!)
+                    val data = mapper.map(response.body()!!)
                     Resource.Success(data)
                 } catch (e: AppException) {
                     Resource.Error(e.code.value, e)
