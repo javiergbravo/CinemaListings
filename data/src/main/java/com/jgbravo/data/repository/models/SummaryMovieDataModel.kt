@@ -1,9 +1,9 @@
 package com.jgbravo.data.repository.models
 
-import com.jgbravo.core.models.models.DataModel
+import com.jgbravo.core.models.base.DataModel
 import java.util.*
 
-data class MovieResumeDataModel(
+data class SummaryMovieDataModel(
     val id: Int,
     val title: String,
     val poster: String,

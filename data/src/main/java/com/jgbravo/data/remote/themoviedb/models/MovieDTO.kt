@@ -1,9 +1,10 @@
 package com.jgbravo.data.remote.themoviedb.models
 
 
-import com.jgbravo.core.models.models.DTOModel
+import com.jgbravo.core.models.base.DTOModel
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import java.util.*
 
 @JsonClass(generateAdapter = true)
 data class MovieDTO(
@@ -26,7 +27,7 @@ data class MovieDTO(
     @Json(name = "poster_path")
     val posterPath: String?,
     @Json(name = "release_date")
-    val releaseDate: String?,
+    val releaseDate: Date?,
     @Json(name = "title")
     val title: String?,
     @Json(name = "video")
