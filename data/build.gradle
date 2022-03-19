@@ -15,4 +15,6 @@ dependencies {
 
     implementation dataDependencies.values()
     kapt dataCompilerDependencies.values()
+    testImplementation testLibraryDependencies.values()
+    androidTestImplementation androidTestLibraryDependencies.values()
 }

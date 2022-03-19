@@ -2,9 +2,9 @@ package com.jgbravo.data.di
 
 import com.jgbravo.core.timber.ActiaLogger
 import com.jgbravo.data.BuildConfig
-import com.jgbravo.data.remote.omdb.OmdbApi
-import com.jgbravo.data.remote.omdb.interceptors.OmdbInterceptor
-import com.jgbravo.data.utils.Constants
+import com.jgbravo.data.remote.themoviedb.TheMovieDbApi
+import com.jgbravo.data.remote.themoviedb.interceptors.TheMovieDbInterceptor
+import com.jgbravo.data.utils.TheMovieDb
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -19,20 +19,20 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object OmdbModule {
+object TheMovieDbModule {
 
     @Singleton
     @Provides
-    fun providesOmdbInterceptor(): OmdbInterceptor = OmdbInterceptor()
+    fun providesTheMovieDbInterceptor(): TheMovieDbInterceptor = TheMovieDbInterceptor()
 
     @Singleton
     @Provides
-    fun provideOmdbOkHttpClient(
-        omdbInterceptor: OmdbInterceptor,
+    fun provideTheMovieDbOkHttpClient(
+        theMovieDbInterceptor: TheMovieDbInterceptor,
         logger: ActiaLogger
     ): OkHttpClient {
         val okHttpClient = OkHttpClient().newBuilder()
-            .addNetworkInterceptor(omdbInterceptor)
+            .addNetworkInterceptor(theMovieDbInterceptor)
 
         if (BuildConfig.DEBUG) {
             val loggingInterceptor = HttpLoggingInterceptor { message ->
@@ -48,15 +48,15 @@ object OmdbModule {
 
     @Singleton
     @Provides
-    fun provideOmdbApi(
+    fun provideTheMovieDbApi(
         okHttpClient: OkHttpClient,
         moshi: Moshi
-    ): OmdbApi {
+    ): TheMovieDbApi {
         return Retrofit.Builder()
-            .baseUrl(Constants.BASE_URL)
+            .baseUrl(TheMovieDb.BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
-            .create(OmdbApi::class.java)
+            .create(TheMovieDbApi::class.java)
     }
 }
