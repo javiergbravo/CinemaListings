@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ActiaSystemsMobile">
         <activity
-            android:name=".ui.MainActivity"
+            android:name="com.jgbravo.actiasystemsmobile.features.billboard.BillboardActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

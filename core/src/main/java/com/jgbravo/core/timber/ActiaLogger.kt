@@ -8,6 +8,8 @@ interface ActiaLogger {
         const val PACKAGE_APP = "com.jgbravo"
         const val MAX_TAG_LENGTH = 23
         const val API_CALL = "[Api Call - OkHttp]"
+        const val ACTIVITY_TAG = "[Activity lifecycle]"
+        const val FRAGMENT_TAG = "[Fragment lifecycle]"
         val PATTERN_CLASS: Pattern = Pattern.compile("(\\$\\d+)+$")
     }
 
@@ -30,4 +32,8 @@ interface ActiaLogger {
     fun time(message: String)
 
     fun http(message: String, vararg objects: Any)
+
+    fun activity(name: String, lifecycle: String, vararg objects: Any)
+
+    fun fragment(name: String, lifecycle: String, vararg objects: Any)
 }

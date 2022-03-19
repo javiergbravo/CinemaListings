@@ -21,5 +21,7 @@ class ActiaSystemsMobileApp : Application() {
         } else {
             Timber.plant(ActiaReleaseTree())
         }
+
+        logger.d("ActiaSystemsMobileApp", "onCreate")
     }
 }

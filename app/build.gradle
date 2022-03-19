@@ -57,9 +57,14 @@ android {
 dependencies {
 
     implementation(project(":core"))
+    implementation(project(":domain"))
 
     implementation libraryDependencies.values()
     kapt compilerDependencies.values()
     testImplementation testLibraryDependencies.values()
     androidTestImplementation androidTestLibraryDependencies.values()
+}
+
+kapt {
+    correctErrorTypes = true
 }

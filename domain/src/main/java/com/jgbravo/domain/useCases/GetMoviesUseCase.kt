@@ -2,7 +2,7 @@ package com.jgbravo.domain.useCases
 
 import com.jgbravo.core.extensions.mapList
 import com.jgbravo.core.models.Resource
-import com.jgbravo.data.repository.MoviesRepositoryImpl
+import com.jgbravo.data.repository.MoviesRepository
 import com.jgbravo.data.repository.models.BillboardDataModel
 import com.jgbravo.domain.models.MovieDomainModel
 import com.jgbravo.domain.models.mappers.MovieDomainMapper
@@ -11,8 +11,8 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class GetMovies @Inject constructor(
-    private val moviesRepository: MoviesRepositoryImpl
+class GetMoviesUseCase @Inject constructor(
+    private val moviesRepository: MoviesRepository
 ) {
 
     operator fun invoke(page: Int = 1): Flow<Resource<List<MovieDomainModel>>> = flow {

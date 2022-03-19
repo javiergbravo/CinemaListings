@@ -1,4 +1,4 @@
-package com.jgbravo.actiasystemsmobile.di
+package com.jgbravo.core.di
 
 import com.jgbravo.core.timber.ActiaLogger
 import com.jgbravo.core.timber.ActiaLoggerImpl
@@ -14,5 +14,5 @@ object CoreModule {
 
     @Singleton
     @Provides
-    fun provideActiaLogger(): ActiaLogger = ActiaLoggerImpl()
+    fun provideLogger(): ActiaLogger = ActiaLoggerImpl()
 }

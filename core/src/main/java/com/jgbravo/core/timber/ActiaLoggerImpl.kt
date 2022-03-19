@@ -2,13 +2,16 @@ package com.jgbravo.core.timber
 
 import android.os.Build
 import android.os.SystemClock
+import com.jgbravo.core.timber.ActiaLogger.Companion.ACTIVITY_TAG
 import com.jgbravo.core.timber.ActiaLogger.Companion.API_CALL
+import com.jgbravo.core.timber.ActiaLogger.Companion.FRAGMENT_TAG
 import com.jgbravo.core.timber.ActiaLogger.Companion.MAX_TAG_LENGTH
 import com.jgbravo.core.timber.ActiaLogger.Companion.PACKAGE_APP
 import com.jgbravo.core.timber.ActiaLogger.Companion.PATTERN_CLASS
 import timber.log.Timber
+import javax.inject.Inject
 
-class ActiaLoggerImpl : ActiaLogger {
+class ActiaLoggerImpl @Inject constructor() : ActiaLogger {
 
     private var lastLogTime = 0L
 
@@ -94,5 +97,13 @@ class ActiaLoggerImpl : ActiaLogger {
 
     override fun http(message: String, vararg objects: Any) {
         Timber.tag(API_CALL).d(message, *objects)
+    }
+
+    override fun activity(name: String, lifecycle: String, vararg objects: Any) {
+        Timber.tag("$ACTIVITY_TAG - $name").d(lifecycle, *objects)
+    }
+
+    override fun fragment(name: String, lifecycle: String, vararg objects: Any) {
+        Timber.tag("$FRAGMENT_TAG - $name").d(lifecycle, *objects)
     }
 }

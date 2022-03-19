@@ -12,5 +12,7 @@ object TheMovieDb {
 
     object Parameters {
         const val API_KEY = "api_key"
+        const val LANGUAGE = "language"
+        const val PAGE = "page"
     }
 }

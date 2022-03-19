@@ -22,3 +22,7 @@ dependencies {
     testImplementation testLibraryDependencies.values()
     androidTestImplementation androidTestLibraryDependencies.values()
 }
+
+kapt {
+    correctErrorTypes = true
+}
