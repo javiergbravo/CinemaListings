@@ -3,7 +3,7 @@ package com.jgbravo.data.repository.models
 import com.jgbravo.core.models.base.DataModel
 import java.util.*
 
-data class SummaryMovieDataModel(
+data class MovieDataModel(
     val id: Int,
     val title: String,
     val poster: String,

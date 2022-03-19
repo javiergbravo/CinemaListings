@@ -6,23 +6,23 @@ import com.jgbravo.core.models.mappers.ApiMapper
 import com.jgbravo.data.remote.themoviedb.models.BillboardDTO
 import com.jgbravo.data.remote.themoviedb.models.MovieDTO
 import com.jgbravo.data.repository.models.BillboardDataModel
-import com.jgbravo.data.repository.models.SummaryMovieDataModel
+import com.jgbravo.data.repository.models.MovieDataModel
 
-class BillboardMapper : ApiMapper<BillboardDTO, BillboardDataModel>() {
+class BillboardApiMapper : ApiMapper<BillboardDTO, BillboardDataModel>() {
 
     override fun mapToData(dtoModel: BillboardDTO, moreInfo: HashMap<String, Any>?): BillboardDataModel {
         return BillboardDataModel(
-            movieList = dtoModel.results.mapList(SummaryMovieMapper()),
+            movieList = dtoModel.results.mapList(MovieApiMapper(), true),
             page = dtoModel.page,
             totalPages = dtoModel.totalPages
         )
     }
 }
 
-class SummaryMovieMapper : ApiMapper<MovieDTO, SummaryMovieDataModel>() {
+class MovieApiMapper : ApiMapper<MovieDTO, MovieDataModel>() {
 
-    override fun mapToData(dtoModel: MovieDTO, moreInfo: HashMap<String, Any>?): SummaryMovieDataModel {
-        return SummaryMovieDataModel(
+    override fun mapToData(dtoModel: MovieDTO, moreInfo: HashMap<String, Any>?): MovieDataModel {
+        return MovieDataModel(
             id = dtoModel::id.getOrThrow(),
             title = dtoModel::title.getOrThrow(),
             poster = dtoModel::posterPath.getOrThrow(),
