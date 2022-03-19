@@ -124,7 +124,10 @@ ext {
     ]
 
     coreDependencies = [
-            timber: library.timberLib
+            timber  : library.timberLib,
+
+            //Data
+            retrofit: library.retrofitLib
     ]
 
     dataDependencies = [

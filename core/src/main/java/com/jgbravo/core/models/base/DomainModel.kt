@@ -1,3 +1,3 @@
-package com.jgbravo.core.models.models
+package com.jgbravo.core.models.base
 
 abstract class DomainModel : BaseModel

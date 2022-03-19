@@ -1,6 +1,6 @@
 package com.jgbravo.core.models
 
-import com.jgbravo.core.exceptions.CodeException
+import com.jgbravo.core.exceptions.AppCodeException
 
 sealed class Resource<out T : Any> {
 
@@ -9,7 +9,7 @@ sealed class Resource<out T : Any> {
     data class Success<out T : Any>(val data: Any?) : Resource<T>()
 
     data class Error(
-        val code: Int = CodeException.UNKNOWN_EXCEPTION.code,
+        val code: Int = AppCodeException.UNKNOWN_EXCEPTION.value,
         val exception: Throwable
     ) : Resource<Nothing>()
 }

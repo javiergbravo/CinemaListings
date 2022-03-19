@@ -3,7 +3,10 @@ package com.jgbravo.core.exceptions
 data class MappingException(
     private val property: String,
     private val reason: MappingReason
-) : Exception("Error mapping property '$property' cause $reason.")
+) : AppException(
+    code = AppCodeException.MAPPING_EXCEPTION,
+    msg = "Error mapping property '$property' cause $reason."
+)
 
 enum class MappingReason(val msg: String) {
     PROPERTY_NOT_FOUND("Model has not this property"),
