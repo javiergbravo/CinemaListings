@@ -3,6 +3,7 @@ package com.jgbravo.data.di
 import com.jgbravo.core.timber.ActiaLogger
 import com.jgbravo.data.BuildConfig
 import com.jgbravo.data.remote.themoviedb.TheMovieDbApi
+import com.jgbravo.data.remote.themoviedb.adapters.SimpleDateAdapter
 import com.jgbravo.data.remote.themoviedb.interceptors.TheMovieDbInterceptor
 import com.jgbravo.data.utils.TheMovieDb
 import com.squareup.moshi.Moshi
@@ -20,6 +21,12 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object TheMovieDbModule {
+
+    @Singleton
+    @Provides
+    fun provideTheMovieDbMoshi(): Moshi = Moshi.Builder()
+        .add(SimpleDateAdapter())
+        .build()
 
     @Singleton
     @Provides
