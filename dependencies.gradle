@@ -130,6 +130,19 @@ ext {
             retrofit: library.retrofitLib
     ]
 
+    domainDependencies = [
+            coroutinesCore    : library.coroutinesCoreLib,
+            coroutinesAndroid : library.coroutinesAndroidLib,
+            daggerHilt        : library.daggerHiltLib,
+            hiltDaggerCompiler: library.hiltDaggerCompilerLib,
+            hiltCompiler      : library.hiltCompilerLib
+    ]
+
+    domainCompilerDependencies = [
+            hiltCompiler      : library.hiltCompilerLib,
+            hiltDaggerCompiler: library.hiltDaggerCompilerLib
+    ]
+
     dataDependencies = [
             coroutinesCore    : library.coroutinesCoreLib,
             coroutinesAndroid : library.coroutinesAndroidLib,

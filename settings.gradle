@@ -16,3 +16,4 @@ rootProject.name = "ActiaSystemsMobile"
 include ':app'
 include ':core'
 include ':data'
+include ':domain'
