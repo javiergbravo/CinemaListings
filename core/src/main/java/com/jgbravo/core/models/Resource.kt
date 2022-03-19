@@ -1,4 +1,4 @@
-package com.jgbravo.core.utils
+package com.jgbravo.core.models
 
 import com.jgbravo.core.exceptions.CodeException
 

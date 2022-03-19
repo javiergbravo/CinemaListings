@@ -1,7 +1,5 @@
 package com.jgbravo.core.exceptions
 
-import com.jgbravo.core.utils.Resource
-
 data class MappingException(
     private val property: String,
     private val reason: MappingReason

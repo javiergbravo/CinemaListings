@@ -70,7 +70,7 @@ ext {
             logginInterceptorLib : "com.squareup.okhttp3:logging-interceptor:$version.okHttp",
             retrofitLib          : "com.squareup.retrofit2:retrofit:$version.retrofit",
 
-            moshiLib             : "com.squareup.moshi:moshi:$version.moshi",
+            //moshiLib             : "com.squareup.moshi:moshi:$version.moshi",
             moshiKtLib           : "com.squareup.moshi:moshi-kotlin:$version.moshi",
             moshiCodegenLib      : "com.squareup.moshi:moshi-kotlin-codegen:$version.moshi",
             moshiConverterLib    : "com.squareup.retrofit2:converter-moshi:$version.converterMoshi"
@@ -100,7 +100,6 @@ ext {
             hiltDaggerCompiler: library.hiltDaggerCompilerLib,
             hiltCompiler      : library.hiltCompilerLib,
             moshiKt           : library.moshiKtLib,
-            moshi             : library.moshiLib,
             moshiConverter    : library.moshiConverterLib,
             okHttp            : library.okHttpLib,
             logginInterceptor : library.logginInterceptorLib,
@@ -134,7 +133,6 @@ ext {
             daggerHilt        : library.daggerHiltLib,
             hiltDaggerCompiler: library.hiltDaggerCompilerLib,
             hiltCompiler      : library.hiltCompilerLib,
-            moshi             : library.moshiLib,
             moshiKt           : library.moshiKtLib,
             moshiConverter    : library.moshiConverterLib,
             okHttp            : library.okHttpLib,
