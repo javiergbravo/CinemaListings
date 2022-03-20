@@ -1,22 +1,27 @@
 package com.jgbravo.core.presentation.adapters
 
-import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.jgbravo.core.models.base.BaseModel
+import kotlin.properties.Delegates
 
 abstract class BaseAdapter<VB : ViewBinding, VH : BaseViewHolder<VB>, MODEL : BaseModel> :
     RecyclerView.Adapter<VH>() {
 
-    abstract val diffCallback: BaseItemCallback<MODEL>
-    private val differ = AsyncListDiffer(this, diffCallback)
+    abstract val areContentsTheSame: (MODEL, MODEL) -> Boolean
+
     private var onItemClickListener: ((MODEL) -> Unit)? = null
+
+    private var asyncList: List<MODEL> by Delegates.observable(emptyList()) { _, oldList, newList ->
+        val diffCallback = BaseListCallback(oldList, newList, areContentsTheSame)
+        DiffUtil.calculateDiff(diffCallback).dispatchUpdatesTo(this)
+    }
 
     /**
      * Example:
-     * return MenuViewHolder(ItemGuideBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+     * return MovieViewHolder(ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false))
      */
     abstract override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH
 
@@ -33,24 +38,15 @@ abstract class BaseAdapter<VB : ViewBinding, VH : BaseViewHolder<VB>, MODEL : Ba
         }
     }
 
-    override fun getItemCount(): Int = differ.currentList.size
+    override fun getItemCount(): Int = asyncList.size
 
-    protected fun getItem(index: Int): MODEL = differ.currentList[index]
+    protected fun getItem(index: Int): MODEL = asyncList[index]
 
     fun submitList(list: List<MODEL>) {
-        differ.submitList(list)
+        asyncList = list
     }
-
-    /*fun submitListAndNotify(list: List<M>) {
-        submitList(list)
-        notifyDataSetChanged()
-    }*/
 
     fun setOnClickListener(listener: (MODEL) -> Unit) {
         onItemClickListener = listener
-    }
-
-    protected fun ViewGroup.inflater(): LayoutInflater {
-        return LayoutInflater.from(this.context)
     }
 }

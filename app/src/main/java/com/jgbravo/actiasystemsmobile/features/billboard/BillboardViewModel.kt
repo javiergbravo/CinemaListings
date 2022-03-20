@@ -3,6 +3,7 @@ package com.jgbravo.actiasystemsmobile.features.billboard
 import androidx.lifecycle.viewModelScope
 import com.jgbravo.actiasystemsmobile.features.billboard.models.SummaryMovieUiModel
 import com.jgbravo.actiasystemsmobile.features.billboard.models.mappers.SummaryMovieUiMapper
+import com.jgbravo.core.extensions.joinLists
 import com.jgbravo.core.extensions.mapList
 import com.jgbravo.core.models.Resource
 import com.jgbravo.core.presentation.BaseViewModel
@@ -14,7 +15,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -22,18 +22,21 @@ class BillboardViewModel @Inject constructor(
     private val getMoviesUseCase: GetMoviesUseCase
 ) : BaseViewModel() {
 
+    private var page = 1
+    private var movieList: List<SummaryMovieUiModel> = arrayListOf()
+
     private var _movies = MutableStateFlow<BillboardState>(BillboardState.NotStarted)
     val movies: StateFlow<BillboardState> get() = _movies
 
     fun getMovies() {
         viewModelScope.launch(Dispatchers.IO) {
-            getMoviesUseCase.invoke().collect { resource ->
+            getMoviesUseCase.invoke(page++).collect { resource ->
                 _movies.value = when (resource) {
                     Resource.Loading -> BillboardState.Loading
                     is Resource.Success -> {
-                        val data = resource.data as List<MovieDomainModel>
-                        val movieList = data.mapList(SummaryMovieUiMapper())
+                        val newList = (resource.data as List<MovieDomainModel>).mapList(SummaryMovieUiMapper())
                         logger.d(movieList.toString())
+                        updateList(newList)
                         BillboardState.Success(movieList)
                     }
                     is Resource.Error -> {
@@ -43,6 +46,10 @@ class BillboardViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    private fun updateList(newMovies: List<SummaryMovieUiModel>) {
+        movieList = joinLists(movieList, newMovies)
     }
 
     sealed class BillboardState {

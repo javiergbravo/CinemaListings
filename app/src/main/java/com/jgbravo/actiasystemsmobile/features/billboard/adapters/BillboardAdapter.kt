@@ -7,23 +7,19 @@ import com.jgbravo.actiasystemsmobile.databinding.ItemMovieBinding
 import com.jgbravo.actiasystemsmobile.features.billboard.models.SummaryMovieUiModel
 import com.jgbravo.core.extensions.loadFromUrl
 import com.jgbravo.core.presentation.adapters.BaseAdapter
-import com.jgbravo.core.presentation.adapters.BaseItemCallback
 import com.jgbravo.core.presentation.adapters.BaseViewHolder
 
 class BillboardAdapter :
-    BaseAdapter<ItemMovieBinding, BillboardAdapter.MovieCardViewHolder, SummaryMovieUiModel>() {
+    BaseAdapter<ItemMovieBinding, BillboardAdapter.MovieViewHolder, SummaryMovieUiModel>() {
 
-    override val diffCallback = object : BaseItemCallback<SummaryMovieUiModel>() {
-        override fun areItemsTheSame(oldItem: SummaryMovieUiModel, newItem: SummaryMovieUiModel): Boolean {
-            return oldItem.id == newItem.id
-        }
+    override val areContentsTheSame: (SummaryMovieUiModel, SummaryMovieUiModel) -> Boolean =
+        { old, new -> old.id == new.id }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
+        return MovieViewHolder(ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieCardViewHolder {
-        return MovieCardViewHolder(ItemMovieBinding.inflate(LayoutInflater.from(parent.context)))
-    }
-
-    override fun onBindViewHolder(holder: MovieCardViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         super.onBindViewHolder(holder, position)
         val movie = getItem(position)
         holder.binding.apply {
@@ -33,5 +29,5 @@ class BillboardAdapter :
         }
     }
 
-    inner class MovieCardViewHolder(binding: ItemMovieBinding) : BaseViewHolder<ItemMovieBinding>(binding)
+    inner class MovieViewHolder(binding: ItemMovieBinding) : BaseViewHolder<ItemMovieBinding>(binding)
 }

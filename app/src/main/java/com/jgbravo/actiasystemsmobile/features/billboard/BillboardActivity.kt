@@ -3,6 +3,7 @@ package com.jgbravo.actiasystemsmobile.features.billboard
 import androidx.activity.viewModels
 import com.jgbravo.actiasystemsmobile.databinding.ActivityMainBinding
 import com.jgbravo.actiasystemsmobile.features.billboard.adapters.BillboardAdapter
+import com.jgbravo.core.extensions.onReachBottom
 import com.jgbravo.core.presentation.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -49,6 +50,10 @@ class BillboardActivity : BaseActivity<ActivityMainBinding>() {
 
     private fun setupBillboardAdapter() {
         billboardAdapter = BillboardAdapter()
-        binding.rvBillboard.adapter = billboardAdapter
+        binding.rvBillboard.apply {
+            adapter = billboardAdapter
+            onReachBottom { viewModel.getMovies() }
+        }
+
     }
 }

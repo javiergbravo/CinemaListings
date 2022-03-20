@@ -62,7 +62,7 @@ object TheMovieDbModule {
         return Retrofit.Builder()
             .baseUrl(TheMovieDb.BASE_URL)
             .client(okHttpClient)
-            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .addConverterFactory(MoshiConverterFactory.create(moshi).asLenient())
             .build()
             .create(TheMovieDbApi::class.java)
     }

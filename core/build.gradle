@@ -8,6 +8,10 @@ plugins {
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+    }
+
     // Presentation
     buildFeatures {
         viewBinding true
