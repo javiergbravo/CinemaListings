@@ -97,8 +97,7 @@ ext {
             activityKtx       : library.activityKtxLib,
             viewmodelKtx      : library.viewmodelKtxLib,
             runtimeKtx        : library.runtimeKtxLib,
-            glide             : library.glideLib,
-            glideCompiler     : library.glideCompilerLib,
+            //glide             : library.glideLib,
             daggerHilt        : library.daggerHiltLib,
             hiltDaggerCompiler: library.hiltDaggerCompilerLib,
             hiltCompiler      : library.hiltCompilerLib,
@@ -110,7 +109,7 @@ ext {
     ]
 
     compilerDependencies = [
-            glideCompiler     : library.glideCompilerLib,
+            //glideCompiler     : library.glideCompilerLib,
             hiltCompiler      : library.hiltCompilerLib,
             hiltDaggerCompiler: library.hiltDaggerCompilerLib,
             moshiCodegen      : library.moshiCodegenLib
@@ -135,6 +134,8 @@ ext {
             coroutinesCore    : library.coroutinesCoreLib,
             coroutinesAndroid : library.coroutinesAndroidLib,
             runtimeKtx        : library.runtimeKtxLib,
+            recyclerView      : library.recyclerViewLib,
+            glide             : library.glideLib,
 
             //Inject
             daggerHilt        : library.daggerHiltLib,
@@ -146,6 +147,10 @@ ext {
     ]
 
     coreCompilerDependencies = [
+            //Presentation
+            glideCompiler     : library.glideCompilerLib,
+
+            //Inject
             hiltCompiler      : library.hiltCompilerLib,
             hiltDaggerCompiler: library.hiltDaggerCompilerLib
     ]

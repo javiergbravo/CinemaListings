@@ -3,6 +3,7 @@ package com.jgbravo.data.utils
 object TheMovieDb {
 
     const val BASE_URL = "https://api.themoviedb.org"
+    const val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500"
 
     const val SPANISH_LANGUAGE = "es-ES"
 

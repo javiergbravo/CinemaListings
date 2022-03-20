@@ -2,12 +2,13 @@
 <resources>
     <!-- Default -->
     <dimen name="margin_default">8dp</dimen>
+    <dimen name="padding_default">8dp</dimen>
     <dimen name="padding_vertical_small">3dp</dimen>
 
     <!-- Activity -->
     <dimen name="activity_padding">8dp</dimen>
 
-    <!-- CardView -->
-    <dimen name="cv_corner_radius">5dp</dimen>
-    <dimen name="cv_elevation">8dp</dimen>
+    <!-- Components -->
+    <dimen name="padding_small">3dp</dimen>
+    <dimen name="item_space">8dp</dimen>
 </resources>

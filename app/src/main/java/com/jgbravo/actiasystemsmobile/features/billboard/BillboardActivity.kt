@@ -2,6 +2,7 @@ package com.jgbravo.actiasystemsmobile.features.billboard
 
 import androidx.activity.viewModels
 import com.jgbravo.actiasystemsmobile.databinding.ActivityMainBinding
+import com.jgbravo.actiasystemsmobile.features.billboard.adapters.BillboardAdapter
 import com.jgbravo.core.presentation.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -12,6 +13,8 @@ import kotlinx.coroutines.launch
 class BillboardActivity : BaseActivity<ActivityMainBinding>() {
 
     override val viewModel: BillboardViewModel by viewModels()
+
+    private lateinit var billboardAdapter: BillboardAdapter
 
     override fun getViewBinding(): ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
 
@@ -30,8 +33,10 @@ class BillboardActivity : BaseActivity<ActivityMainBinding>() {
                         //Show Loading
                     }
                     is BillboardViewModel.BillboardState.Success -> {
-                        val qqq = state.movies
-                        //logger.d("Kiwi", "$qqq")
+                        if (!::billboardAdapter.isInitialized) {
+                            setupBillboardAdapter()
+                        }
+                        billboardAdapter.submitList(state.movies)
                         //Hide Loading
                     }
                     is BillboardViewModel.BillboardState.Error -> {
@@ -40,5 +45,10 @@ class BillboardActivity : BaseActivity<ActivityMainBinding>() {
                 }
             }
         }
+    }
+
+    private fun setupBillboardAdapter() {
+        billboardAdapter = BillboardAdapter()
+        binding.rvBillboard.adapter = billboardAdapter
     }
 }
