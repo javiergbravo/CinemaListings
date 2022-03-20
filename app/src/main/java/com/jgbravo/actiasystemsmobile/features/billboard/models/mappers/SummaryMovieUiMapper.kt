@@ -1,6 +1,7 @@
 package com.jgbravo.actiasystemsmobile.features.billboard.models.mappers
 
 import com.jgbravo.actiasystemsmobile.features.billboard.models.SummaryMovieUiModel
+import com.jgbravo.core.extensions.year
 import com.jgbravo.core.models.mappers.UiMapper
 import com.jgbravo.domain.models.MovieDomainModel
 
@@ -11,7 +12,7 @@ class SummaryMovieUiMapper : UiMapper<MovieDomainModel, SummaryMovieUiModel>() {
             id = domainModel.id,
             title = domainModel.title,
             poster = domainModel.poster,
-            releaseYear = domainModel.releaseDate.year
+            releaseYear = domainModel.releaseDate.year()
         )
     }
 }

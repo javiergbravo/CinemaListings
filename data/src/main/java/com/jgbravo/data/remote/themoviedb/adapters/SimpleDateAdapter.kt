@@ -7,7 +7,7 @@ import java.util.*
 class SimpleDateAdapter : JsonAdapter<Date>() {
 
     companion object {
-        private const val DATE_PATTERN = "yyyy-MM-dd"
+        const val DATE_PATTERN = "yyyy-MM-dd"
     }
 
     private val dateFormat = SimpleDateFormat(DATE_PATTERN, Locale.getDefault())
@@ -16,7 +16,9 @@ class SimpleDateAdapter : JsonAdapter<Date>() {
     override fun fromJson(reader: JsonReader): Date? {
         return try {
             synchronized(dateFormat) {
-                dateFormat.parse(reader.nextString())
+                reader.isLenient = true
+                val dateAsString = reader.nextString()
+                dateFormat.parse(dateAsString)
             }
         } catch (e: Exception) {
             null
@@ -25,9 +27,9 @@ class SimpleDateAdapter : JsonAdapter<Date>() {
 
     @ToJson
     override fun toJson(writer: JsonWriter, value: Date?) {
-        value?.let {
+        value?.let { date ->
             synchronized(dateFormat) {
-                writer.value(it.toString())
+                writer.value(date.toString())
             }
         }
     }

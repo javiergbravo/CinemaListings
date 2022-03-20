@@ -1,0 +1,20 @@
+{
+  "adult": false,
+  "backdrop_path": "/iQFcwSGbZXMkeyKrxbPnwnRo5fl.jpg",
+  "genre_ids": [
+    28,
+    12,
+    878
+  ],
+  "id": 634649,
+  "original_language": "en",
+  "original_title": "Spider-Man: No Way Home",
+  "overview": "Peter Parker es desenmascarado y por tanto no es capaz de separar su vida normal de los enormes riesgos que conlleva ser un súper héroe. Cuando pide ayuda a Doctor Strange, los riesgos pasan a ser aún más peligrosos, obligándole a descubrir lo que realmente significa ser Spider-Man.",
+  "popularity": 9675.798,
+  "poster_path": "/osYbtvqjMUhEXgkuFJOsRYVpq6N.jpg",
+  "release_date": "2021-12-15",
+  "title": "Spider-Man: No Way Home",
+  "video": false,
+  "vote_average": 8.2,
+  "vote_count": 9831
+}
