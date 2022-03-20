@@ -13,7 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ActiaSystemsMobile">
         <activity
-            android:name="com.jgbravo.actiasystemsmobile.features.billboard.BillboardActivity"
+            android:name=".features.movieDetails.MovieDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".features.billboard.BillboardActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

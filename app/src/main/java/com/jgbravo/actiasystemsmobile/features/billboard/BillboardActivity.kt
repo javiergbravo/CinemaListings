@@ -3,6 +3,9 @@ package com.jgbravo.actiasystemsmobile.features.billboard
 import androidx.activity.viewModels
 import com.jgbravo.actiasystemsmobile.databinding.ActivityMainBinding
 import com.jgbravo.actiasystemsmobile.features.billboard.adapters.BillboardAdapter
+import com.jgbravo.actiasystemsmobile.features.movieDetails.MovieDetailsActivity
+import com.jgbravo.actiasystemsmobile.features.movieDetails.MovieDetailsActivity.Companion.KEY_MOVIE_ID
+import com.jgbravo.core.extensions.navigateTo
 import com.jgbravo.core.extensions.onReachBottom
 import com.jgbravo.core.presentation.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -53,6 +56,11 @@ class BillboardActivity : BaseActivity<ActivityMainBinding>() {
         binding.rvBillboard.apply {
             adapter = billboardAdapter
             onReachBottom { viewModel.getMovies() }
+        }
+        billboardAdapter.setOnClickListener { movie ->
+            navigateTo<MovieDetailsActivity> {
+                putExtra(KEY_MOVIE_ID, movie.id)
+            }
         }
 
     }

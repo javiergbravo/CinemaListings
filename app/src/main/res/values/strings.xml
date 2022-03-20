@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">ActiaSystemsMobile</string>
+    <string name="score">Score</string>
+    <string name="director">Director</string>
+    <string name="duration">Duration</string>
 </resources>
