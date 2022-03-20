@@ -2,7 +2,7 @@ package com.jgbravo.actiasystemsmobile.features.billboard.models
 
 import com.jgbravo.core.models.base.UiModel
 
-data class SummaryMovieUiModel(
+data class SummaryMovie(
     val id: Int,
     val title: String,
     val poster: String,

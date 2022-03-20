@@ -4,15 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.jgbravo.actiasystemsmobile.R
 import com.jgbravo.actiasystemsmobile.databinding.ItemMovieBinding
-import com.jgbravo.actiasystemsmobile.features.billboard.models.SummaryMovieUiModel
+import com.jgbravo.actiasystemsmobile.features.billboard.models.SummaryMovie
 import com.jgbravo.core.extensions.loadFromUrl
 import com.jgbravo.core.presentation.adapters.BaseAdapter
 import com.jgbravo.core.presentation.adapters.BaseViewHolder
 
 class BillboardAdapter :
-    BaseAdapter<ItemMovieBinding, BillboardAdapter.MovieViewHolder, SummaryMovieUiModel>() {
+    BaseAdapter<ItemMovieBinding, BillboardAdapter.MovieViewHolder, SummaryMovie>() {
 
-    override val areContentsTheSame: (SummaryMovieUiModel, SummaryMovieUiModel) -> Boolean =
+    override val areContentsTheSame: (SummaryMovie, SummaryMovie) -> Boolean =
         { old, new -> old.id == new.id }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {

@@ -2,6 +2,7 @@
 <resources>
     <!-- Default -->
     <dimen name="margin_default">8dp</dimen>
+    <dimen name="margin_big">16dp</dimen>
     <dimen name="padding_default">8dp</dimen>
     <dimen name="padding_vertical_small">3dp</dimen>
 

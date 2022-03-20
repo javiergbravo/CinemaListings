@@ -14,6 +14,7 @@
         android:theme="@style/Theme.ActiaSystemsMobile">
         <activity
             android:name=".features.movieDetails.MovieDetailsActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".features.billboard.BillboardActivity"

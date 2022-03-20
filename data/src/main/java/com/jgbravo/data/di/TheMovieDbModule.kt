@@ -5,7 +5,7 @@ import com.jgbravo.data.BuildConfig
 import com.jgbravo.data.remote.themoviedb.TheMovieDbApi
 import com.jgbravo.data.remote.themoviedb.adapters.SimpleDateAdapter
 import com.jgbravo.data.remote.themoviedb.interceptors.TheMovieDbInterceptor
-import com.jgbravo.data.utils.TheMovieDb
+import com.jgbravo.data.utils.TheMovieDbUtils
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -60,7 +60,7 @@ object TheMovieDbModule {
         moshi: Moshi
     ): TheMovieDbApi {
         return Retrofit.Builder()
-            .baseUrl(TheMovieDb.BASE_URL)
+            .baseUrl(TheMovieDbUtils.BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(MoshiConverterFactory.create(moshi).asLenient())
             .build()

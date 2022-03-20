@@ -15,9 +15,9 @@ class GetMoviesUseCase @Inject constructor(
     private val moviesRepository: MoviesRepository
 ) {
 
-    operator fun invoke(page: Int): Flow<Resource<List<MovieDomainModel>>> = flow {
+    operator fun invoke(page: Int, lang: String? = null): Flow<Resource<List<MovieDomainModel>>> = flow {
         emit(Resource.Loading)
-        moviesRepository.getBillboard(page).collect { resource ->
+        moviesRepository.getBillboard(page, lang).collect { resource ->
             when (resource) {
                 is Resource.Success -> {
                     val movieList = (resource.data as BillboardDataModel).movieList

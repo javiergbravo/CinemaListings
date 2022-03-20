@@ -1,7 +1,7 @@
 package com.jgbravo.actiasystemsmobile.features.billboard
 
 import androidx.lifecycle.viewModelScope
-import com.jgbravo.actiasystemsmobile.features.billboard.models.SummaryMovieUiModel
+import com.jgbravo.actiasystemsmobile.features.billboard.models.SummaryMovie
 import com.jgbravo.actiasystemsmobile.features.billboard.models.mappers.SummaryMovieUiMapper
 import com.jgbravo.core.extensions.joinLists
 import com.jgbravo.core.extensions.mapList
@@ -10,7 +10,6 @@ import com.jgbravo.core.presentation.BaseViewModel
 import com.jgbravo.domain.models.MovieDomainModel
 import com.jgbravo.domain.useCases.GetMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
@@ -23,13 +22,13 @@ class BillboardViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     private var page = 1
-    private var movieList: List<SummaryMovieUiModel> = arrayListOf()
+    private var movieList: List<SummaryMovie> = arrayListOf()
 
     private var _movies = MutableStateFlow<BillboardState>(BillboardState.NotStarted)
     val movies: StateFlow<BillboardState> get() = _movies
 
     fun getMovies() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             getMoviesUseCase.invoke(page++).collect { resource ->
                 _movies.value = when (resource) {
                     Resource.Loading -> BillboardState.Loading
@@ -48,14 +47,14 @@ class BillboardViewModel @Inject constructor(
         }
     }
 
-    private fun updateList(newMovies: List<SummaryMovieUiModel>) {
+    private fun updateList(newMovies: List<SummaryMovie>) {
         movieList = joinLists(movieList, newMovies)
     }
 
     sealed class BillboardState {
         object NotStarted : BillboardState()
         object Loading : BillboardState()
-        class Success(val movies: List<SummaryMovieUiModel>) : BillboardState()
+        class Success(val movies: List<SummaryMovie>) : BillboardState()
         class Error(val message: String) : BillboardState()
     }
 }

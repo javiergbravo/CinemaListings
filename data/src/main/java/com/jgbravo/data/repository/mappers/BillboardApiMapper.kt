@@ -7,7 +7,7 @@ import com.jgbravo.data.remote.themoviedb.models.BillboardDTO
 import com.jgbravo.data.remote.themoviedb.models.MovieDTO
 import com.jgbravo.data.repository.models.BillboardDataModel
 import com.jgbravo.data.repository.models.MovieDataModel
-import com.jgbravo.data.utils.TheMovieDb.IMAGE_BASE_URL
+import com.jgbravo.data.utils.TheMovieDbUtils.buildAbsoluteImageUrl
 
 class BillboardApiMapper : ApiMapper<BillboardDTO, BillboardDataModel>() {
 
@@ -32,6 +32,4 @@ class MovieApiMapper : ApiMapper<MovieDTO, MovieDataModel>() {
             votes = dtoModel::voteCount.getOrThrow(),
         )
     }
-
-    private fun buildAbsoluteImageUrl(path: String) = "$IMAGE_BASE_URL$path"
 }

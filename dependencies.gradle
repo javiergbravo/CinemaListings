@@ -134,6 +134,7 @@ ext {
             coroutinesCore    : library.coroutinesCoreLib,
             coroutinesAndroid : library.coroutinesAndroidLib,
             runtimeKtx        : library.runtimeKtxLib,
+            material          : library.materialLib,
             recyclerView      : library.recyclerViewLib,
             glide             : library.glideLib,
 
