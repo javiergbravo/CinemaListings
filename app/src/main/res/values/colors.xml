@@ -20,6 +20,7 @@
     <color name="soft_grey">#DDDDDD</color>
     <color name="grey">#8E8E8E</color>
     <color name="dark_grey">#252525</color>
+    <color name="grey_transparent">#66E9EAEA</color>
     <color name="transparent">#00000000</color>
 
     <!-- App -->

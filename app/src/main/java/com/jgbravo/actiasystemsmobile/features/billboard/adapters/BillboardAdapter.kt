@@ -12,11 +12,19 @@ import com.jgbravo.core.presentation.adapters.BaseViewHolder
 class BillboardAdapter :
     BaseAdapter<ItemMovieBinding, BillboardAdapter.MovieViewHolder, SummaryMovie>() {
 
+    private var onDeleteClickListener: ((SummaryMovie) -> Unit)? = null
+
     override val areContentsTheSame: (SummaryMovie, SummaryMovie) -> Boolean =
         { old, new -> old.id == new.id }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        return MovieViewHolder(ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return MovieViewHolder(
+            ItemMovieBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
@@ -26,8 +34,19 @@ class BillboardAdapter :
             tvTitle.text = movie.title
             tvReleaseYear.text = movie.releaseYear.toString()
             imgPoster.loadFromUrl(movie.poster, R.drawable.ic_image_error)
+
+            viewDelete.setOnDeleteClickListener {
+                onDeleteClickListener?.let {
+                    it(movie)
+                }
+            }
         }
     }
 
-    inner class MovieViewHolder(binding: ItemMovieBinding) : BaseViewHolder<ItemMovieBinding>(binding)
+    fun setOnDeleteClickListener(listener: (SummaryMovie) -> Unit) {
+        onDeleteClickListener = listener
+    }
+
+    inner class MovieViewHolder(binding: ItemMovieBinding) :
+        BaseViewHolder<ItemMovieBinding>(binding)
 }

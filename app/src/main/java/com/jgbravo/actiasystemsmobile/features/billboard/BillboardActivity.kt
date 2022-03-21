@@ -67,6 +67,9 @@ class BillboardActivity : BaseActivity<ActivityMainBinding>() {
                 putExtra(KEY_MOVIE_ID, movie.id)
             }
         }
+        billboardAdapter.setOnDeleteClickListener {
+            viewModel.deleteMovie(it)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

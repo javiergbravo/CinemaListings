@@ -1,6 +1,7 @@
 package com.jgbravo.actiasystemsmobile.features.billboard
 
 import androidx.lifecycle.viewModelScope
+import com.jgbravo.actiasystemsmobile.features.billboard.models.MovieFilterModel
 import com.jgbravo.actiasystemsmobile.features.billboard.models.SummaryMovie
 import com.jgbravo.actiasystemsmobile.features.billboard.models.mappers.SummaryMovieUiMapper
 import com.jgbravo.core.extensions.joinLists
@@ -23,6 +24,7 @@ class BillboardViewModel @Inject constructor(
 
     private var page = 1
     private var movieList: List<SummaryMovie> = arrayListOf()
+    private val filters = MovieFilterModel()
 
     private var _movies = MutableStateFlow<BillboardState>(BillboardState.NotStarted)
     val movies: StateFlow<BillboardState> get() = _movies
@@ -52,6 +54,12 @@ class BillboardViewModel @Inject constructor(
 
     private fun updateList(newMovies: List<SummaryMovie>) {
         movieList = joinLists(movieList, newMovies)
+    }
+
+    fun deleteMovie(movie: SummaryMovie) {
+        filters.movieDeleted.add(movie)
+        movieList = movieList.filter { it.id != movie.id }
+        _movies.value = BillboardState.Success(movieList)
     }
 
     sealed class BillboardState {

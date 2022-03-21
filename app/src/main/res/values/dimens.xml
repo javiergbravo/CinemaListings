@@ -11,5 +11,5 @@
 
     <!-- Components -->
     <dimen name="padding_small">3dp</dimen>
-    <dimen name="item_space">8dp</dimen>
+    <dimen name="item_space">3dp</dimen>
 </resources>
