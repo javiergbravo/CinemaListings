@@ -71,11 +71,19 @@ class BillboardViewModel @Inject constructor(
     }
 
     private fun List<SummaryMovie>.filterByTitle(): List<SummaryMovie> {
-        return this.filter { it.title.lowercase().contains(filters.searchTitle.lowercase()) }
+        return if (filters.hasTitleFilter) {
+            this.filter { it.title.lowercase().contains(filters.searchTitle.lowercase()) }
+        } else {
+            this
+        }
     }
 
     private fun List<SummaryMovie>.filterDeleted(): List<SummaryMovie> {
-        return this.filter { !filters.movieDeleted.contains(it) }
+        return if (filters.hasDeletedMovies) {
+            this.filter { !filters.movieDeleted.contains(it) }
+        } else {
+            this
+        }
     }
 
 
