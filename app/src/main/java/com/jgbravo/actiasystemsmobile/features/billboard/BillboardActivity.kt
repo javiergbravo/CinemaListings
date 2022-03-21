@@ -91,7 +91,7 @@ class BillboardActivity : BaseActivity<ActivityMainBinding>(), SearchView.OnQuer
     }
 
     override fun onQueryTextChange(word: String?): Boolean {
-        //viewModel.filterByTitle(word)
+        viewModel.filterByTitle(word)
         return true
     }
 }

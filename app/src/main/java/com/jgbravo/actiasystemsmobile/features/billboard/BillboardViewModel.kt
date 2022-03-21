@@ -23,8 +23,9 @@ class BillboardViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     private var page = 1
-    private var movieList: List<SummaryMovie> = arrayListOf()
     private val filters = MovieFilterModel()
+    private var movieList: List<SummaryMovie> = arrayListOf()
+    private val filteredMovieList: List<SummaryMovie> get() = filterList(movieList)
 
     private var _movies = MutableStateFlow<BillboardState>(BillboardState.NotStarted)
     val movies: StateFlow<BillboardState> get() = _movies
@@ -38,7 +39,7 @@ class BillboardViewModel @Inject constructor(
                         val newList = (resource.data as List<MovieDomainModel>).mapList(SummaryMovieUiMapper())
                         logger.d("Add ${newList.size} movies to list")
                         updateList(newList)
-                        BillboardState.Success(movieList)
+                        BillboardState.Success(filteredMovieList)
                     }
                     is Resource.Error -> {
                         logger.e(resource.exception)
@@ -53,16 +54,30 @@ class BillboardViewModel @Inject constructor(
 
     private fun updateList(newMovies: List<SummaryMovie>) {
         movieList = joinLists(movieList, newMovies)
-        logger.d("Total movies: ${movieList.size}")
     }
 
     fun deleteMovie(movie: SummaryMovie) {
-        logger.d("Deleting movie...")
         filters.movieDeleted.add(movie)
-        movieList = movieList.filter { it.id != movie.id }
-        _movies.value = BillboardState.Success(movieList)
-        logger.d("Total movies: ${movieList.size}")
+        _movies.value = BillboardState.Success(filteredMovieList)
     }
+
+    fun filterByTitle(search: String?) {
+        filters.searchTitle = search ?: ""
+        _movies.value = BillboardState.Success(filteredMovieList)
+    }
+
+    private fun filterList(list: List<SummaryMovie>): List<SummaryMovie> {
+        return list.filterByTitle().filterDeleted()
+    }
+
+    private fun List<SummaryMovie>.filterByTitle(): List<SummaryMovie> {
+        return this.filter { it.title.lowercase().contains(filters.searchTitle.lowercase()) }
+    }
+
+    private fun List<SummaryMovie>.filterDeleted(): List<SummaryMovie> {
+        return this.filter { !filters.movieDeleted.contains(it) }
+    }
+
 
     sealed class BillboardState {
         object NotStarted : BillboardState()
