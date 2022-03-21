@@ -1,7 +1,14 @@
 package com.jgbravo.actiasystemsmobile.features.billboard.models
 
 data class MovieFilterModel(
-    var movieDeleted: MutableList<SummaryMovie> = mutableListOf()
+    var movieDeleted: MutableList<SummaryMovie> = mutableListOf(),
+    var searchTitle: String = ""
 ) {
-    val areActivated: Boolean get() = movieDeleted.isNotEmpty()
+    val hasDeletedMovies: Boolean get() = movieDeleted.isNotEmpty()
+    val hasTitleFilter: Boolean get() = searchTitle.isNotBlank()
+
+    fun cleanFilters() {
+        movieDeleted = mutableListOf()
+        searchTitle = ""
+    }
 }

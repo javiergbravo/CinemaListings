@@ -35,9 +35,8 @@ class BillboardViewModel @Inject constructor(
                 _movies.value = when (resource) {
                     Resource.Loading -> BillboardState.Loading
                     is Resource.Success -> {
-                        val newList =
-                            (resource.data as List<MovieDomainModel>).mapList(SummaryMovieUiMapper())
-                        logger.d(movieList.toString())
+                        val newList = (resource.data as List<MovieDomainModel>).mapList(SummaryMovieUiMapper())
+                        logger.d("Add ${newList.size} movies to list")
                         updateList(newList)
                         BillboardState.Success(movieList)
                     }
@@ -54,12 +53,15 @@ class BillboardViewModel @Inject constructor(
 
     private fun updateList(newMovies: List<SummaryMovie>) {
         movieList = joinLists(movieList, newMovies)
+        logger.d("Total movies: ${movieList.size}")
     }
 
     fun deleteMovie(movie: SummaryMovie) {
+        logger.d("Deleting movie...")
         filters.movieDeleted.add(movie)
         movieList = movieList.filter { it.id != movie.id }
         _movies.value = BillboardState.Success(movieList)
+        logger.d("Total movies: ${movieList.size}")
     }
 
     sealed class BillboardState {

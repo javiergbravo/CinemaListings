@@ -3,6 +3,7 @@ package com.jgbravo.actiasystemsmobile.features.billboard
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
+import androidx.appcompat.widget.SearchView
 import com.jgbravo.actiasystemsmobile.R
 import com.jgbravo.actiasystemsmobile.databinding.ActivityMainBinding
 import com.jgbravo.actiasystemsmobile.features.billboard.adapters.BillboardAdapter
@@ -17,7 +18,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class BillboardActivity : BaseActivity<ActivityMainBinding>() {
+class BillboardActivity : BaseActivity<ActivityMainBinding>(), SearchView.OnQueryTextListener {
 
     override val viewModel: BillboardViewModel by viewModels()
 
@@ -63,9 +64,7 @@ class BillboardActivity : BaseActivity<ActivityMainBinding>() {
             onReachBottom { viewModel.getMovies() }
         }
         billboardAdapter.setOnClickListener { movie ->
-            navigateTo<MovieDetailsActivity> {
-                putExtra(KEY_MOVIE_ID, movie.id)
-            }
+            navigateTo<MovieDetailsActivity> { putExtra(KEY_MOVIE_ID, movie.id) }
         }
         billboardAdapter.setOnDeleteClickListener {
             viewModel.deleteMovie(it)
@@ -74,13 +73,25 @@ class BillboardActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_billboard, menu)
-        return true
+        val search = menu.findItem(R.id.menu_search)
+        val searchView = search?.actionView as? SearchView
+        searchView?.setOnQueryTextListener(this)
+        return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_theme -> themeManager.toggleTheme()
         }
+        return true
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        return true
+    }
+
+    override fun onQueryTextChange(word: String?): Boolean {
+        //viewModel.filterByTitle(word)
         return true
     }
 }
