@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/purple_200</color>
-    <color name="colorPrimaryDark">@color/purple_500</color>
-    <color name="colorAccent">@color/purple_700</color>
+    <color name="colorPrimary">@color/secondary</color>
+    <color name="colorPrimaryDark">@color/primary</color>
+    <color name="colorAccent">@color/tertiary</color>
+
+    <color name="colorBackground">@color/background_default</color>
+    <color name="colorText">@color/text_default</color>
+
+    <!-- Light theme colors -->
+    <color name="primary">@color/dark_blue</color>
+    <color name="secondary">@color/light_blue</color>
+    <color name="tertiary">@color/light_green</color>
+    <color name="background_default">@color/white</color>
+    <color name="text_default">@color/black</color>
+
+    <!-- All colors -->
+    <color name="dark_blue">#0d253f</color>
+    <color name="light_blue">#01b4e4</color>
+    <color name="light_green">#90cea1</color>
 
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>

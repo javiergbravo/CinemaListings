@@ -1,13 +1,12 @@
 package com.jgbravo.core.presentation
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewbinding.ViewBinding
-import com.jgbravo.core.timber.ActiaLogger
+import com.jgbravo.core.presentation.managers.ThemeManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -17,7 +16,7 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
     private val TAG = this::class.java.simpleName
 
     @Inject
-    protected lateinit var logger: ActiaLogger
+    protected lateinit var themeManager: ThemeManager
 
     protected lateinit var binding: VB
 
@@ -30,6 +29,8 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
         trackLifecycle("onCreate")
         binding = getViewBinding()
         setContentView(binding.root)
+
+        themeManager.updateToCurrentTheme()
 
         setupView()
         executeFlows()

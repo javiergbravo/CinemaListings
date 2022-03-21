@@ -1,6 +1,9 @@
 package com.jgbravo.actiasystemsmobile.features.billboard
 
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.viewModels
+import com.jgbravo.actiasystemsmobile.R
 import com.jgbravo.actiasystemsmobile.databinding.ActivityMainBinding
 import com.jgbravo.actiasystemsmobile.features.billboard.adapters.BillboardAdapter
 import com.jgbravo.actiasystemsmobile.features.movieDetails.MovieDetailsActivity
@@ -23,7 +26,9 @@ class BillboardActivity : BaseActivity<ActivityMainBinding>() {
     override fun getViewBinding(): ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
 
     override fun setupView() {
-        viewModel.getMovies()
+        if (!viewModel.isListAvailable()) {
+            viewModel.getMovies()
+        }
     }
 
     override fun collectStateDataFlows() {}
@@ -62,6 +67,17 @@ class BillboardActivity : BaseActivity<ActivityMainBinding>() {
                 putExtra(KEY_MOVIE_ID, movie.id)
             }
         }
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_billboard, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_theme -> themeManager.toggleTheme()
+        }
+        return true
     }
 }
