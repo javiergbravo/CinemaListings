@@ -23,7 +23,7 @@
             android:gravity="start"
             android:text="@string/director"
             android:textAllCaps="true"
-            android:textColor="?colorOnSecondary"
+            android:textColor="@color/text_default"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="end"
-            android:textColor="?colorPrimaryVariant"
+            android:textColor="@color/text_accent"
             android:textSize="16sp"
             android:textStyle="bold"
             tools:text="David Frankel" />
@@ -55,7 +55,7 @@
             android:gravity="start"
             android:text="@string/duration"
             android:textAllCaps="true"
-            android:textColor="?colorOnSecondary"
+            android:textColor="@color/text_default"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="end"
-            android:textColor="?colorPrimaryVariant"
+            android:textColor="@color/text_accent"
             android:textSize="16sp"
             android:textStyle="bold"
             tools:text="2h 10 min" />
@@ -87,7 +87,7 @@
             android:gravity="start"
             android:text="@string/release_year"
             android:textAllCaps="true"
-            android:textColor="?colorOnSecondary"
+            android:textColor="@color/text_default"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -97,7 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="end"
-            android:textColor="?colorPrimaryVariant"
+            android:textColor="@color/text_accent"
             android:textSize="16sp"
             android:textStyle="bold"
             tools:text="1995" />
@@ -118,6 +118,7 @@
             android:layout_marginVertical="@dimen/margin_default"
             android:text="@string/description"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@color/text_default"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layoutDuration" />
 
@@ -126,6 +127,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/text_contrast"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvDescriptionTitle"
             tools:text="Peter Parker is unmasked and no longer able to separate his normal life from the high-stakes of being a super-hero. When he asks for help from Doctor Strange the stakes become even more dangerous, forcing him to discover what it truly means to be Spider-Man." />

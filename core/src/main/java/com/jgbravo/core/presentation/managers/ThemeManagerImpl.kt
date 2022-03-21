@@ -2,7 +2,6 @@ package com.jgbravo.core.presentation.managers
 
 import android.content.Context
 import android.content.res.Configuration
-import android.os.Build
 import androidx.appcompat.app.AppCompatDelegate
 import com.jgbravo.core.presentation.managers.ThemeManager.ThemeState
 import javax.inject.Inject
@@ -19,10 +18,9 @@ class ThemeManagerImpl @Inject constructor(private val context: Context) : Theme
     private var currentTheme = defaultTheme
 
     override fun toggleTheme() {
-        when (currentTheme) {
-            ThemeState.LIGHT -> currentTheme = ThemeState.DARK
-            ThemeState.DARK -> currentTheme = ThemeState.LIGHT
-            else -> Unit
+        currentTheme = when (currentTheme) {
+            ThemeState.LIGHT -> ThemeState.DARK
+            ThemeState.DARK -> ThemeState.LIGHT
         }
         setTheme(currentTheme)
     }
@@ -42,11 +40,6 @@ class ThemeManagerImpl @Inject constructor(private val context: Context) : Theme
         return when (currentTheme) {
             ThemeState.LIGHT -> AppCompatDelegate.MODE_NIGHT_NO
             ThemeState.DARK -> AppCompatDelegate.MODE_NIGHT_YES
-            else -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
-            } else {
-                AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY
-            }
         }
     }
 }

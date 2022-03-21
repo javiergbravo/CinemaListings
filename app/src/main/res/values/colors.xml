@@ -1,29 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/secondary</color>
-    <color name="colorPrimaryDark">@color/primary</color>
-    <color name="colorAccent">@color/tertiary</color>
-
-    <color name="colorBackground">@color/background_default</color>
-    <color name="colorText">@color/text_default</color>
-
     <!-- Light theme colors -->
-    <color name="primary">@color/dark_blue</color>
-    <color name="secondary">@color/light_blue</color>
-    <color name="tertiary">@color/light_green</color>
+    <color name="colorPrimary">@color/primary_color</color>
+    <color name="colorPrimaryDark">@color/primary_color900</color>
+    <color name="colorAccent">@color/primary_color600</color>
+    <color name="colorAccentSecondary">@color/dusk_yellow_color</color>
+
     <color name="background_default">@color/white</color>
+    <color name="background_soft">@color/secondary_color200</color>
     <color name="text_default">@color/black</color>
+    <color name="text_contrast">@color/secondary_color400</color>
+    <color name="text_accent">@color/primary_color700</color>
 
-    <!-- All colors -->
-    <color name="dark_blue">#0d253f</color>
-    <color name="light_blue">#01b4e4</color>
-    <color name="light_green">#90cea1</color>
 
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
+    <!-- Commons -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="almost_white">#FAFAFA</color>
@@ -31,5 +21,30 @@
     <color name="grey">#8E8E8E</color>
     <color name="dark_grey">#252525</color>
     <color name="transparent">#00000000</color>
-    <color name="duskYellow">#FFD700</color>
+
+    <!-- App -->
+    <color name="primary_color">#EF233C</color>
+    <color name="primary_color900">#75111D</color>
+    <color name="primary_color800">#8F1524</color>
+    <color name="primary_color700">#B31A2D</color>
+    <color name="primary_color600">#D72036</color>
+    <color name="primary_color400">#F46577</color>
+    <color name="primary_color300">#F9A7B1</color>
+    <color name="primary_color200">#FBC8CE</color>
+    <color name="primary_color100">#FDE9EC</color>
+    <color name="primary_color50">#FEF4F5</color>
+
+    <color name="secondary_color">#272B30</color>
+    <color name="secondary_color900">#131518</color>
+    <color name="secondary_color800">#171A1D</color>
+    <color name="secondary_color700">#1D2024</color>
+    <color name="secondary_color600">#23272B</color>
+    <color name="secondary_color400">#686B6E</color>
+    <color name="secondary_color300">#A9AAAC</color>
+    <color name="secondary_color200">#C9CACB</color>
+    <color name="secondary_color100">#E9EAEA</color>
+    <color name="secondary_color50">#F4F4F5</color>
+
+    <color name="dusk_yellow_color">#FFD700</color>
+    <color name="dusk_yellow_dark_color">#D8B600</color>
 </resources>

@@ -30,7 +30,8 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/margin_default"
             android:maxLines="1"
-            android:textSize="10sp"
+            android:textColor="@color/text_default"
+            android:textSize="11sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="2005" />
@@ -44,7 +45,7 @@
             android:lines="2"
             android:minLines="2"
             android:paddingBottom="@dimen/padding_default"
-            android:textColor="@color/black"
+            android:textColor="@color/text_contrast"
             android:textSize="13sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
