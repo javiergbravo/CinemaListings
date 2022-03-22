@@ -12,17 +12,6 @@
     <color name="text_contrast">@color/secondary_color400</color>
     <color name="text_accent">@color/primary_color700</color>
 
-
-    <!-- Commons -->
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="almost_white">#FAFAFA</color>
-    <color name="soft_grey">#DDDDDD</color>
-    <color name="grey">#8E8E8E</color>
-    <color name="dark_grey">#252525</color>
-    <color name="grey_transparent">#66E9EAEA</color>
-    <color name="transparent">#00000000</color>
-
     <!-- App -->
     <color name="primary_color">#EF233C</color>
     <color name="primary_color900">#75111D</color>

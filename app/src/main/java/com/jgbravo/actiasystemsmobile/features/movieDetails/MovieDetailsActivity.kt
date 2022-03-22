@@ -46,15 +46,13 @@ class MovieDetailsActivity : BaseActivity<ActivityMovieBinding>() {
             viewModel.movie.collect { state ->
                 when (state) {
                     MovieDetailsViewModel.MovieState.NotStarted -> Unit
-                    MovieDetailsViewModel.MovieState.Loading -> {
-                        // showLoading()
-                    }
+                    MovieDetailsViewModel.MovieState.Loading -> showLoader()
                     is MovieDetailsViewModel.MovieState.Success -> {
                         setupInfo(state.movie as MovieDetails)
-                        // hideLoading(
+                        hideLoader()
                     }
                     is MovieDetailsViewModel.MovieState.Error -> {
-                        // hideLoading()
+                        hideLoader()
                     }
                 }
             }

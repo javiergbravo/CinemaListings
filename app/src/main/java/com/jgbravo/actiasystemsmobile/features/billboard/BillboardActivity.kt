@@ -40,17 +40,17 @@ class BillboardActivity : BaseActivity<ActivityMainBinding>(), SearchView.OnQuer
                 when (state) {
                     BillboardViewModel.BillboardState.NotStarted -> Unit
                     BillboardViewModel.BillboardState.Loading -> {
-                        //Show Loading
+                        showLoader()
                     }
                     is BillboardViewModel.BillboardState.Success -> {
                         if (!::billboardAdapter.isInitialized) {
                             setupBillboardAdapter()
                         }
                         billboardAdapter.submitList(state.movies)
-                        //Hide Loading
+                        hideLoader()
                     }
                     is BillboardViewModel.BillboardState.Error -> {
-
+                        hideLoader()
                     }
                 }
             }

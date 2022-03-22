@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Commons -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="almost_white">#FAFAFA</color>
+    <color name="soft_grey">#DDDDDD</color>
+    <color name="grey">#8E8E8E</color>
+    <color name="dark_grey">#252525</color>
+    <color name="grey_transparent">#66E9EAEA</color>
+    <color name="transparent">#00000000</color>
+</resources>

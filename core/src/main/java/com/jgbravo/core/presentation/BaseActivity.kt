@@ -6,6 +6,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewbinding.ViewBinding
+import com.jgbravo.core.presentation.managers.LoaderManager
 import com.jgbravo.core.presentation.managers.ThemeManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -92,4 +93,8 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
     private fun trackLifecycle(function: String) {
         viewModel.trackLifecycle(TAG, function)
     }
+
+    fun showLoader() = LoaderManager.showDialog(this)
+
+    fun hideLoader() = LoaderManager.hideDialog()
 }
