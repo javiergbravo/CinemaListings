@@ -13,10 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ActiaSystemsMobile">
         <activity
-            android:name=".features.movieDetails.MovieDetailsActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:exported="false" />
-        <activity
             android:name=".features.billboard.BillboardActivity"
             android:exported="true">
             <intent-filter>
@@ -25,6 +21,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".features.movieDetails.MovieDetailsActivity"
+            android:exported="false"
+            android:parentActivityName=".features.billboard.BillboardActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

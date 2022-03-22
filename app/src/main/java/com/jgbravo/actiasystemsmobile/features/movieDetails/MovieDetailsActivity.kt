@@ -1,5 +1,6 @@
 package com.jgbravo.actiasystemsmobile.features.movieDetails
 
+import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import com.jgbravo.actiasystemsmobile.databinding.ActivityMovieBinding
@@ -27,6 +28,8 @@ class MovieDetailsActivity : BaseActivity<ActivityMovieBinding>() {
     override fun getViewBinding(): ActivityMovieBinding = ActivityMovieBinding.inflate(layoutInflater)
 
     override fun setupView() {
+        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
+
         binding.appBarLayout.setUpExpandable(
             onCollapseToolbar = {
                 binding.rbScore.visibility = View.GONE
