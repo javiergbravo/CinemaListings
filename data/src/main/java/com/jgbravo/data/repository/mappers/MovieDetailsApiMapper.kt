@@ -12,7 +12,7 @@ class MovieDetailsApiMapper : ApiMapper<MovieDetailsDTO, MovieDetailsDataModel>(
         return MovieDetailsDataModel(
             id = dtoModel::id.getOrThrow(),
             title = dtoModel::title.getOrThrow(),
-            director = "N/A", // ToDo: check api
+            director = "N/A", // Director property does not exist.
             banner = buildAbsoluteImageUrl(dtoModel::backdropPath.getOrThrow()),
             poster = dtoModel.posterPath?.let { buildAbsoluteImageUrl(it) },
             releaseDate = dtoModel::releaseDate.getOrThrow(),
