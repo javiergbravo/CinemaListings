@@ -54,6 +54,7 @@ class MovieDetailsActivity : BaseActivity<ActivityMovieBinding>() {
                     MovieDetailsViewModel.MovieState.NotStarted -> Unit
                     MovieDetailsViewModel.MovieState.Loading -> showLoader()
                     is MovieDetailsViewModel.MovieState.Success -> {
+                        binding.root.visibility = View.VISIBLE
                         setupInfo(state.movie)
                         hideLoader()
                     }
@@ -68,8 +69,6 @@ class MovieDetailsActivity : BaseActivity<ActivityMovieBinding>() {
 
     private fun setupInfo(movie: MovieDetails) {
         binding.apply {
-            root.visibility = View.VISIBLE
-
             movie.banner?.let { imgBanner.loadFromUrl(it) }
             rbScore.rating = movie.score.toFloat()
             toolbar.title = movie.title

@@ -12,6 +12,7 @@
     <string name="cancel">Cancelar</string>
     <string name="decline">Descartar</string>
     <string name="accept">Aceptar</string>
+    <string name="retry">Reintentar</string>
     <string name="error_unexpected">Error inesperado</string>
     <string name="connection_error">Error de conexión</string>
     <string name="error_unknown">¡Ups! Algo no fue bien. Inténtalo de nuevo más tarde</string>

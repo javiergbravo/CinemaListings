@@ -3,7 +3,9 @@ package com.jgbravo.actiasystemsmobile.features.billboard
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
+import androidx.annotation.StringRes
 import androidx.appcompat.widget.SearchView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.jgbravo.actiasystemsmobile.R
 import com.jgbravo.actiasystemsmobile.databinding.ActivityBillboardBinding
 import com.jgbravo.actiasystemsmobile.features.billboard.adapters.BillboardAdapter
@@ -11,6 +13,7 @@ import com.jgbravo.actiasystemsmobile.features.movieDetails.MovieDetailsActivity
 import com.jgbravo.actiasystemsmobile.features.movieDetails.MovieDetailsActivity.Companion.KEY_MOVIE_ID
 import com.jgbravo.core.extensions.navigateTo
 import com.jgbravo.core.extensions.onReachBottom
+import com.jgbravo.core.extensions.stringRes
 import com.jgbravo.core.presentation.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -96,5 +99,15 @@ class BillboardActivity : BaseActivity<ActivityBillboardBinding>(), SearchView.O
     override fun onQueryTextChange(word: String?): Boolean {
         viewModel.filterByTitle(word)
         return true
+    }
+
+    private fun showError(@StringRes title: Int, @StringRes message: Int) {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(stringRes(title))
+            .setMessage(stringRes(message))
+            .setNeutralButton(stringRes(R.string.retry)) { dialog, _ ->
+                dialog.dismiss()
+                viewModel.getMovies()
+            }.show()
     }
 }

@@ -1,6 +1,8 @@
 package com.jgbravo.actiasystemsmobile.features.billboard
 
+import androidx.annotation.StringRes
 import androidx.lifecycle.viewModelScope
+import com.jgbravo.actiasystemsmobile.R
 import com.jgbravo.actiasystemsmobile.features.billboard.models.MovieFilterModel
 import com.jgbravo.actiasystemsmobile.features.billboard.models.SummaryMovie
 import com.jgbravo.actiasystemsmobile.features.billboard.models.mappers.SummaryMovieUiMapper
@@ -42,9 +44,11 @@ class BillboardViewModel @Inject constructor(
                         BillboardState.Success(filteredMovieList)
                     }
                     is Resource.Error -> {
-                        logger.e(resource.exception)
-                        BillboardState.Error(resource.exception.message ?: "Unknown error")
-                    } // ToDo: clean
+                        BillboardState.Error(
+                            R.string.dialog_error_no_internet_title,
+                            R.string.dialog_error_no_internet_body
+                        )
+                    }
                 }
             }
         }
@@ -91,6 +95,9 @@ class BillboardViewModel @Inject constructor(
         object NotStarted : BillboardState()
         object Loading : BillboardState()
         class Success(val movies: List<SummaryMovie>) : BillboardState()
-        class Error(val message: String) : BillboardState()
+        class Error(
+            @StringRes val title: Int,
+            @StringRes val message: Int
+        ) : BillboardState()
     }
 }

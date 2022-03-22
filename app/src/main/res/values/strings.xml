@@ -11,6 +11,7 @@
     <string name="cancel">Cancel</string>
     <string name="decline">Decline</string>
     <string name="accept">Accept</string>
+    <string name="retry">Retry</string>
     <string name="error_unexpected">Unexpected error</string>
     <string name="connection_error">Connection error</string>
     <string name="error_unknown">Oops! Something failed. Please try again later</string>
@@ -19,7 +20,7 @@
     <!-- Dialogs -->
     <string name="dialog_error_unknown_title" translatable="false">@string/error_unexpected</string>
     <string name="dialog_error_unknown_body" translatable="false">@string/error_unknown</string>
-    <string name="dialog_error_no_internet_title" translatable="false">@string/error_unexpected</string>
-    <string name="dialog_error_no_internet_body" translatable="false">@string/connection_error</string>
+    <string name="dialog_error_no_internet_title" translatable="false">@string/connection_error</string>
+    <string name="dialog_error_no_internet_body" translatable="false">@string/error_no_internet</string>
     <string name="banner" translatable="false">Banner</string>
 </resources>
