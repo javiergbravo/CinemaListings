@@ -1,6 +1,5 @@
 package com.jgbravo.actiasystemsmobile.features.movieDetails
 
-import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import com.jgbravo.actiasystemsmobile.databinding.ActivityMovieBinding
@@ -51,7 +50,7 @@ class MovieDetailsActivity : BaseActivity<ActivityMovieBinding>() {
                     MovieDetailsViewModel.MovieState.NotStarted -> Unit
                     MovieDetailsViewModel.MovieState.Loading -> showLoader()
                     is MovieDetailsViewModel.MovieState.Success -> {
-                        setupInfo(state.movie as MovieDetails)
+                        setupInfo(state.movie)
                         hideLoader()
                     }
                     is MovieDetailsViewModel.MovieState.Error -> {
@@ -72,6 +71,7 @@ class MovieDetailsActivity : BaseActivity<ActivityMovieBinding>() {
                 tvDirector.text = movie.director
                 tvDuration.text = movie.duration
                 tvDescription.text = movie.description
+                movie.poster?.let { imgPoster.loadFromUrl(it) }
             }
         }
     }

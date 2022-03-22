@@ -13,6 +13,7 @@ class MovieDetailsUiMapper : UiMapper<MovieDetailsDomainModel, MovieDetails>() {
             title = domainModel.title,
             director = domainModel.director,
             banner = domainModel.banner,
+            poster = domainModel.poster,
             releaseYear = domainModel.releaseDate.year(),
             duration = mapDuration(domainModel.duration),
             description = domainModel.description,

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginVertical="@dimen/margin_big"
     android:layout_marginHorizontal="@dimen/margin_default"
+    android:layout_marginVertical="@dimen/margin_big"
     tools:context=".features.movieDetails.MovieDetailsActivity">
 
     <LinearLayout
@@ -134,5 +134,12 @@
             tools:text="Peter Parker is unmasked and no longer able to separate his normal life from the high-stakes of being a super-hero. When he asks for help from Doctor Strange the stakes become even more dangerous, forcing him to discover what it truly means to be Spider-Man." />
     </LinearLayout>
 
+    <com.jgbravo.actiasystemsmobile.customViews.PosterView
+        android:id="@+id/imgPoster"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/margin_big"
+        app:layout_constraintTop_toBottomOf="@id/layoutDescription"
+        tools:src="@drawable/poster_test" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

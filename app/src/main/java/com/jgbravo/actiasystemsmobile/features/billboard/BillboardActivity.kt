@@ -5,7 +5,7 @@ import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
 import com.jgbravo.actiasystemsmobile.R
-import com.jgbravo.actiasystemsmobile.databinding.ActivityMainBinding
+import com.jgbravo.actiasystemsmobile.databinding.ActivityBillboardBinding
 import com.jgbravo.actiasystemsmobile.features.billboard.adapters.BillboardAdapter
 import com.jgbravo.actiasystemsmobile.features.movieDetails.MovieDetailsActivity
 import com.jgbravo.actiasystemsmobile.features.movieDetails.MovieDetailsActivity.Companion.KEY_MOVIE_ID
@@ -18,13 +18,13 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class BillboardActivity : BaseActivity<ActivityMainBinding>(), SearchView.OnQueryTextListener {
+class BillboardActivity : BaseActivity<ActivityBillboardBinding>(), SearchView.OnQueryTextListener {
 
     override val viewModel: BillboardViewModel by viewModels()
 
     private lateinit var billboardAdapter: BillboardAdapter
 
-    override fun getViewBinding(): ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
+    override fun getViewBinding(): ActivityBillboardBinding = ActivityBillboardBinding.inflate(layoutInflater)
 
     override fun setupView() {
         if (!viewModel.isListAvailable()) {

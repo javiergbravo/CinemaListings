@@ -7,6 +7,7 @@ data class MovieDetails(
     val title: String,
     val director: String,
     val banner: String?,
+    val poster: String?,
     val releaseYear: Int,
     val duration: String,
     val description: String,
