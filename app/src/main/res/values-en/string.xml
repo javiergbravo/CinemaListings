@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ActiaSystemsMobile</string>
     <string name="score">Score</string>
@@ -15,11 +16,4 @@
     <string name="connection_error">Connection error</string>
     <string name="error_unknown">Oops! Something failed. Please try again later</string>
     <string name="error_no_internet">Oops! It is impossible to connect to the server. Please check your internet connection and try again later.</string>
-
-    <!-- Dialogs -->
-    <string name="dialog_error_unknown_title" translatable="false">@string/error_unexpected</string>
-    <string name="dialog_error_unknown_body" translatable="false">@string/error_unknown</string>
-    <string name="dialog_error_no_internet_title" translatable="false">@string/error_unexpected</string>
-    <string name="dialog_error_no_internet_body" translatable="false">@string/connection_error</string>
-    <string name="banner" translatable="false">Banner</string>
 </resources>

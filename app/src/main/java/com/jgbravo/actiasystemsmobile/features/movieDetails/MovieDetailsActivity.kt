@@ -2,11 +2,15 @@ package com.jgbravo.actiasystemsmobile.features.movieDetails
 
 import android.view.View
 import androidx.activity.viewModels
+import androidx.annotation.StringRes
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.jgbravo.actiasystemsmobile.R
 import com.jgbravo.actiasystemsmobile.databinding.ActivityMovieBinding
 import com.jgbravo.actiasystemsmobile.features.movieDetails.models.MovieDetails
 import com.jgbravo.core.extensions.getExtraInt
 import com.jgbravo.core.extensions.loadFromUrl
 import com.jgbravo.core.extensions.setUpExpandable
+import com.jgbravo.core.extensions.stringRes
 import com.jgbravo.core.presentation.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -55,6 +59,7 @@ class MovieDetailsActivity : BaseActivity<ActivityMovieBinding>() {
                     }
                     is MovieDetailsViewModel.MovieState.Error -> {
                         hideLoader()
+                        showError(state.title, state.message)
                     }
                 }
             }
@@ -63,6 +68,8 @@ class MovieDetailsActivity : BaseActivity<ActivityMovieBinding>() {
 
     private fun setupInfo(movie: MovieDetails) {
         binding.apply {
+            root.visibility = View.VISIBLE
+
             movie.banner?.let { imgBanner.loadFromUrl(it) }
             rbScore.rating = movie.score.toFloat()
             toolbar.title = movie.title
@@ -74,5 +81,15 @@ class MovieDetailsActivity : BaseActivity<ActivityMovieBinding>() {
                 movie.poster?.let { imgPoster.loadFromUrl(it) }
             }
         }
+    }
+
+    private fun showError(@StringRes title: Int, @StringRes message: Int) {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(stringRes(title))
+            .setMessage(stringRes(message))
+            .setNeutralButton(stringRes(R.string.accept)) { dialog, _ ->
+                dialog.dismiss()
+                onBackPressed()
+            }.show()
     }
 }

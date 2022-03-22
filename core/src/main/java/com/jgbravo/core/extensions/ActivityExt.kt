@@ -2,6 +2,7 @@ package com.jgbravo.core.extensions
 
 import android.content.Context
 import android.content.Intent
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -33,4 +34,12 @@ inline fun <reified T : AppCompatActivity> Context.newIntent(body: Intent.() -> 
 
 inline fun <reified T : AppCompatActivity> Context.navigateTo(body: Intent.() -> Unit) {
     startActivity(newIntent<T>(body))
+}
+
+fun AppCompatActivity.stringRes(@StringRes resource: Int): String? {
+    return try {
+        resources.getString(resource)
+    } catch (e: Exception) {
+        null
+    }
 }

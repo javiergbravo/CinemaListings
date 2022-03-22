@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginHorizontal="@dimen/margin_default"
-    android:layout_marginVertical="@dimen/margin_big"
+    android:paddingHorizontal="@dimen/margin_default"
+    android:paddingTop="@dimen/margin_big"
+    android:paddingBottom="@dimen/margin_default"
     tools:context=".features.movieDetails.MovieDetailsActivity">
 
     <LinearLayout

@@ -1,6 +1,8 @@
 package com.jgbravo.actiasystemsmobile.features.movieDetails
 
+import androidx.annotation.StringRes
 import androidx.lifecycle.viewModelScope
+import com.jgbravo.actiasystemsmobile.R
 import com.jgbravo.actiasystemsmobile.features.movieDetails.models.MovieDetails
 import com.jgbravo.actiasystemsmobile.features.movieDetails.models.mappers.MovieDetailsUiMapper
 import com.jgbravo.core.models.Resource
@@ -33,8 +35,8 @@ class MovieDetailsViewModel @Inject constructor(
                     }
                     is Resource.Error -> {
                         logger.e(res.exception)
-                        MovieState.Error(res.exception.message ?: "Unknown error")
-                    } // ToDo: clean
+                        MovieState.Error(R.string.dialog_error_unknown_title, R.string.dialog_error_unknown_body)
+                    }
                 }
             }
         }
@@ -43,7 +45,10 @@ class MovieDetailsViewModel @Inject constructor(
     sealed class MovieState {
         object NotStarted : MovieState()
         object Loading : MovieState()
-        class Success(val movie: MovieDetails) : MovieState()
-        class Error(val message: String) : MovieState()
+        data class Success(val movie: MovieDetails) : MovieState()
+        data class Error(
+            @StringRes val title: Int,
+            @StringRes val message: Int
+        ) : MovieState()
     }
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ActiaSystemsMobile</string>
+    <string name="score">Puntuación</string>
+    <string name="director">Director</string>
+    <string name="duration">Duración</string>
+    <string name="description">Descripción</string>
+    <string name="release_year">Año de salida</string>
+    <string name="theme">Tema</string>
+    <string name="search">Buscar</string>
+    <string name="error">Error</string>
+    <string name="cancel">Cancelar</string>
+    <string name="decline">Descartar</string>
+    <string name="accept">Aceptar</string>
+    <string name="error_unexpected">Error inesperado</string>
+    <string name="connection_error">Error de conexión</string>
+    <string name="error_unknown">¡Ups! Algo no fue bien. Inténtalo de nuevo más tarde</string>
+    <string name="error_no_internet">¡Ups! No se puede conectar con el servidor. Verifica tu conexión a internet e inténtalo de nuevo más tarde.</string>
+</resources>
