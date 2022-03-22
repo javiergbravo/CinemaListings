@@ -81,7 +81,10 @@ class BillboardActivity : BaseActivity<ActivityBillboardBinding>(), SearchView.O
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.menu_theme -> themeManager.toggleTheme()
+            R.id.menu_theme -> {
+                showLoader()
+                themeManager.toggleTheme()
+            }
         }
         return true
     }
