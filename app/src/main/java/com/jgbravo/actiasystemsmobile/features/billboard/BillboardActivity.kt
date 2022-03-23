@@ -73,6 +73,8 @@ class BillboardActivity : BaseActivity<ActivityBillboardBinding>(),
         binding.fabFilter.setOnClickListener {
             if (binding.fabFilter.isExtended) {
                 viewModel.cleanYearFilters()
+                binding.bottomSheetFilters.tietFromDate.text?.clear()
+                binding.bottomSheetFilters.tietToDate.text?.clear()
             } else {
                 viewModel.expandLayoutFilter()
             }
