@@ -1,11 +1,15 @@
 package com.jgbravo.presentation
 
+import android.content.DialogInterface
 import android.os.Bundle
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewbinding.ViewBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.jgbravo.presentation.extensions.stringRes
 import com.jgbravo.presentation.managers.LoaderManager
 import com.jgbravo.presentation.managers.ThemeManager
 import kotlinx.coroutines.CoroutineScope
@@ -91,4 +95,19 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
     fun showLoader() = LoaderManager.showDialog(this)
 
     fun hideLoader() = LoaderManager.hideDialog()
+
+    protected fun showError(
+        @StringRes title: Int,
+        @StringRes message: Int,
+        @StringRes buttonText: Int,
+        whenButtonClick: ((dialog: DialogInterface) -> Unit)? = null
+    ) {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(stringRes(title))
+            .setMessage(stringRes(message))
+            .setNeutralButton(stringRes(buttonText)) { dialog, _ ->
+                dialog.dismiss()
+                whenButtonClick?.let { it(dialog) }
+            }.show()
+    }
 }

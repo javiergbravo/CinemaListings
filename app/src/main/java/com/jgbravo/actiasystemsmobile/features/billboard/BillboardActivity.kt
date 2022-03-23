@@ -5,7 +5,6 @@ import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
 import androidx.appcompat.widget.SearchView
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.jgbravo.actiasystemsmobile.R
 import com.jgbravo.actiasystemsmobile.databinding.ActivityBillboardBinding
 import com.jgbravo.actiasystemsmobile.features.billboard.adapters.BillboardAdapter
@@ -14,7 +13,6 @@ import com.jgbravo.actiasystemsmobile.features.movieDetails.MovieDetailsActivity
 import com.jgbravo.presentation.BaseActivity
 import com.jgbravo.presentation.extensions.navigateTo
 import com.jgbravo.presentation.extensions.onReachBottom
-import com.jgbravo.presentation.extensions.stringRes
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collect
@@ -52,7 +50,7 @@ class BillboardActivity : BaseActivity<ActivityBillboardBinding>(),
                         hideLoader()
                     }
                     is BillboardViewModel.BillboardState.Error -> {
-                        showError(state.title, state.message)
+                        showDialogError(state.title, state.message)
                         hideLoader()
                     }
                 }
@@ -101,13 +99,9 @@ class BillboardActivity : BaseActivity<ActivityBillboardBinding>(),
         return true
     }
 
-    private fun showError(@StringRes title: Int, @StringRes message: Int) {
-        MaterialAlertDialogBuilder(this)
-            .setTitle(stringRes(title))
-            .setMessage(stringRes(message))
-            .setNeutralButton(stringRes(R.string.retry)) { dialog, _ ->
-                dialog.dismiss()
-                viewModel.getMovies()
-            }.show()
+    private fun showDialogError(@StringRes title: Int, @StringRes message: Int) {
+        showError(title, message, R.string.retry) {
+            viewModel.getMovies()
+        }
     }
 }

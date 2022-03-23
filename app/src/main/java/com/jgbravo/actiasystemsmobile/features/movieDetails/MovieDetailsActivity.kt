@@ -3,7 +3,6 @@ package com.jgbravo.actiasystemsmobile.features.movieDetails
 import android.view.View
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.jgbravo.actiasystemsmobile.R
 import com.jgbravo.actiasystemsmobile.databinding.ActivityMovieBinding
 import com.jgbravo.actiasystemsmobile.features.movieDetails.models.MovieDetails
@@ -11,7 +10,6 @@ import com.jgbravo.presentation.BaseActivity
 import com.jgbravo.presentation.extensions.getExtraInt
 import com.jgbravo.presentation.extensions.loadFromUrl
 import com.jgbravo.presentation.extensions.setUpExpandable
-import com.jgbravo.presentation.extensions.stringRes
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collect
@@ -58,7 +56,7 @@ class MovieDetailsActivity : BaseActivity<ActivityMovieBinding>() {
                     }
                     is MovieDetailsViewModel.MovieState.Error -> {
                         hideLoader()
-                        showError(state.title, state.message)
+                        showDialogError(state.title, state.message)
                     }
                 }
             }
@@ -80,13 +78,9 @@ class MovieDetailsActivity : BaseActivity<ActivityMovieBinding>() {
         }
     }
 
-    private fun showError(@StringRes title: Int, @StringRes message: Int) {
-        MaterialAlertDialogBuilder(this)
-            .setTitle(stringRes(title))
-            .setMessage(stringRes(message))
-            .setNeutralButton(stringRes(R.string.accept)) { dialog, _ ->
-                dialog.dismiss()
-                onBackPressed()
-            }.show()
+    private fun showDialogError(@StringRes title: Int, @StringRes message: Int) {
+        showError(title, message, R.string.accept) {
+            onBackPressed()
+        }
     }
 }
