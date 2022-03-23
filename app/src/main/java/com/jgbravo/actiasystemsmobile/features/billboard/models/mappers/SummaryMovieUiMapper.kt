@@ -2,7 +2,7 @@ package com.jgbravo.actiasystemsmobile.features.billboard.models.mappers
 
 import com.jgbravo.actiasystemsmobile.features.billboard.models.SummaryMovie
 import com.jgbravo.commons.models.mappers.UiMapper
-import com.jgbravo.core.extensions.year
+import com.jgbravo.commons.extensions.year
 import com.jgbravo.domain.models.MovieDomainModel
 
 class SummaryMovieUiMapper : UiMapper<MovieDomainModel, SummaryMovie>() {

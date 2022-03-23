@@ -17,9 +17,7 @@ open class LoaderManager {
                         setCancelable(false)
                     }
                     simpleLoader?.show()
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
+                } catch (e: Exception) {}
             }
         }
 

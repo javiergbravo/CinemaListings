@@ -1,7 +1,7 @@
 package com.jgbravo.commons.di
 
-import com.jgbravo.commons.timber.ActiaLogger
-import com.jgbravo.commons.timber.ActiaLoggerImpl
+import com.jgbravo.commons.timber.AppLogger
+import com.jgbravo.commons.timber.AppLoggerImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,5 +14,5 @@ object CoreModule {
 
     @Singleton
     @Provides
-    fun provideLogger(): ActiaLogger = ActiaLoggerImpl()
+    fun provideLogger(): AppLogger = AppLoggerImpl()
 }

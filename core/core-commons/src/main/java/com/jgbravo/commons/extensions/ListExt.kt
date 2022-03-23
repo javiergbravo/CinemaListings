@@ -1,4 +1,4 @@
-package com.jgbravo.core.extensions
+package com.jgbravo.commons.extensions
 
 fun <T : Any> joinLists(oldList: List<T>, newList: List<T>): List<T> {
     return when {

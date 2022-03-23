@@ -1,4 +1,4 @@
-package com.jgbravo.core.extensions
+package com.jgbravo.commons.extensions
 
 import java.text.SimpleDateFormat
 import java.util.*

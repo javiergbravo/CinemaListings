@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.withStyledAttributes
 import com.jgbravo.actiasystemsmobile.R
-import com.jgbravo.core.extensions.getStyleableFloat
+import com.jgbravo.presentation.extensions.getStyleableFloat
 
 class PosterView @JvmOverloads constructor(
     context: Context,

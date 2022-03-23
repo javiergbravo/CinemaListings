@@ -7,7 +7,7 @@ import com.jgbravo.actiasystemsmobile.features.billboard.models.MovieFilterModel
 import com.jgbravo.actiasystemsmobile.features.billboard.models.SummaryMovie
 import com.jgbravo.actiasystemsmobile.features.billboard.models.mappers.SummaryMovieUiMapper
 import com.jgbravo.commons.models.Resource
-import com.jgbravo.core.extensions.joinLists
+import com.jgbravo.commons.extensions.joinLists
 import com.jgbravo.commons.extensions.mapList
 import com.jgbravo.domain.models.MovieDomainModel
 import com.jgbravo.domain.useCases.GetMoviesUseCase

@@ -2,7 +2,7 @@ package com.jgbravo.commons.timber
 
 import java.util.regex.Pattern
 
-interface ActiaLogger {
+interface AppLogger {
 
     companion object {
         const val PACKAGE_APP = "com.jgbravo"

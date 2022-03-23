@@ -2,7 +2,7 @@ package com.jgbravo.actiasystemsmobile.features.movieDetails.models.mappers
 
 import com.jgbravo.actiasystemsmobile.features.movieDetails.models.MovieDetails
 import com.jgbravo.commons.models.mappers.UiMapper
-import com.jgbravo.core.extensions.year
+import com.jgbravo.commons.extensions.year
 import com.jgbravo.domain.models.MovieDetailsDomainModel
 
 class MovieDetailsUiMapper : UiMapper<MovieDetailsDomainModel, MovieDetails>() {

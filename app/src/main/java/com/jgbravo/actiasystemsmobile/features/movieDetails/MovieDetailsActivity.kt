@@ -7,10 +7,10 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.jgbravo.actiasystemsmobile.R
 import com.jgbravo.actiasystemsmobile.databinding.ActivityMovieBinding
 import com.jgbravo.actiasystemsmobile.features.movieDetails.models.MovieDetails
-import com.jgbravo.core.extensions.getExtraInt
-import com.jgbravo.core.extensions.loadFromUrl
-import com.jgbravo.core.extensions.setUpExpandable
-import com.jgbravo.core.extensions.stringRes
+import com.jgbravo.presentation.extensions.getExtraInt
+import com.jgbravo.presentation.extensions.loadFromUrl
+import com.jgbravo.presentation.extensions.setUpExpandable
+import com.jgbravo.presentation.extensions.stringRes
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collect

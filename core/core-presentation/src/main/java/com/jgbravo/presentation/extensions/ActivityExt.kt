@@ -1,4 +1,4 @@
-package com.jgbravo.core.extensions
+package com.jgbravo.presentation.extensions
 
 import android.content.Context
 import android.content.Intent

@@ -1,9 +1,9 @@
 package com.jgbravo.actiasystemsmobile
 
 import android.app.Application
-import com.jgbravo.commons.timber.ActiaLogger
-import com.jgbravo.commons.timber.trees.ActiaDebugTree
-import com.jgbravo.commons.timber.trees.ActiaReleaseTree
+import com.jgbravo.commons.timber.AppLogger
+import com.jgbravo.actiasystemsmobile.utils.timber.ActiaDebugTree
+import com.jgbravo.actiasystemsmobile.utils.timber.ActiaReleaseTree
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 import javax.inject.Inject
@@ -12,7 +12,7 @@ import javax.inject.Inject
 class ActiaSystemsMobileApp : Application() {
 
     @Inject
-    lateinit var logger: ActiaLogger
+    lateinit var logger: AppLogger
 
     override fun onCreate() {
         super.onCreate()
@@ -22,6 +22,6 @@ class ActiaSystemsMobileApp : Application() {
             Timber.plant(ActiaReleaseTree())
         }
 
-        logger.d("ActiaSystemsMobileApp", "onCreate")
+        logger.d("ActiaSystemsMobileApp", "[onCreate] - DEBUG MODE = ${BuildConfig.DEBUG}")
     }
 }

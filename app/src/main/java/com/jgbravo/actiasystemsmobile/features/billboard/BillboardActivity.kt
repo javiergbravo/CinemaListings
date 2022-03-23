@@ -11,9 +11,9 @@ import com.jgbravo.actiasystemsmobile.databinding.ActivityBillboardBinding
 import com.jgbravo.actiasystemsmobile.features.billboard.adapters.BillboardAdapter
 import com.jgbravo.actiasystemsmobile.features.movieDetails.MovieDetailsActivity
 import com.jgbravo.actiasystemsmobile.features.movieDetails.MovieDetailsActivity.Companion.KEY_MOVIE_ID
-import com.jgbravo.core.extensions.navigateTo
-import com.jgbravo.core.extensions.onReachBottom
-import com.jgbravo.core.extensions.stringRes
+import com.jgbravo.presentation.extensions.navigateTo
+import com.jgbravo.presentation.extensions.onReachBottom
+import com.jgbravo.presentation.extensions.stringRes
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collect

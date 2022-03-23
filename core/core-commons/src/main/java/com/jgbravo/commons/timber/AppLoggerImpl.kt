@@ -1,17 +1,16 @@
 package com.jgbravo.commons.timber
 
-import android.os.Build
 import android.os.SystemClock
-import com.jgbravo.commons.timber.ActiaLogger.Companion.ACTIVITY_TAG
-import com.jgbravo.commons.timber.ActiaLogger.Companion.API_CALL
-import com.jgbravo.commons.timber.ActiaLogger.Companion.FRAGMENT_TAG
-import com.jgbravo.commons.timber.ActiaLogger.Companion.MAX_TAG_LENGTH
-import com.jgbravo.commons.timber.ActiaLogger.Companion.PACKAGE_APP
-import com.jgbravo.commons.timber.ActiaLogger.Companion.PATTERN_CLASS
+import com.jgbravo.commons.timber.AppLogger.Companion.ACTIVITY_TAG
+import com.jgbravo.commons.timber.AppLogger.Companion.API_CALL
+import com.jgbravo.commons.timber.AppLogger.Companion.FRAGMENT_TAG
+import com.jgbravo.commons.timber.AppLogger.Companion.MAX_TAG_LENGTH
+import com.jgbravo.commons.timber.AppLogger.Companion.PACKAGE_APP
+import com.jgbravo.commons.timber.AppLogger.Companion.PATTERN_CLASS
 import timber.log.Timber
 import javax.inject.Inject
 
-class ActiaLoggerImpl @Inject constructor() : ActiaLogger {
+class AppLoggerImpl @Inject constructor() : AppLogger {
 
     private var lastLogTime = 0L
 

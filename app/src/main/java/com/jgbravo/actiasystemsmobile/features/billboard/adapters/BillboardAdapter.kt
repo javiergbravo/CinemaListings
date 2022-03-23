@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import com.jgbravo.actiasystemsmobile.R
 import com.jgbravo.actiasystemsmobile.databinding.ItemMovieBinding
 import com.jgbravo.actiasystemsmobile.features.billboard.models.SummaryMovie
-import com.jgbravo.core.extensions.loadFromUrl
+import com.jgbravo.presentation.extensions.loadFromUrl
 
 class BillboardAdapter :
     com.jgbravo.presentation.adapters.BaseAdapter<ItemMovieBinding, BillboardAdapter.MovieViewHolder, SummaryMovie>() {

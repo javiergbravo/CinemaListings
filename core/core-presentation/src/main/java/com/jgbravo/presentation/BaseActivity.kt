@@ -49,16 +49,19 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
 
     override fun onPause() {
         trackLifecycle("onPause")
+        hideLoader()
         super.onPause()
     }
 
     override fun onStop() {
         trackLifecycle("onStop")
+        hideLoader()
         super.onStop()
     }
 
     override fun onDestroy() {
         trackLifecycle("onDestroy")
+        hideLoader()
         super.onDestroy()
     }
 

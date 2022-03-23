@@ -1,7 +1,7 @@
 package com.jgbravo.data.remote.themoviedb.adapters
 
 import com.google.common.truth.Truth
-import com.jgbravo.core.extensions.toDate
+import com.jgbravo.commons.extensions.toDate
 import com.jgbravo.data.remote.themoviedb.adapters.SimpleDateAdapter.Companion.DATE_PATTERN
 import com.jgbravo.data.remote.themoviedb.models.MovieDTO
 import com.jgbravo.data.utils.FileTestUtils
