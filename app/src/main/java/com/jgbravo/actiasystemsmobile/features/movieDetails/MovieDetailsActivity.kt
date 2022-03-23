@@ -45,9 +45,7 @@ class MovieDetailsActivity : BaseActivity<ActivityMovieBinding>() {
         viewModel.getMovieDetails(movieId)
     }
 
-    override fun collectStateDataFlows() {}
-
-    override fun collectLifecycleStateFlows(scope: CoroutineScope) {
+    override fun collectStateFlows(scope: CoroutineScope) {
         scope.launch {
             viewModel.movie.collect { state ->
                 when (state) {

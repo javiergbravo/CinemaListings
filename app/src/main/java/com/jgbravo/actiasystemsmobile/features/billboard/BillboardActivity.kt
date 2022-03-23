@@ -36,9 +36,7 @@ class BillboardActivity : BaseActivity<ActivityBillboardBinding>(),
         }
     }
 
-    override fun collectStateDataFlows() {}
-
-    override fun collectLifecycleStateFlows(scope: CoroutineScope) {
+    override fun collectStateFlows(scope: CoroutineScope) {
         scope.launch {
             viewModel.movies.collect { state ->
                 when (state) {

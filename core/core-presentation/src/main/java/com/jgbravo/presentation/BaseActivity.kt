@@ -71,27 +71,18 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
     protected abstract fun setupView()
 
     private fun executeFlows() {
-        collectStateDataFlows()
-
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                collectLifecycleStateFlows(this)
+                collectStateFlows(this)
             }
         }
     }
 
     /**
-     * Collect stateFlows until it has data, then cancel coroutine. Each stateFlow must be called like this:
-     * viewModel.stateflowName.collectStateFlowOnce(lifecycleScope, listOf( 'condition' )) { ... }
-     * where 'condition' is the data that you are waiting for to cancel the collect.
-     */
-    protected abstract fun collectStateDataFlows()
-
-    /**
      * Function to collect all flows. Use `coroutineScope.launch { ... }` for each flow/stateFlow.
      * Each flow/stateFlow will be active when activity starts and will be stopped when activity stops.
      */
-    protected abstract fun collectLifecycleStateFlows(scope: CoroutineScope)
+    protected abstract fun collectStateFlows(scope: CoroutineScope)
 
     private fun trackLifecycle(function: String) {
         viewModel.trackLifecycle(TAG, function)
