@@ -11,6 +11,7 @@ import com.jgbravo.commons.extensions.mapList
 import com.jgbravo.commons.models.Resource
 import com.jgbravo.domain.models.MovieDomainModel
 import com.jgbravo.domain.useCases.GetMoviesUseCase
+import com.jgbravo.presentation.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -21,7 +22,7 @@ import javax.inject.Inject
 @HiltViewModel
 class BillboardViewModel @Inject constructor(
     private val getMoviesUseCase: GetMoviesUseCase
-) : com.jgbravo.presentation.BaseViewModel() {
+) : BaseViewModel() {
 
     private var page = 1
     private val filters = MovieFilterModel()

@@ -8,6 +8,7 @@ import com.jgbravo.actiasystemsmobile.features.movieDetails.models.mappers.Movie
 import com.jgbravo.commons.models.Resource
 import com.jgbravo.domain.models.MovieDetailsDomainModel
 import com.jgbravo.domain.useCases.GetMovieDetailsUseCase
+import com.jgbravo.presentation.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -18,7 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MovieDetailsViewModel @Inject constructor(
     private val getMovieDetailsUseCase: GetMovieDetailsUseCase
-) : com.jgbravo.presentation.BaseViewModel() {
+) : BaseViewModel() {
 
     private val _movie = MutableStateFlow<MovieState>(MovieState.NotStarted)
     val movie: StateFlow<MovieState> get() = _movie
