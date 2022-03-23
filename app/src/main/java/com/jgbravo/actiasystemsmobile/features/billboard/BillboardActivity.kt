@@ -52,6 +52,7 @@ class BillboardActivity : BaseActivity<ActivityBillboardBinding>(),
                         hideLoader()
                     }
                     is BillboardViewModel.BillboardState.Error -> {
+                        showError(state.title, state.message)
                         hideLoader()
                     }
                 }
