@@ -94,7 +94,7 @@ class BillboardViewModel @Inject constructor(
     fun checkInputDates(dateFrom: String, dateTo: String): Boolean {
         filters.setYearFrom(dateFrom)
         filters.setYearTo(dateTo)
-        return if (filters.hasYearFilter()) {
+        return if (filters.hasValidYearFilters(dateTo)) {
             updateMovies()
             updateYearFilter(YearFilterState.APPLIED_FILTERS)
             true

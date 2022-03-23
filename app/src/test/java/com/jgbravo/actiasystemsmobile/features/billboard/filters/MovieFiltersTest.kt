@@ -5,7 +5,7 @@ import com.jgbravo.actiasystemsmobile.features.billboard.models.MovieFilterModel
 import org.junit.Before
 import org.junit.Test
 
-class FiltersTest {
+class MovieFiltersTest {
 
     private val filter = MovieFilterModel()
 
@@ -51,7 +51,8 @@ class FiltersTest {
         val inputYearTo = "2000"
         filter.setYearTo(inputYearTo)
 
-        Truth.assertThat(filter.yearTo).isNotNull()
+        val validInputs = filter.hasValidYearFilters(inputYearTo)
+        Truth.assertThat(validInputs).isTrue()
     }
 
     @Test
@@ -62,6 +63,7 @@ class FiltersTest {
         val inputYearTo = "1995"
         filter.setYearTo(inputYearTo)
 
-        Truth.assertThat(filter.yearTo).isNull()
+        val validInputs = filter.hasValidYearFilters(inputYearTo)
+        Truth.assertThat(validInputs).isFalse()
     }
 }
