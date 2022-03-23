@@ -18,8 +18,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class BillboardActivity : BaseActivity<ActivityBillboardBinding>(),
-    SearchView.OnQueryTextListener {
+class BillboardActivity : BaseActivity<ActivityBillboardBinding>(), SearchView.OnQueryTextListener {
 
     override val viewModel: BillboardViewModel by viewModels()
 
@@ -103,11 +102,11 @@ class BillboardActivity : BaseActivity<ActivityBillboardBinding>(),
             adapter = billboardAdapter
             onReachBottom { viewModel.getMovies() }
         }
-        billboardAdapter.setOnClickListener { movie ->
+        billboardAdapter.setOnMovieClickListener { movie ->
             navigateTo<MovieDetailsActivity> { putExtra(KEY_MOVIE_ID, movie.id) }
         }
-        billboardAdapter.setOnDeleteClickListener {
-            viewModel.deleteMovie(it)
+        billboardAdapter.setOnDeleteClickListener { movie ->
+            viewModel.deleteMovie(movie)
         }
     }
 

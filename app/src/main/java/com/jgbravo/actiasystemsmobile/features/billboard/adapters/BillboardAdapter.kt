@@ -5,15 +5,16 @@ import android.view.ViewGroup
 import com.jgbravo.actiasystemsmobile.R
 import com.jgbravo.actiasystemsmobile.databinding.ItemMovieBinding
 import com.jgbravo.actiasystemsmobile.features.billboard.models.SummaryMovie
+import com.jgbravo.presentation.adapters.BaseAdapter
+import com.jgbravo.presentation.adapters.BaseViewHolder
 import com.jgbravo.presentation.extensions.loadFromUrl
 
-class BillboardAdapter :
-    com.jgbravo.presentation.adapters.BaseAdapter<ItemMovieBinding, BillboardAdapter.MovieViewHolder, SummaryMovie>() {
+class BillboardAdapter : BaseAdapter<ItemMovieBinding, BillboardAdapter.MovieViewHolder, SummaryMovie>() {
 
+    private var onMovieClickListener: ((SummaryMovie) -> Unit)? = null
     private var onDeleteClickListener: ((SummaryMovie) -> Unit)? = null
 
-    override val areContentsTheSame: (SummaryMovie, SummaryMovie) -> Boolean =
-        { old, new -> old.id == new.id }
+    override val areContentsTheSame: (SummaryMovie, SummaryMovie) -> Boolean = { old, new -> old.id == new.id }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         return MovieViewHolder(
@@ -26,7 +27,6 @@ class BillboardAdapter :
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        super.onBindViewHolder(holder, position)
         val movie = getItem(position)
         holder.binding.apply {
             tvTitle.text = movie.title
@@ -38,7 +38,17 @@ class BillboardAdapter :
                     it(movie)
                 }
             }
+            root.setOnClickListener {
+                onMovieClickListener?.let {
+                    it(movie)
+                }
+            }
+
         }
+    }
+
+    fun setOnMovieClickListener(listener: (SummaryMovie) -> Unit) {
+        onMovieClickListener = listener
     }
 
     fun setOnDeleteClickListener(listener: (SummaryMovie) -> Unit) {
@@ -46,5 +56,5 @@ class BillboardAdapter :
     }
 
     inner class MovieViewHolder(binding: ItemMovieBinding) :
-        com.jgbravo.presentation.adapters.BaseViewHolder<ItemMovieBinding>(binding)
+        BaseViewHolder<ItemMovieBinding>(binding)
 }

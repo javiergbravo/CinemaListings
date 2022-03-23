@@ -12,4 +12,8 @@ abstract class BaseViewModel : ViewModel() {
     fun trackLifecycle(activityName: String, function: String) {
         logger.activity(activityName, function)
     }
+
+    fun debug(activityName: String, message: String) {
+        logger.d(activityName, message)
+    }
 }

@@ -110,4 +110,8 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
                 whenButtonClick?.let { it(dialog) }
             }.show()
     }
+
+    fun log(msg: String) {
+        viewModel.debug(this::class.java.simpleName, msg)
+    }
 }
