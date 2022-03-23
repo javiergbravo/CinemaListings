@@ -11,6 +11,7 @@ import com.jgbravo.actiasystemsmobile.databinding.ActivityBillboardBinding
 import com.jgbravo.actiasystemsmobile.features.billboard.adapters.BillboardAdapter
 import com.jgbravo.actiasystemsmobile.features.movieDetails.MovieDetailsActivity
 import com.jgbravo.actiasystemsmobile.features.movieDetails.MovieDetailsActivity.Companion.KEY_MOVIE_ID
+import com.jgbravo.presentation.BaseActivity
 import com.jgbravo.presentation.extensions.navigateTo
 import com.jgbravo.presentation.extensions.onReachBottom
 import com.jgbravo.presentation.extensions.stringRes
@@ -20,7 +21,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class BillboardActivity : com.jgbravo.presentation.BaseActivity<ActivityBillboardBinding>(),
+class BillboardActivity : BaseActivity<ActivityBillboardBinding>(),
     SearchView.OnQueryTextListener {
 
     override val viewModel: BillboardViewModel by viewModels()

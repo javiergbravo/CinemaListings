@@ -7,6 +7,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.jgbravo.actiasystemsmobile.R
 import com.jgbravo.actiasystemsmobile.databinding.ActivityMovieBinding
 import com.jgbravo.actiasystemsmobile.features.movieDetails.models.MovieDetails
+import com.jgbravo.presentation.BaseActivity
 import com.jgbravo.presentation.extensions.getExtraInt
 import com.jgbravo.presentation.extensions.loadFromUrl
 import com.jgbravo.presentation.extensions.setUpExpandable
@@ -17,7 +18,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MovieDetailsActivity : com.jgbravo.presentation.BaseActivity<ActivityMovieBinding>() {
+class MovieDetailsActivity : BaseActivity<ActivityMovieBinding>() {
 
     override val viewModel: MovieDetailsViewModel by viewModels()
 
