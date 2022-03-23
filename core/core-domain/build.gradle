@@ -1,0 +1,18 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+    }
+}
+
+dependencies {
+    implementation implementation(project(":core:core-commons"))
+
+    implementation coreDomainDependencies.values()
+}

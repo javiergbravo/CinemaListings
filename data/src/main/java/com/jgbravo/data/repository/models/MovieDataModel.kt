@@ -1,6 +1,6 @@
 package com.jgbravo.data.repository.models
 
-import com.jgbravo.core.models.base.DataModel
+import com.jgbravo.commons.models.base.DataModel
 import java.util.*
 
 data class MovieDataModel(

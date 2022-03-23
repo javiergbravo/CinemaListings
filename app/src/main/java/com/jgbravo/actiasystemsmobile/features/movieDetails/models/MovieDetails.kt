@@ -1,6 +1,6 @@
 package com.jgbravo.actiasystemsmobile.features.movieDetails.models
 
-import com.jgbravo.core.models.base.UiModel
+import com.jgbravo.commons.models.base.UiModel
 
 data class MovieDetails(
     val id: Int,

@@ -1,6 +1,6 @@
 package com.jgbravo.data.di
 
-import com.jgbravo.core.timber.ActiaLogger
+import com.jgbravo.commons.timber.ActiaLogger
 import com.jgbravo.data.BuildConfig
 import com.jgbravo.data.remote.themoviedb.TheMovieDbApi
 import com.jgbravo.data.remote.themoviedb.adapters.SimpleDateAdapter

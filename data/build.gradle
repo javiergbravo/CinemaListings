@@ -15,7 +15,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":core"))
+    implementation implementation(project(":core:core-commons"))
+    implementation implementation(project(":core:core-data"))
 
     implementation dataDependencies.values()
     kapt dataCompilerDependencies.values()

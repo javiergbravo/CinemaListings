@@ -6,11 +6,9 @@ import com.jgbravo.actiasystemsmobile.R
 import com.jgbravo.actiasystemsmobile.databinding.ItemMovieBinding
 import com.jgbravo.actiasystemsmobile.features.billboard.models.SummaryMovie
 import com.jgbravo.core.extensions.loadFromUrl
-import com.jgbravo.core.presentation.adapters.BaseAdapter
-import com.jgbravo.core.presentation.adapters.BaseViewHolder
 
 class BillboardAdapter :
-    BaseAdapter<ItemMovieBinding, BillboardAdapter.MovieViewHolder, SummaryMovie>() {
+    com.jgbravo.presentation.adapters.BaseAdapter<ItemMovieBinding, BillboardAdapter.MovieViewHolder, SummaryMovie>() {
 
     private var onDeleteClickListener: ((SummaryMovie) -> Unit)? = null
 
@@ -48,5 +46,5 @@ class BillboardAdapter :
     }
 
     inner class MovieViewHolder(binding: ItemMovieBinding) :
-        BaseViewHolder<ItemMovieBinding>(binding)
+        com.jgbravo.presentation.adapters.BaseViewHolder<ItemMovieBinding>(binding)
 }

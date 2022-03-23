@@ -1,6 +1,6 @@
 package com.jgbravo.data.repository
 
-import com.jgbravo.core.models.Resource
+import com.jgbravo.commons.models.Resource
 import com.jgbravo.data.repository.models.BillboardDataModel
 import com.jgbravo.data.repository.models.MovieDetailsDataModel
 import kotlinx.coroutines.flow.Flow

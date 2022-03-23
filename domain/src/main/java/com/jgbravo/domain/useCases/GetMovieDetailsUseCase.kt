@@ -1,6 +1,6 @@
 package com.jgbravo.domain.useCases
 
-import com.jgbravo.core.models.Resource
+import com.jgbravo.commons.models.Resource
 import com.jgbravo.data.repository.MoviesRepository
 import com.jgbravo.data.repository.models.MovieDetailsDataModel
 import com.jgbravo.domain.models.MovieDetailsDomainModel

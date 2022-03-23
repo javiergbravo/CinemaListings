@@ -14,14 +14,14 @@ import com.jgbravo.actiasystemsmobile.features.movieDetails.MovieDetailsActivity
 import com.jgbravo.core.extensions.navigateTo
 import com.jgbravo.core.extensions.onReachBottom
 import com.jgbravo.core.extensions.stringRes
-import com.jgbravo.core.presentation.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class BillboardActivity : BaseActivity<ActivityBillboardBinding>(), SearchView.OnQueryTextListener {
+class BillboardActivity : com.jgbravo.presentation.BaseActivity<ActivityBillboardBinding>(),
+    SearchView.OnQueryTextListener {
 
     override val viewModel: BillboardViewModel by viewModels()
 

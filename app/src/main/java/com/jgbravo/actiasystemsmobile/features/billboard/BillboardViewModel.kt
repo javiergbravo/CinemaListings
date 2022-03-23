@@ -6,10 +6,9 @@ import com.jgbravo.actiasystemsmobile.R
 import com.jgbravo.actiasystemsmobile.features.billboard.models.MovieFilterModel
 import com.jgbravo.actiasystemsmobile.features.billboard.models.SummaryMovie
 import com.jgbravo.actiasystemsmobile.features.billboard.models.mappers.SummaryMovieUiMapper
+import com.jgbravo.commons.models.Resource
 import com.jgbravo.core.extensions.joinLists
-import com.jgbravo.core.extensions.mapList
-import com.jgbravo.core.models.Resource
-import com.jgbravo.core.presentation.BaseViewModel
+import com.jgbravo.commons.extensions.mapList
 import com.jgbravo.domain.models.MovieDomainModel
 import com.jgbravo.domain.useCases.GetMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,7 +21,7 @@ import javax.inject.Inject
 @HiltViewModel
 class BillboardViewModel @Inject constructor(
     private val getMoviesUseCase: GetMoviesUseCase
-) : BaseViewModel() {
+) : com.jgbravo.presentation.BaseViewModel() {
 
     private var page = 1
     private val filters = MovieFilterModel()

@@ -1,8 +1,8 @@
 package com.jgbravo.data.repository.mappers
 
-import com.jgbravo.core.extensions.getOrThrow
-import com.jgbravo.core.extensions.mapList
-import com.jgbravo.core.models.mappers.ApiMapper
+import com.jgbravo.commons.extensions.getOrThrow
+import com.jgbravo.commons.extensions.mapList
+import com.jgbravo.commons.models.mappers.ApiMapper
 import com.jgbravo.data.remote.themoviedb.models.BillboardDTO
 import com.jgbravo.data.remote.themoviedb.models.MovieDTO
 import com.jgbravo.data.repository.models.BillboardDataModel

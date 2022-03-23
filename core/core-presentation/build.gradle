@@ -1,0 +1,29 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation implementation(project(":core:core-commons"))
+
+    implementation corePresentationDependencies.values()
+    kapt corePresentationCompilerDependencies.values()
+}
+
+kapt {
+    correctErrorTypes = true
+}

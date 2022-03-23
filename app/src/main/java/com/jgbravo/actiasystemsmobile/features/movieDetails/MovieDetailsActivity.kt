@@ -11,14 +11,13 @@ import com.jgbravo.core.extensions.getExtraInt
 import com.jgbravo.core.extensions.loadFromUrl
 import com.jgbravo.core.extensions.setUpExpandable
 import com.jgbravo.core.extensions.stringRes
-import com.jgbravo.core.presentation.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MovieDetailsActivity : BaseActivity<ActivityMovieBinding>() {
+class MovieDetailsActivity : com.jgbravo.presentation.BaseActivity<ActivityMovieBinding>() {
 
     override val viewModel: MovieDetailsViewModel by viewModels()
 

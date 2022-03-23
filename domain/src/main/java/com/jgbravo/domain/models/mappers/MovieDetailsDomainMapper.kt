@@ -1,6 +1,6 @@
 package com.jgbravo.domain.models.mappers
 
-import com.jgbravo.core.models.mappers.DomainMapper
+import com.jgbravo.commons.models.mappers.DomainMapper
 import com.jgbravo.data.repository.models.MovieDetailsDataModel
 import com.jgbravo.domain.models.MovieDetailsDomainModel
 

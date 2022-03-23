@@ -72,7 +72,6 @@ ext {
             logginInterceptorLib : "com.squareup.okhttp3:logging-interceptor:$version.okHttp",
             retrofitLib          : "com.squareup.retrofit2:retrofit:$version.retrofit",
 
-            //moshiLib             : "com.squareup.moshi:moshi:$version.moshi",
             moshiKtLib           : "com.squareup.moshi:moshi-kotlin:$version.moshi",
             moshiCodegenLib      : "com.squareup.moshi:moshi-kotlin-codegen:$version.moshi",
             moshiConverterLib    : "com.squareup.retrofit2:converter-moshi:$version.converterMoshi"
@@ -85,35 +84,55 @@ ext {
             espressoLib    : "androidx.test.espresso:espresso-core:$version.espresso"
     ]
 
-    libraryDependencies = [
+    /** CORE DEPENDENCIES **/
+
+    /* CORE COMMONS DEPENDENCIES - MODULE [core-commons] */
+    coreCommonsDependencies = [
+            timber            : library.timberLib,
+
+            daggerHilt        : library.daggerHiltLib,
+            hiltDaggerCompiler: library.hiltDaggerCompilerLib,
+            hiltCompiler      : library.hiltCompilerLib
+    ]
+    coreCommonsCompilerDependencies = [
+            hiltCompiler      : library.hiltCompilerLib,
+            hiltDaggerCompiler: library.hiltDaggerCompilerLib
+    ]
+
+    /* CORE PRESENTATION DEPENDENCIES - MODULE [core-presentation] */
+    corePresentationDependencies = [
             androidCoreKtx    : library.androidCoreKtxLib,
             appCompat         : library.appCompatLib,
             coroutinesCore    : library.coroutinesCoreLib,
             coroutinesAndroid : library.coroutinesAndroidLib,
-            timber            : library.timberLib,
-            material          : library.materialLib,
-            constraintLayout  : library.constraintLayoutLib,
-            recyclerView      : library.recyclerViewLib,
-            activityKtx       : library.activityKtxLib,
-            viewmodelKtx      : library.viewmodelKtxLib,
             runtimeKtx        : library.runtimeKtxLib,
-            //glide             : library.glideLib,
+            material          : library.materialLib,
+            recyclerView      : library.recyclerViewLib,
+            glide             : library.glideLib,
+
             daggerHilt        : library.daggerHiltLib,
             hiltDaggerCompiler: library.hiltDaggerCompilerLib,
+            hiltCompiler      : library.hiltCompilerLib
+    ]
+    corePresentationCompilerDependencies = [
+            glideCompiler     : library.glideCompilerLib,
+
             hiltCompiler      : library.hiltCompilerLib,
-            moshiKt           : library.moshiKtLib,
-            moshiConverter    : library.moshiConverterLib,
-            okHttp            : library.okHttpLib,
-            logginInterceptor : library.logginInterceptorLib,
-            retrofit          : library.retrofitLib
+            hiltDaggerCompiler: library.hiltDaggerCompilerLib
     ]
 
-    compilerDependencies = [
-            //glideCompiler     : library.glideCompilerLib,
-            hiltCompiler      : library.hiltCompilerLib,
-            hiltDaggerCompiler: library.hiltDaggerCompilerLib,
-            moshiCodegen      : library.moshiCodegenLib
+    /* CORE DOMAIN DEPENDENCIES - MODULE [core-domain] */
+    coreDomainDependencies = [
+            coroutinesCore   : library.coroutinesCoreLib,
+            coroutinesAndroid: library.coroutinesAndroidLib
     ]
+
+    /* CORE DATA DEPENDENCIES - MODULE [core-data] */
+    coreDataDependencies = [
+            retrofit: library.retrofitLib
+    ]
+
+    /** TEST DEPENDENCIES **/
 
     testLibraryDependencies = [
             truth: testLibrary.truthLib,
@@ -125,12 +144,15 @@ ext {
             espresso    : testLibrary.espressoLib,
     ]
 
-    coreDependencies = [
+    /** APP DEPENDENCIES **/
+
+    /* PRESENTATION DEPENDENCIES - MODULE [app] */
+    presentationDependencies = [
             timber            : library.timberLib,
 
-            //Presentation
             androidCoreKtx    : library.androidCoreKtxLib,
             appCompat         : library.appCompatLib,
+            activityKtx       : library.activityKtxLib,
             coroutinesCore    : library.coroutinesCoreLib,
             coroutinesAndroid : library.coroutinesAndroidLib,
             runtimeKtx        : library.runtimeKtxLib,
@@ -138,50 +160,44 @@ ext {
             recyclerView      : library.recyclerViewLib,
             glide             : library.glideLib,
 
-            //Inject
-            daggerHilt        : library.daggerHiltLib,
-            hiltDaggerCompiler: library.hiltDaggerCompilerLib,
-            hiltCompiler      : library.hiltCompilerLib,
-
-            //Data
-            retrofit          : library.retrofitLib
-    ]
-
-    coreCompilerDependencies = [
-            //Presentation
-            glideCompiler     : library.glideCompilerLib,
-
-            //Inject
-            hiltCompiler      : library.hiltCompilerLib,
-            hiltDaggerCompiler: library.hiltDaggerCompilerLib
-    ]
-
-    domainDependencies = [
-            coroutinesCore    : library.coroutinesCoreLib,
-            coroutinesAndroid : library.coroutinesAndroidLib,
             daggerHilt        : library.daggerHiltLib,
             hiltDaggerCompiler: library.hiltDaggerCompilerLib,
             hiltCompiler      : library.hiltCompilerLib
     ]
+    presentationCompilerDependencies = [
+            hiltCompiler      : library.hiltCompilerLib,
+            hiltDaggerCompiler: library.hiltDaggerCompilerLib,
+    ]
 
+    /* DOMAIN DEPENDENCIES - MODULE [domain] */
+    domainDependencies = [
+            coroutinesCore    : library.coroutinesCoreLib,
+            coroutinesAndroid : library.coroutinesAndroidLib,
+
+            daggerHilt        : library.daggerHiltLib,
+            hiltDaggerCompiler: library.hiltDaggerCompilerLib,
+            hiltCompiler      : library.hiltCompilerLib
+    ]
     domainCompilerDependencies = [
             hiltCompiler      : library.hiltCompilerLib,
             hiltDaggerCompiler: library.hiltDaggerCompilerLib
     ]
 
+    /* DATA DEPENDENCIES - MODULE [data] */
     dataDependencies = [
             coroutinesCore    : library.coroutinesCoreLib,
             coroutinesAndroid : library.coroutinesAndroidLib,
-            daggerHilt        : library.daggerHiltLib,
-            hiltDaggerCompiler: library.hiltDaggerCompilerLib,
-            hiltCompiler      : library.hiltCompilerLib,
+
             moshiKt           : library.moshiKtLib,
             moshiConverter    : library.moshiConverterLib,
             okHttp            : library.okHttpLib,
             logginInterceptor : library.logginInterceptorLib,
-            retrofit          : library.retrofitLib
-    ]
+            retrofit          : library.retrofitLib,
 
+            daggerHilt        : library.daggerHiltLib,
+            hiltDaggerCompiler: library.hiltDaggerCompilerLib,
+            hiltCompiler      : library.hiltCompilerLib
+    ]
     dataCompilerDependencies = [
             moshiCodegen      : library.moshiCodegenLib,
             hiltCompiler      : library.hiltCompilerLib,

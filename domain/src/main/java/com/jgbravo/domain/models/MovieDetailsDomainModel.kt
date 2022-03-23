@@ -1,6 +1,6 @@
 package com.jgbravo.domain.models
 
-import com.jgbravo.core.models.base.DomainModel
+import com.jgbravo.commons.models.base.DomainModel
 import java.util.*
 
 data class MovieDetailsDomainModel(

@@ -1,7 +1,7 @@
 package com.jgbravo.data.remote.themoviedb.models
 
 
-import com.jgbravo.core.models.base.DTOModel
+import com.jgbravo.commons.models.base.DTOModel
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import java.util.*

@@ -1,7 +1,6 @@
 package com.jgbravo.data.repository
 
-import com.jgbravo.core.data.BaseRepository
-import com.jgbravo.core.models.Resource
+import com.jgbravo.commons.models.Resource
 import com.jgbravo.data.remote.themoviedb.TheMovieDbApi
 import com.jgbravo.data.repository.mappers.BillboardApiMapper
 import com.jgbravo.data.repository.mappers.MovieDetailsApiMapper
@@ -21,13 +20,13 @@ class MoviesRepositoryImpl @Inject constructor(
     private val language = Locale.getDefault().toLanguageTag()
 
     override fun getBillboard(page: Int, lang: String?): Flow<Resource<BillboardDataModel>> = flow {
-        val apiResponse = moviesService.getAllMovies(page, lang?: language)
+        val apiResponse = moviesService.getAllMovies(page, lang ?: language)
         val resource = getDataFromResponse(apiResponse, BillboardApiMapper())
         emit(resource)
     }.flowOn(Dispatchers.IO)
 
-    override fun getMovieDetails(movieId: Int, lang: String?): Flow<Resource<MovieDetailsDataModel>> = flow<Resource<MovieDetailsDataModel>> {
-        val apiResponse = moviesService.getMovieDetails(movieId, lang?: language)
+    override fun getMovieDetails(movieId: Int, lang: String?): Flow<Resource<MovieDetailsDataModel>> = flow {
+        val apiResponse = moviesService.getMovieDetails(movieId, lang ?: language)
         val resource = getDataFromResponse(apiResponse, MovieDetailsApiMapper())
         emit(resource)
     }.flowOn(Dispatchers.IO)
