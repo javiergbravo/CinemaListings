@@ -13,10 +13,19 @@ also exist a core module to be the base of app modules.
 
 ## 📜 Project requirements
 
+### Instructions
+
+To launch the application you need to get an API key from [TheMovieDb](https://www.themoviedb.org),
+registration is required. You need to add this line inside your *local.properties*:
+
+`THEMOVIEDB_API_KEY = "your_api_key"`
+
+### Versions
+
 ![JavaVersion](https://img.shields.io/badge/Java-1.8-%2325c2c6) ![Gradle](https://img.shields.io/badge/Gradle-7.2-%23%2351db71) ![AndroidGradle](https://img.shields.io/badge/AndroidGradle-7.1.2-%230ed490) ![GradleJDK](https://img.shields.io/badge/GradleJDK-11-%13386b)
 ![CompileSdk](https://img.shields.io/badge/CompileSdk-31-%230095D5) ![TarjetSdk](https://img.shields.io/badge/TarjetSdk-31-%23f0758f) ![minSdk](https://img.shields.io/badge/minSdk-24-CF202E) ![AndroidSdk](https://img.shields.io/badge/AndroidSdk-33.0.0-%23ec3266) ![AndroidCompileSdk](https://img.shields.io/badge/AndroidCompileSdk-30-green)
 
-## 📚 Libraries
+## 📚 Libraries used
 
 - [Kotlin](https://kotlinlang.org/) - First class and official programming language for Android
   development.
