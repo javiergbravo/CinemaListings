@@ -7,10 +7,13 @@
     <color name="colorAccentSecondary">@color/dusk_yellow_color</color>
 
     <color name="background_default">@color/white</color>
+    <color name="background_secondary">@color/secondary_color100</color>
     <color name="background_soft">@color/secondary_color200</color>
     <color name="text_default">@color/black</color>
     <color name="text_contrast">@color/secondary_color400</color>
     <color name="text_accent">@color/primary_color700</color>
+
+    <color name="fab_background">@color/colorAccent</color>
 
     <!-- App -->
     <color name="primary_color">#EF233C</color>

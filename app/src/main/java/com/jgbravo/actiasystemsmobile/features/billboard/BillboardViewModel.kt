@@ -6,9 +6,9 @@ import com.jgbravo.actiasystemsmobile.R
 import com.jgbravo.actiasystemsmobile.features.billboard.models.MovieFilterModel
 import com.jgbravo.actiasystemsmobile.features.billboard.models.SummaryMovie
 import com.jgbravo.actiasystemsmobile.features.billboard.models.mappers.SummaryMovieUiMapper
-import com.jgbravo.commons.models.Resource
 import com.jgbravo.commons.extensions.joinLists
 import com.jgbravo.commons.extensions.mapList
+import com.jgbravo.commons.models.Resource
 import com.jgbravo.domain.models.MovieDomainModel
 import com.jgbravo.domain.useCases.GetMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -30,6 +30,9 @@ class BillboardViewModel @Inject constructor(
 
     private var _movies = MutableStateFlow<BillboardState>(BillboardState.NotStarted)
     val movies: StateFlow<BillboardState> get() = _movies
+
+    private val _yearFilterState = MutableStateFlow<YearFilterState>(YearFilterState.NO_FILTERS)
+    val yearFilterState: StateFlow<YearFilterState> get() = _yearFilterState
 
     fun getMovies() {
         viewModelScope.launch {
@@ -53,6 +56,14 @@ class BillboardViewModel @Inject constructor(
         }
     }
 
+    private fun updateMovies() {
+        _movies.value = BillboardState.Success(filteredMovieList)
+    }
+
+    private fun updateYearFilter(state: YearFilterState) {
+        _yearFilterState.value = state
+    }
+
     fun isListAvailable(): Boolean = movieList.isNotEmpty()
 
     private fun updateList(newMovies: List<SummaryMovie>) {
@@ -61,16 +72,39 @@ class BillboardViewModel @Inject constructor(
 
     fun deleteMovie(movie: SummaryMovie) {
         filters.movieDeleted.add(movie)
-        _movies.value = BillboardState.Success(filteredMovieList)
+        updateMovies()
     }
 
     fun filterByTitle(search: String?) {
         filters.searchTitle = search ?: ""
-        _movies.value = BillboardState.Success(filteredMovieList)
+        updateMovies()
     }
 
+    fun cleanYearFilters() {
+        filters.cleanYearsFilters()
+        updateMovies()
+        updateYearFilter(YearFilterState.NO_FILTERS)
+    }
+
+    fun expandLayoutFilter() {
+        updateYearFilter(YearFilterState.SHOW_FILTERS)
+    }
+
+    fun checkInputDates(dateFrom: String, dateTo: String): Boolean {
+        filters.setYearFrom(dateFrom)
+        filters.setYearTo(dateTo)
+        return if (filters.hasYearFilter()) {
+            updateMovies()
+            updateYearFilter(YearFilterState.APPLIED_FILTERS)
+            true
+        } else {
+            false
+        }
+    }
+
+
     private fun filterList(list: List<SummaryMovie>): List<SummaryMovie> {
-        return list.filterByTitle().filterDeleted()
+        return list.filterByTitle().filterDeleted().filterYear()
     }
 
     private fun List<SummaryMovie>.filterByTitle(): List<SummaryMovie> {
@@ -89,6 +123,16 @@ class BillboardViewModel @Inject constructor(
         }
     }
 
+    private fun List<SummaryMovie>.filterYear(): List<SummaryMovie> {
+        return when {
+            filters.yearFrom != null && filters.yearTo != null -> {
+                this.filter { it.releaseYear in filters.yearFrom!!..filters.yearTo!! }
+            }
+            filters.yearFrom != null -> this.filter { it.releaseYear >= filters.yearFrom!! }
+            filters.yearTo != null -> this.filter { it.releaseYear <= filters.yearTo!! }
+            else -> this
+        }
+    }
 
     sealed class BillboardState {
         object NotStarted : BillboardState()
@@ -98,5 +142,15 @@ class BillboardViewModel @Inject constructor(
             @StringRes val title: Int,
             @StringRes val message: Int
         ) : BillboardState()
+    }
+
+    enum class YearFilterState(
+        val bottomLayoutVisible: Boolean,
+        val fabVisible: Boolean,
+        val fabExpanded: Boolean
+    ) {
+        NO_FILTERS(false, true, false),
+        SHOW_FILTERS(true, false, false),
+        APPLIED_FILTERS(false, true, true)
     }
 }

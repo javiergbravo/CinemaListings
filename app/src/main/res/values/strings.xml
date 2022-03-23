@@ -7,20 +7,30 @@
     <string name="release_year">Release year</string>
     <string name="theme">Theme</string>
     <string name="search">Search</string>
+    <string name="filters">Filters</string>
+    <string name="filter_by_year">Filter by year</string>
+    <string name="clean_filters">Clean filters</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
     <string name="error">Error</string>
     <string name="cancel">Cancel</string>
     <string name="decline">Decline</string>
     <string name="accept">Accept</string>
     <string name="retry">Retry</string>
+    <string name="apply">Apply</string>
+    <string name="discard">Discard</string>
     <string name="error_unexpected">Unexpected error</string>
     <string name="connection_error">Connection error</string>
     <string name="error_unknown">Oops! Something failed. Please try again later</string>
     <string name="error_no_internet">Oops! It is impossible to connect to the server. Please check your internet connection and try again later.</string>
+    <string name="enter_valid_date">Please enter a valid date.</string>
+
+    <string name="banner" translatable="false">Banner</string>
 
     <!-- Dialogs -->
     <string name="dialog_error_unknown_title" translatable="false">@string/error_unexpected</string>
     <string name="dialog_error_unknown_body" translatable="false">@string/error_unknown</string>
-    <string name="dialog_error_no_internet_title" translatable="false">@string/connection_error</string>
-    <string name="dialog_error_no_internet_body" translatable="false">@string/error_no_internet</string>
-    <string name="banner" translatable="false">Banner</string>
+    <string name="dialog_error_no_internet_title" translatable="false">@string/error_unexpected</string>
+    <string name="dialog_error_no_internet_body" translatable="false">@string/connection_error</string>
+    <string name="error_enter_valid_date" translatable="false">@string/enter_valid_date</string>
 </resources>

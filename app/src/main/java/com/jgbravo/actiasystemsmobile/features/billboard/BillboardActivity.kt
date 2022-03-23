@@ -11,8 +11,7 @@ import com.jgbravo.actiasystemsmobile.features.billboard.adapters.BillboardAdapt
 import com.jgbravo.actiasystemsmobile.features.movieDetails.MovieDetailsActivity
 import com.jgbravo.actiasystemsmobile.features.movieDetails.MovieDetailsActivity.Companion.KEY_MOVIE_ID
 import com.jgbravo.presentation.BaseActivity
-import com.jgbravo.presentation.extensions.navigateTo
-import com.jgbravo.presentation.extensions.onReachBottom
+import com.jgbravo.presentation.extensions.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collect
@@ -29,6 +28,8 @@ class BillboardActivity : BaseActivity<ActivityBillboardBinding>(),
     override fun getViewBinding(): ActivityBillboardBinding = ActivityBillboardBinding.inflate(layoutInflater)
 
     override fun setupView() {
+        setupFabButton()
+        setupBottomLayout()
         if (!viewModel.isListAvailable()) {
             viewModel.getMovies()
         }
@@ -53,6 +54,42 @@ class BillboardActivity : BaseActivity<ActivityBillboardBinding>(),
                         showDialogError(state.title, state.message)
                         hideLoader()
                     }
+                }
+            }
+        }
+
+        scope.launch {
+            viewModel.yearFilterState.collect {
+                binding.bottomSheetFilters.root.visibilityBy { it.bottomLayoutVisible }
+                binding.fabFilter.apply {
+                    this.visibilityBy { it.fabVisible }
+                    if (it.fabExpanded) extend() else shrink()
+                }
+            }
+        }
+    }
+
+    private fun setupFabButton() {
+        binding.fabFilter.setOnClickListener {
+            if (binding.fabFilter.isExtended) {
+                viewModel.cleanYearFilters()
+            } else {
+                viewModel.expandLayoutFilter()
+            }
+        }
+    }
+
+    private fun setupBottomLayout() {
+        binding.bottomSheetFilters.apply {
+            btnFilter.setOnClickListener {
+                val validInputs = viewModel.checkInputDates(tietFromDate.text.toString(), tietToDate.text.toString())
+                if (!validInputs) {
+                    tietFromDate.showError(stringRes(R.string.error_enter_valid_date)!!)
+                    tietToDate.showError(stringRes(R.string.error_enter_valid_date)!!)
+                } else {
+                    tietFromDate.cleanError()
+                    tietToDate.cleanError()
+                    it.hideKeyboard()
                 }
             }
         }

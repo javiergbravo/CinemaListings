@@ -8,6 +8,13 @@
     <string name="release_year">Año de salida</string>
     <string name="theme">Tema</string>
     <string name="search">Buscar</string>
+    <string name="apply">Aplicar</string>
+    <string name="discard">Descartar</string>
+    <string name="filters">Filtros</string>
+    <string name="filter_by_year">Filtrar por año</string>
+    <string name="clean_filters">Limpiar filtros</string>
+    <string name="from">Desde</string>
+    <string name="to">Hasta</string>
     <string name="error">Error</string>
     <string name="cancel">Cancelar</string>
     <string name="decline">Descartar</string>
@@ -15,6 +22,7 @@
     <string name="retry">Reintentar</string>
     <string name="error_unexpected">Error inesperado</string>
     <string name="connection_error">Error de conexión</string>
-    <string name="error_unknown">¡Ups! Algo no fue bien. Inténtalo de nuevo más tarde</string>
+    <string name="error_unknown">¡Ups! Algo no fue bien. Inténtalo de nuevo más tarde.</string>
     <string name="error_no_internet">¡Ups! No se puede conectar con el servidor. Verifica tu conexión a internet e inténtalo de nuevo más tarde.</string>
+    <string name="enter_valid_date">Por favor, introduzca una fecha válida.</string>
 </resources>
