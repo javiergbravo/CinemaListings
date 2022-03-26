@@ -1,4 +1,4 @@
-package com.jgbravo.actiasystemsmobile.customViews
+package com.jgbravo.actiasystemsmobile.views
 
 import android.content.Context
 import android.util.AttributeSet

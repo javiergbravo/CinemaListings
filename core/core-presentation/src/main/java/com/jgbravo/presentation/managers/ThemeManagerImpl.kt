@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.jgbravo.presentation.managers.ThemeManager.ThemeState
 import javax.inject.Inject
 
-class ThemeManagerImpl @Inject constructor(private val context: Context) : ThemeManager {
+class ThemeManagerImpl @Inject constructor(
+    private val context: Context
+) : ThemeManager {
 
     private val defaultTheme: ThemeState
         get() = when (context.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)) {

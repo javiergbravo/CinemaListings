@@ -1,5 +1,8 @@
 package com.jgbravo.actiasystemsmobile.features.billboard.models
 
+import com.jgbravo.commons.extensions.isNotNull
+import com.jgbravo.commons.extensions.isNull
+
 data class MovieFilterModel(
     var movieDeleted: MutableList<SummaryMovie> = mutableListOf(),
     var searchTitle: String = "",
@@ -11,13 +14,13 @@ data class MovieFilterModel(
 
     fun hasValidYearFilters(dateToInput: String): Boolean {
         return when {
-            dateToInput.isNotBlank() && yearTo == null -> false
-            dateToInput.isBlank() && yearTo == null -> hasYearFilter()
+            dateToInput.isNotBlank() && yearTo.isNull() -> false
+            dateToInput.isBlank() && yearTo.isNull() -> hasYearFilter()
             else -> isYearToLessThanFrom(yearTo!!)
         }
     }
 
-    fun hasYearFilter(): Boolean = yearFrom != null || yearTo != null
+    fun hasYearFilter(): Boolean = yearFrom.isNotNull() || yearTo.isNotNull()
 
     fun cleanYearsFilters() {
         yearFrom = null
@@ -25,20 +28,21 @@ data class MovieFilterModel(
     }
 
     fun setYearFrom(dateText: String) {
-        if (dateText.trim().toIntOrNull() != null && dateText.length == 4) {
+        if (dateText.trim().toIntOrNull().isNotNull() && dateText.length == 4) {
             yearFrom = dateText.toInt()
         }
     }
 
     fun setYearTo(dateText: String) {
-        if (dateText.trim()
-                .toIntOrNull() != null && dateText.length == 4 && isYearToLessThanFrom(dateText.toInt())
+        if (dateText.trim().toIntOrNull().isNotNull()
+            && dateText.length == 4
+            && isYearToLessThanFrom(dateText.toInt())
         ) {
             yearTo = dateText.toInt()
         }
     }
 
     fun isYearToLessThanFrom(yearTo: Int): Boolean {
-        return yearFrom == null || (yearFrom != null && yearTo > yearFrom!!)
+        return yearFrom.isNull() || (yearFrom.isNotNull() && yearTo > yearFrom!!)
     }
 }

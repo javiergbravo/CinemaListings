@@ -4,9 +4,10 @@ import android.content.Context
 import android.content.Intent
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import com.jgbravo.commons.extensions.isNotNull
 
 
-fun AppCompatActivity.hasExtras(): Boolean = intent?.extras != null
+fun AppCompatActivity.hasExtras(): Boolean = intent?.extras.isNotNull()
 
 fun AppCompatActivity.extrasContainsKey(key: String): Boolean {
     return hasExtras() && intent.extras?.containsKey(key) ?: false

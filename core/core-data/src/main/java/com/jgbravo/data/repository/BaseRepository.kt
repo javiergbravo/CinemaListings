@@ -3,6 +3,8 @@ package com.jgbravo.data.repository
 import com.jgbravo.commons.exceptions.ApiCallException
 import com.jgbravo.commons.exceptions.ApiCallReason
 import com.jgbravo.commons.exceptions.AppException
+import com.jgbravo.commons.extensions.isNotNull
+import com.jgbravo.commons.extensions.isNull
 import com.jgbravo.commons.models.Resource
 import com.jgbravo.commons.models.base.DTOModel
 import com.jgbravo.commons.models.base.DataModel
@@ -16,7 +18,7 @@ abstract class BaseRepository {
         mapper: ApiMapper<DTO, DATA>
     ): Resource<DATA> {
         return when {
-            response.isSuccessful && response.body() != null -> {
+            response.isSuccessful && response.body().isNotNull() -> {
                 try {
                     val data = mapper.map(response.body()!!)
                     Resource.Success(data)
@@ -26,7 +28,7 @@ abstract class BaseRepository {
                     Resource.Error(response.code(), e)
                 }
             }
-            response.isSuccessful && response.body() == null -> {
+            response.isSuccessful && response.body().isNull() -> {
                 val e = ApiCallException(ApiCallReason.EMPTY_BODY.msg)
                 Resource.Error(e.code.value, e)
             }

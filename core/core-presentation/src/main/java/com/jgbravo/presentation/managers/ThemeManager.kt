@@ -3,7 +3,7 @@ package com.jgbravo.presentation.managers
 interface ThemeManager {
 
     enum class ThemeState {
-        LIGHT, DARK,
+        LIGHT, DARK
     }
 
     fun toggleTheme()

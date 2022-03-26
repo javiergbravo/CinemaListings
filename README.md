@@ -14,11 +14,11 @@ also exist a core module to be the base of app modules.
 ## 📜 Project requirements
 
 ### Instructions
-To launch the application you need to get an API key from [TheMovieDb](https://www.themoviedb.org), registration is required. You need to add this line inside your *local.properties*:
+
+To launch the application you need to get an API key from [TheMovieDb](https://www.themoviedb.org),
+registration is required. You need to add this line inside your *local.properties*:
 
 `THEMOVIEDB_API_KEY = "your_api_key"`
-
-
 
 ### Versions
 

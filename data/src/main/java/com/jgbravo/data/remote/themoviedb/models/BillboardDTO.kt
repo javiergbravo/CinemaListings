@@ -15,4 +15,4 @@ data class BillboardDTO(
     val totalPages: Int?,
     @Json(name = "total_results")
     val totalResults: Int?
-): DTOModel()
+) : DTOModel()

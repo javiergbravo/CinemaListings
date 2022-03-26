@@ -1,19 +1,10 @@
 package com.jgbravo.actiasystemsmobile.utils.timber
 
-import android.util.Log
-import timber.log.Timber
+import com.jgbravo.commons.timber.ReleaseTree
 
-class ActiaReleaseTree : Timber.Tree() {
+class ActiaReleaseTree : ReleaseTree() {
 
-    override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
-        when (priority) {
-            Log.ERROR -> {
-                // Send error reports to Crashlytics, Sentry or other error monitoring platform
-            }
-            Log.WARN -> {
-                // Send warning reports to Crashlytics, Sentry or other error monitoring platform
-            }
-            else -> Unit
-        }
-    }
+    override fun sendError(priority: Int, tag: String?, message: String, t: Throwable?) = Unit
+
+    override fun sendWarning(priority: Int, tag: String?, message: String, t: Throwable?) = Unit
 }

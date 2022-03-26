@@ -6,6 +6,7 @@ import com.jgbravo.actiasystemsmobile.R
 import com.jgbravo.actiasystemsmobile.features.billboard.models.MovieFilterModel
 import com.jgbravo.actiasystemsmobile.features.billboard.models.SummaryMovie
 import com.jgbravo.actiasystemsmobile.features.billboard.models.mappers.SummaryMovieUiMapper
+import com.jgbravo.commons.extensions.isNotNull
 import com.jgbravo.commons.extensions.joinLists
 import com.jgbravo.commons.extensions.mapList
 import com.jgbravo.commons.models.Resource
@@ -126,11 +127,11 @@ class BillboardViewModel @Inject constructor(
 
     private fun List<SummaryMovie>.filterYear(): List<SummaryMovie> {
         return when {
-            filters.yearFrom != null && filters.yearTo != null -> {
+            filters.yearFrom.isNotNull() && filters.yearTo.isNotNull() -> {
                 this.filter { it.releaseYear in filters.yearFrom!!..filters.yearTo!! }
             }
-            filters.yearFrom != null -> this.filter { it.releaseYear >= filters.yearFrom!! }
-            filters.yearTo != null -> this.filter { it.releaseYear <= filters.yearTo!! }
+            filters.yearFrom.isNotNull() -> this.filter { it.releaseYear >= filters.yearFrom!! }
+            filters.yearTo.isNotNull() -> this.filter { it.releaseYear <= filters.yearTo!! }
             else -> this
         }
     }

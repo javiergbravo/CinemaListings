@@ -1,7 +1,6 @@
-package com.jgbravo.actiasystemsmobile.di
+package com.jgbravo.presentation.di
 
 import android.content.Context
-import com.jgbravo.presentation.managers.LoaderManager
 import com.jgbravo.presentation.managers.ThemeManager
 import com.jgbravo.presentation.managers.ThemeManagerImpl
 import dagger.Module
@@ -20,8 +19,4 @@ object PresentationModule {
     fun provideThemeSettings(
         @ApplicationContext context: Context
     ): ThemeManager = ThemeManagerImpl(context)
-
-    @Singleton
-    @Provides
-    fun provideLoaderManager(): LoaderManager = LoaderManager()
 }

@@ -18,10 +18,13 @@ import javax.inject.Inject
 
 abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
 
-    private val TAG = this::class.java.simpleName
+    protected val TAG = this::class.java.simpleName
 
     @Inject
     protected lateinit var themeManager: ThemeManager
+
+    @Inject
+    protected lateinit var loader: LoaderManager
 
     protected lateinit var binding: VB
 
@@ -88,13 +91,15 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
      */
     protected abstract fun collectStateFlows(scope: CoroutineScope)
 
-    private fun trackLifecycle(function: String) {
-        viewModel.trackLifecycle(TAG, function)
+    fun showLoader() {
+        log("Show loader...")
+        loader.showDialog()
     }
 
-    fun showLoader() = LoaderManager.showDialog(this)
-
-    fun hideLoader() = LoaderManager.hideDialog()
+    fun hideLoader() {
+        log("Hide loader...")
+        loader.hideDialog()
+    }
 
     protected fun showError(
         @StringRes title: Int,
@@ -112,6 +117,10 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
     }
 
     fun log(msg: String) {
-        viewModel.debug(this::class.java.simpleName, msg)
+        viewModel.debug(TAG, msg)
+    }
+
+    private fun trackLifecycle(function: String) {
+        viewModel.trackLifecycle(TAG, function)
     }
 }
