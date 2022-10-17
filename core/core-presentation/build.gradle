@@ -8,6 +8,8 @@ plugins {
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
+    namespace 'com.jgbravo.core.presentation'
+
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
     }

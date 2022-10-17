@@ -9,9 +9,12 @@ plugins {
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
+    namespace 'com.jgbravo.data'
+
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
     }
+
 }
 
 dependencies {
