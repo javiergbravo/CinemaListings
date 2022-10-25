@@ -8,20 +8,20 @@ import com.jgbravo.domain.useCases.GetMoviesUseCaseImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
+import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.scopes.ViewModelScoped
 
 @Module
-@InstallIn(SingletonComponent::class)
+@InstallIn(ViewModelComponent::class)
 object DomainModule {
 
-    @Singleton
+    @ViewModelScoped
     @Provides
     fun provideGetMoviesUseCase(
         moviesRepository: MoviesRepository
     ): GetMoviesUseCase = GetMoviesUseCaseImpl(moviesRepository)
 
-    @Singleton
+    @ViewModelScoped
     @Provides
     fun provideGetMovieDetailsUseCase(
         moviesRepository: MoviesRepository
