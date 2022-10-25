@@ -34,7 +34,7 @@ class MovieDetailsViewModel @Inject constructor(
                         MovieState.Success(movieDetails)
                     }
                     is Resource.Error -> {
-                        logger.e(res.exception)
+                        //logger.e(res.exception)
                         MovieState.Error(R.string.dialog_error_unknown_title, R.string.dialog_error_unknown_body)
                     }
                 }

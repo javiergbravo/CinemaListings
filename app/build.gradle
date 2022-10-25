@@ -64,7 +64,7 @@ dependencies {
 
     implementation presentationDependencies.values()
     kapt presentationCompilerDependencies.values()
-    testImplementation testLibraryDependencies.values()
+    testImplementation presentationTestDependencies.values()
     androidTestImplementation androidTestLibraryDependencies.values()
 }
 

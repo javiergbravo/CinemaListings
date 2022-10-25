@@ -3,6 +3,7 @@ package com.jgbravo.presentation
 import android.content.DialogInterface
 import android.os.Bundle
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -30,11 +31,13 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
 
     abstract val viewModel: BaseViewModel
 
+    private var errorDialog: AlertDialog? = null
+
     protected abstract fun getViewBinding(): VB
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        trackLifecycle("onCreate")
+        //trackLifecycle("onCreate")
         binding = getViewBinding()
         setContentView(binding.root)
 
@@ -45,29 +48,29 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
     }
 
     override fun onStart() {
-        trackLifecycle("onStart")
+        //trackLifecycle("onStart")
         super.onStart()
     }
 
     override fun onResume() {
-        trackLifecycle("onResume")
+        //trackLifecycle("onResume")
         super.onResume()
     }
 
     override fun onPause() {
-        trackLifecycle("onPause")
+        //trackLifecycle("onPause")
         hideLoader()
         super.onPause()
     }
 
     override fun onStop() {
-        trackLifecycle("onStop")
+        //trackLifecycle("onStop")
         hideLoader()
         super.onStop()
     }
 
     override fun onDestroy() {
-        trackLifecycle("onDestroy")
+        //trackLifecycle("onDestroy")
         hideLoader()
         super.onDestroy()
     }
@@ -92,12 +95,12 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
     protected abstract fun collectStateFlows(scope: CoroutineScope)
 
     fun showLoader() {
-        log("Show loader...")
+        //log("Show loader...")
         loader.showDialog()
     }
 
     fun hideLoader() {
-        log("Hide loader...")
+        //log("Hide loader...")
         loader.hideDialog()
     }
 
@@ -107,7 +110,8 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
         @StringRes buttonText: Int,
         whenButtonClick: ((dialog: DialogInterface) -> Unit)? = null
     ) {
-        MaterialAlertDialogBuilder(this)
+        errorDialog?.dismiss()
+        errorDialog = MaterialAlertDialogBuilder(this)
             .setTitle(stringRes(title))
             .setMessage(stringRes(message))
             .setNeutralButton(stringRes(buttonText)) { dialog, _ ->
@@ -116,11 +120,15 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
             }.show()
     }
 
-    fun log(msg: String) {
+    protected fun hideError() {
+        errorDialog?.dismiss()
+    }
+
+    /*fun log(msg: String) {
         viewModel.debug(TAG, msg)
     }
 
     private fun trackLifecycle(function: String) {
         viewModel.trackLifecycle(TAG, function)
-    }
+    }*/
 }

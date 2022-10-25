@@ -1,6 +1,5 @@
 package com.jgbravo.actiasystemsmobile.features.billboard
 
-import androidx.annotation.StringRes
 import androidx.lifecycle.viewModelScope
 import com.jgbravo.actiasystemsmobile.R
 import com.jgbravo.actiasystemsmobile.features.billboard.models.MovieFilterModel
@@ -10,56 +9,59 @@ import com.jgbravo.commons.extensions.isNotNull
 import com.jgbravo.commons.extensions.joinLists
 import com.jgbravo.commons.extensions.mapList
 import com.jgbravo.commons.models.Resource
+import com.jgbravo.commons.utils.DispatcherProvider
 import com.jgbravo.domain.models.MovieDomainModel
 import com.jgbravo.domain.useCases.GetMoviesUseCase
 import com.jgbravo.presentation.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class BillboardViewModel @Inject constructor(
+    private val dispatchers: DispatcherProvider,
     private val getMoviesUseCase: GetMoviesUseCase
 ) : BaseViewModel() {
+
+    companion object {
+        const val NO_INTERNET_TITLE = R.string.dialog_error_no_internet_title
+        const val NO_INTERNET_MESSAGE = R.string.dialog_error_no_internet_body
+    }
 
     private var page = 1
     private val filters = MovieFilterModel()
     private var movieList: List<SummaryMovie> = arrayListOf()
     private val filteredMovieList: List<SummaryMovie> get() = filterList(movieList)
 
-    private var _movies = MutableStateFlow<BillboardState>(BillboardState.NotStarted)
-    val movies: StateFlow<BillboardState> get() = _movies
+    private var _movies = MutableStateFlow<List<SummaryMovie>>(emptyList())
+    val movies: StateFlow<List<SummaryMovie>> get() = _movies
 
     private val _yearFilterState = MutableStateFlow<YearFilterState>(YearFilterState.NO_FILTERS)
     val yearFilterState: StateFlow<YearFilterState> get() = _yearFilterState
 
     fun getMovies() {
-        viewModelScope.launch {
-            _movies.value = BillboardState.Loading
+        emitLoading()
+        viewModelScope.launch(dispatchers.io) {
             getMoviesUseCase.invoke(page++).collect { resource ->
-                _movies.value = when (resource) {
+                when (resource) {
                     is Resource.Success -> {
                         val newList = (resource.data as List<MovieDomainModel>).mapList(SummaryMovieUiMapper())
-                        logger.d("Add ${newList.size} movies to list")
+                        //logger.d("Add ${newList.size} movies to list")
                         updateList(newList)
-                        BillboardState.Success(filteredMovieList)
+                        _movies.emit(filteredMovieList)
                     }
-                    is Resource.Error -> {
-                        BillboardState.Error(
-                            R.string.dialog_error_no_internet_title,
-                            R.string.dialog_error_no_internet_body
-                        )
-                    }
+                    is Resource.Error -> emitError(title = NO_INTERNET_TITLE, message = NO_INTERNET_MESSAGE)
                 }
             }
         }
     }
 
     private fun updateMovies() {
-        _movies.value = BillboardState.Success(filteredMovieList)
+        viewModelScope.launch(dispatchers.io) {
+            _movies.emit(filteredMovieList)
+        }
     }
 
     private fun updateYearFilter(state: YearFilterState) {
@@ -134,16 +136,6 @@ class BillboardViewModel @Inject constructor(
             filters.yearTo.isNotNull() -> this.filter { it.releaseYear <= filters.yearTo!! }
             else -> this
         }
-    }
-
-    sealed class BillboardState {
-        object NotStarted : BillboardState()
-        object Loading : BillboardState()
-        class Success(val movies: List<SummaryMovie>) : BillboardState()
-        class Error(
-            @StringRes val title: Int,
-            @StringRes val message: Int
-        ) : BillboardState()
     }
 
     enum class YearFilterState(

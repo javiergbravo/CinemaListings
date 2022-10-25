@@ -5,8 +5,6 @@ fun <T : Any> joinLists(oldList: List<T>, newList: List<T>): List<T> {
         oldList.isEmpty() && newList.isEmpty() -> emptyList()
         oldList.isEmpty() && newList.isNotEmpty() -> newList
         oldList.isNotEmpty() && newList.isEmpty() -> oldList
-        else -> {
-            (oldList + newList).distinct()
-        }
+        else -> (oldList + newList).distinct()
     }
 }

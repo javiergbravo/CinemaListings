@@ -11,10 +11,16 @@ import com.jgbravo.actiasystemsmobile.features.billboard.adapters.BillboardAdapt
 import com.jgbravo.actiasystemsmobile.features.movieDetails.MovieDetailsActivity
 import com.jgbravo.actiasystemsmobile.features.movieDetails.MovieDetailsActivity.Companion.KEY_MOVIE_ID
 import com.jgbravo.presentation.BaseActivity
-import com.jgbravo.presentation.extensions.*
+import com.jgbravo.presentation.BaseViewModel
+import com.jgbravo.presentation.extensions.cleanError
+import com.jgbravo.presentation.extensions.hideKeyboard
+import com.jgbravo.presentation.extensions.navigateTo
+import com.jgbravo.presentation.extensions.onReachBottom
+import com.jgbravo.presentation.extensions.showError
+import com.jgbravo.presentation.extensions.stringRes
+import com.jgbravo.presentation.extensions.visibilityBy
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -36,24 +42,23 @@ class BillboardActivity : BaseActivity<ActivityBillboardBinding>(), SearchView.O
 
     override fun collectStateFlows(scope: CoroutineScope) {
         scope.launch {
-            viewModel.movies.collect { state ->
-                when (state) {
-                    BillboardViewModel.BillboardState.NotStarted -> Unit
-                    BillboardViewModel.BillboardState.Loading -> {
+            viewModel.uiState.collect {
+                when (it) {
+                    BaseViewModel.UiState.Loading -> {
                         showLoader()
                     }
-                    is BillboardViewModel.BillboardState.Success -> {
-                        if (!::billboardAdapter.isInitialized) {
-                            setupBillboardAdapter()
-                        }
-                        billboardAdapter.submitList(state.movies)
+                    is BaseViewModel.UiState.Error -> {
                         hideLoader()
-                    }
-                    is BillboardViewModel.BillboardState.Error -> {
-                        showDialogError(state.title, state.message)
-                        hideLoader()
+                        showDialogError(it.title, it.message)
                     }
                 }
+            }
+        }
+        scope.launch {
+            viewModel.movies.collect {
+                setupBillboardAdapter()
+                billboardAdapter.submitList(it)
+                hideLoader()
             }
         }
 
@@ -97,6 +102,9 @@ class BillboardActivity : BaseActivity<ActivityBillboardBinding>(), SearchView.O
     }
 
     private fun setupBillboardAdapter() {
+        if (::billboardAdapter.isInitialized) {
+            return
+        }
         billboardAdapter = BillboardAdapter()
         binding.rvBillboard.apply {
             adapter = billboardAdapter
