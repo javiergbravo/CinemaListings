@@ -1,13 +1,13 @@
 package com.jgbravo.presentation
 
 import androidx.lifecycle.ViewModel
-import com.jgbravo.commons.timber.AppLogger
+import com.jgbravo.commons.timber.Logger
 import javax.inject.Inject
 
 abstract class BaseViewModel : ViewModel() {
 
     @Inject
-    protected lateinit var logger: AppLogger
+    protected lateinit var logger: Logger
 
     fun trackLifecycle(activityName: String, function: String) {
         logger.activity(activityName, function)

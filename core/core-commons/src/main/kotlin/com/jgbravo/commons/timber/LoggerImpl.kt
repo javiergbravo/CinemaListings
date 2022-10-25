@@ -1,39 +1,20 @@
 package com.jgbravo.commons.timber
 
 import android.os.SystemClock
-import com.jgbravo.commons.timber.AppLogger.Companion.ACTIVITY_TAG
-import com.jgbravo.commons.timber.AppLogger.Companion.API_CALL
-import com.jgbravo.commons.timber.AppLogger.Companion.FRAGMENT_TAG
-import com.jgbravo.commons.timber.AppLogger.Companion.MAX_TAG_LENGTH
-import com.jgbravo.commons.timber.AppLogger.Companion.PACKAGE_APP
-import com.jgbravo.commons.timber.AppLogger.Companion.PATTERN_CLASS
+import com.jgbravo.commons.timber.Logger.Companion.ACTIVITY_TAG
+import com.jgbravo.commons.timber.Logger.Companion.API_CALL
+import com.jgbravo.commons.timber.Logger.Companion.FRAGMENT_TAG
+import com.jgbravo.commons.timber.Logger.Companion.MAX_TAG_LENGTH
+import com.jgbravo.commons.timber.Logger.Companion.PATTERN_CLASS
 import timber.log.Timber
-import javax.inject.Inject
 
-class AppLoggerImpl @Inject constructor() : AppLogger {
+abstract class LoggerImpl : Logger {
 
     private var lastLogTime = 0L
 
-    private val customTag: String
-        get() {
-            val stackTraceElements = Throwable().stackTrace
-            for (stackTraceElement in stackTraceElements) {
-                if (isActiaClass(stackTraceElement) && !isActiaLoggerClass(stackTraceElement)) {
-                    return buildTag(stackTraceElement)
-                }
-            }
-            return "Unknown"
-        }
+    protected abstract val customTag: String
 
-    private fun isActiaClass(stackTraceElement: StackTraceElement): Boolean {
-        return stackTraceElement.className.startsWith(PACKAGE_APP)
-    }
-
-    private fun isActiaLoggerClass(stackTraceElement: StackTraceElement): Boolean {
-        return stackTraceElement.className.contains(this::class.java.name) // "ActiaLogger"
-    }
-
-    private fun buildTag(stackTraceElement: StackTraceElement): String {
+    protected fun buildTag(stackTraceElement: StackTraceElement): String {
         return String.format(
             "[Class:%s] [Function:%s] [Line:%s] ",
             createStackElementTag(stackTraceElement),

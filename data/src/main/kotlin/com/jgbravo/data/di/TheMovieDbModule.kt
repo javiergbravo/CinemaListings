@@ -1,6 +1,6 @@
 package com.jgbravo.data.di
 
-import com.jgbravo.commons.timber.AppLogger
+import com.jgbravo.commons.timber.Logger
 import com.jgbravo.data.BuildConfig
 import com.jgbravo.data.remote.themoviedb.TheMovieDbApi
 import com.jgbravo.data.remote.themoviedb.adapters.SimpleDateAdapter
@@ -36,7 +36,7 @@ object TheMovieDbModule {
     @Provides
     fun provideTheMovieDbOkHttpClient(
         theMovieDbInterceptor: TheMovieDbInterceptor,
-        logger: AppLogger
+        logger: Logger
     ): OkHttpClient {
         val okHttpClient = OkHttpClient().newBuilder()
             .addNetworkInterceptor(theMovieDbInterceptor)

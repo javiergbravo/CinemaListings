@@ -1,7 +1,7 @@
-package com.jgbravo.commons.di
+package com.jgbravo.actiasystemsmobile.di
 
-import com.jgbravo.commons.timber.AppLogger
-import com.jgbravo.commons.timber.AppLoggerImpl
+import com.jgbravo.actiasystemsmobile.utils.timber.ActiaLoggerImpl
+import com.jgbravo.commons.timber.Logger
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -10,9 +10,9 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object CoreModule {
+object AppModule {
 
     @Singleton
     @Provides
-    fun provideLogger(): AppLogger = AppLoggerImpl()
+    fun provideLogger(): Logger = ActiaLoggerImpl()
 }
