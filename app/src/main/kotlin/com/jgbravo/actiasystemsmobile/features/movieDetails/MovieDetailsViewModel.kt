@@ -26,9 +26,9 @@ class MovieDetailsViewModel @Inject constructor(
 
     fun getMovieDetails(movieId: Int) {
         viewModelScope.launch {
+            _movie.value = MovieState.Loading
             getMovieDetailsUseCase.invoke(movieId).collect { res ->
                 _movie.value = when (res) {
-                    Resource.Loading -> MovieState.Loading
                     is Resource.Success -> {
                         val movieDetails = MovieDetailsUiMapper().map((res.data as MovieDetailsDomainModel))
                         MovieState.Success(movieDetails)

@@ -16,7 +16,6 @@ class GetMoviesUseCase @Inject constructor(
 ) {
 
     operator fun invoke(page: Int, lang: String? = null): Flow<Resource<List<MovieDomainModel>>> = flow {
-        emit(Resource.Loading)
         moviesRepository.getBillboard(page, lang).collect { resource ->
             when (resource) {
                 is Resource.Success -> {

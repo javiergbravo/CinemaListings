@@ -38,9 +38,9 @@ class BillboardViewModel @Inject constructor(
 
     fun getMovies() {
         viewModelScope.launch {
+            _movies.value = BillboardState.Loading
             getMoviesUseCase.invoke(page++).collect { resource ->
                 _movies.value = when (resource) {
-                    Resource.Loading -> BillboardState.Loading
                     is Resource.Success -> {
                         val newList = (resource.data as List<MovieDomainModel>).mapList(SummaryMovieUiMapper())
                         logger.d("Add ${newList.size} movies to list")
