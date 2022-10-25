@@ -2,7 +2,9 @@ package com.jgbravo.domain
 
 import com.jgbravo.data.repository.MoviesRepository
 import com.jgbravo.domain.useCases.GetMovieDetailsUseCase
+import com.jgbravo.domain.useCases.GetMovieDetailsUseCaseImpl
 import com.jgbravo.domain.useCases.GetMoviesUseCase
+import com.jgbravo.domain.useCases.GetMoviesUseCaseImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,11 +19,11 @@ object DomainModule {
     @Provides
     fun provideGetMoviesUseCase(
         moviesRepository: MoviesRepository
-    ) = GetMoviesUseCase(moviesRepository)
+    ): GetMoviesUseCase = GetMoviesUseCaseImpl(moviesRepository)
 
     @Singleton
     @Provides
     fun provideGetMovieDetailsUseCase(
         moviesRepository: MoviesRepository
-    ) = GetMovieDetailsUseCase(moviesRepository)
+    ): GetMovieDetailsUseCase = GetMovieDetailsUseCaseImpl(moviesRepository)
 }
