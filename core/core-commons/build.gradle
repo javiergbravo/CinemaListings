@@ -3,11 +3,13 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
-    id 'dagger.hilt.android.plugin'
+    //id 'dagger.hilt.android.plugin'
 }
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
+
+    namespace 'com.jgbravo.core.commons'
 
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
@@ -16,7 +18,7 @@ android {
 
 dependencies {
     implementation coreCommonsDependencies.values()
-    kapt coreCommonsCompilerDependencies.values()
+    //kapt coreCommonsCompilerDependencies.values()
 }
 
 kapt {

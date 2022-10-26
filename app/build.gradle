@@ -9,6 +9,8 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
 
+    namespace 'com.jgbravo.actiasystemsmobile'
+
     defaultConfig {
         multiDexEnabled true
         applicationId rootProject.ext.applicationId
@@ -37,20 +39,21 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 
     buildFeatures {
         viewBinding true
     }
-
     packagingOptions {
-        exclude 'META-INF/gradle/incremental.annotation.processors'
+        resources {
+            excludes += ['META-INF/gradle/incremental.annotation.processors']
+        }
     }
 }
 
@@ -61,7 +64,7 @@ dependencies {
 
     implementation presentationDependencies.values()
     kapt presentationCompilerDependencies.values()
-    testImplementation testLibraryDependencies.values()
+    testImplementation presentationTestDependencies.values()
     androidTestImplementation androidTestLibraryDependencies.values()
 }
 
