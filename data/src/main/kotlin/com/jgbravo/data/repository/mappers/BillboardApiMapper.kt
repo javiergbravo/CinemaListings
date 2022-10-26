@@ -3,11 +3,11 @@ package com.jgbravo.data.repository.mappers
 import com.jgbravo.commons.extensions.getOrThrow
 import com.jgbravo.commons.extensions.mapList
 import com.jgbravo.commons.models.mappers.ApiMapper
-import com.jgbravo.data.remote.themoviedb.models.BillboardDTO
-import com.jgbravo.data.remote.themoviedb.models.MovieDTO
 import com.jgbravo.data.repository.models.BillboardDataModel
 import com.jgbravo.data.repository.models.MovieDataModel
-import com.jgbravo.data.utils.TheMovieDbUtils.buildAbsoluteImageUrl
+import com.jgbravo.remote.themoviedb.models.BillboardDTO
+import com.jgbravo.remote.themoviedb.models.MovieDTO
+import com.jgbravo.remote.utils.TheMovieDbUtils.buildAbsoluteImageUrl
 
 class BillboardApiMapper : ApiMapper<BillboardDTO, BillboardDataModel>() {
 

@@ -7,7 +7,7 @@ ext {
     targetSdkVersion = 31
     versionCode = 1
     versionName = "1.0"
-    androidCompileSdkVersion = 30
+    androidCompileSdkVersion = 31
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
     version = [
@@ -195,6 +195,21 @@ ext {
     dataDependencies = [
             coroutinesCore    : library.coroutinesCoreLib,
             coroutinesAndroid : library.coroutinesAndroidLib,
+            retrofit          : library.retrofitLib,
+
+            daggerHilt        : library.daggerHiltLib,
+            hiltDaggerCompiler: library.hiltDaggerCompilerLib,
+            hiltCompiler      : library.hiltCompilerLib
+    ]
+    dataCompilerDependencies = [
+            hiltCompiler      : library.hiltCompilerLib,
+            hiltDaggerCompiler: library.hiltDaggerCompilerLib
+    ]
+
+    /* DATA REMOTE DEPENDENCIES - MODULE [remote] */
+    remoteDependencies = [
+            coroutinesCore    : library.coroutinesCoreLib,
+            coroutinesAndroid : library.coroutinesAndroidLib,
 
             moshiKt           : library.moshiKtLib,
             moshiConverter    : library.moshiConverterLib,
@@ -206,9 +221,15 @@ ext {
             hiltDaggerCompiler: library.hiltDaggerCompilerLib,
             hiltCompiler      : library.hiltCompilerLib
     ]
-    dataCompilerDependencies = [
+    remoteCompilerDependencies = [
             moshiCodegen      : library.moshiCodegenLib,
             hiltCompiler      : library.hiltCompilerLib,
             hiltDaggerCompiler: library.hiltDaggerCompilerLib
+    ]
+    remoteTestDependencies = [
+            truth         : testLibrary.truthLib,
+            junit         : testLibrary.junitLib,
+            turbine       : testLibrary.turbineLib,
+            coroutinesTest: testLibrary.coroutinesTestLib
     ]
 }

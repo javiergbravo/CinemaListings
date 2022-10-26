@@ -9,7 +9,7 @@ plugins {
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace 'com.jgbravo.data'
+    namespace 'com.jgbravo.data.remote'
 
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
@@ -18,13 +18,11 @@ android {
 }
 
 dependencies {
-    implementation implementation(project(":core:core-commons"))
-    implementation implementation(project(":core:core-data"))
-    implementation implementation(project(":data:data-remote"))
+    implementation(project(":core:core-commons"))
 
-    implementation dataDependencies.values()
-    kapt dataCompilerDependencies.values()
-    testImplementation testLibraryDependencies.values()
+    implementation remoteDependencies.values()
+    kapt remoteCompilerDependencies.values()
+    testImplementation remoteTestDependencies.values()
     androidTestImplementation androidTestLibraryDependencies.values()
 }
 
