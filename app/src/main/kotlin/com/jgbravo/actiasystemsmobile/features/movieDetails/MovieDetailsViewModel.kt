@@ -1,6 +1,5 @@
 package com.jgbravo.actiasystemsmobile.features.movieDetails
 
-import androidx.annotation.StringRes
 import androidx.lifecycle.viewModelScope
 import com.jgbravo.actiasystemsmobile.R
 import com.jgbravo.actiasystemsmobile.features.movieDetails.models.MovieDetails
@@ -20,22 +19,28 @@ class MovieDetailsViewModel @Inject constructor(
     private val getMovieDetailsUseCase: GetMovieDetailsUseCase
 ) : BaseViewModel() {
 
+    companion object {
+        private const val UNKNOWN_ERROR_TITLE = R.string.dialog_error_unknown_title
+        private const val UNKNOWN_ERROR_MESSAGE = R.string.dialog_error_unknown_body
+    }
+
     private val _movie = MutableStateFlow<MovieState>(MovieState.NotStarted)
     val movie: StateFlow<MovieState> get() = _movie
 
     fun getMovieDetails(movieId: Int) {
         viewModelScope.launch {
-            _movie.value = MovieState.Loading
+            emitLoading()
             getMovieDetailsUseCase.invoke(movieId).collect { res ->
-                _movie.value = when (res) {
+                when (res) {
                     is Resource.Success -> {
                         val movieDetails = MovieDetailsUiMapper().map((res.data as MovieDetailsDomainModel))
-                        MovieState.Success(movieDetails)
+                        _movie.value = MovieState.Success(movieDetails)
                     }
-                    is Resource.Error -> {
-                        logger.e(res.exception)
-                        MovieState.Error(R.string.dialog_error_unknown_title, R.string.dialog_error_unknown_body)
-                    }
+                    is Resource.Error -> emitErrorWithException(
+                        exception = res.exception,
+                        title = UNKNOWN_ERROR_TITLE,
+                        message = UNKNOWN_ERROR_MESSAGE
+                    )
                 }
             }
         }
@@ -43,11 +48,6 @@ class MovieDetailsViewModel @Inject constructor(
 
     sealed class MovieState {
         object NotStarted : MovieState()
-        object Loading : MovieState()
         data class Success(val movie: MovieDetails) : MovieState()
-        data class Error(
-            @StringRes val title: Int,
-            @StringRes val message: Int
-        ) : MovieState()
     }
 }

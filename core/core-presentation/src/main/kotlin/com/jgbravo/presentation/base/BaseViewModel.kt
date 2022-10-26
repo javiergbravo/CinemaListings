@@ -10,13 +10,20 @@ import javax.inject.Inject
 abstract class BaseViewModel : ViewModel() {
 
     @Inject
-    protected lateinit var logger: Logger
+    protected lateinit var actiaLogger: Logger
+    protected val logger: Logger?
+        get() = if (::actiaLogger.isInitialized) actiaLogger else null
 
     private val _uiState = MutableSharedFlow<UiState>()
     val uiState: SharedFlow<UiState> get() = _uiState
 
     protected suspend fun emitLoading() {
         _uiState.emit(UiState.Loading)
+    }
+
+    protected suspend fun emitErrorWithException(exception: Exception, @StringRes title: Int, @StringRes message: Int) {
+        logger?.e(exception)
+        emitError(title, message)
     }
 
     protected suspend fun emitError(@StringRes title: Int, @StringRes message: Int) {

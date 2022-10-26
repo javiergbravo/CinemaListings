@@ -7,6 +7,7 @@ import com.jgbravo.actiasystemsmobile.R
 import com.jgbravo.actiasystemsmobile.databinding.ActivityMovieBinding
 import com.jgbravo.actiasystemsmobile.features.movieDetails.models.MovieDetails
 import com.jgbravo.presentation.base.BaseActivity
+import com.jgbravo.presentation.base.BaseViewModel
 import com.jgbravo.presentation.extensions.getExtraInt
 import com.jgbravo.presentation.extensions.loadFromUrl
 import com.jgbravo.presentation.extensions.setUpExpandable
@@ -44,18 +45,27 @@ class MovieDetailsActivity : BaseActivity<ActivityMovieBinding>() {
 
     override fun collectStateFlows(scope: CoroutineScope) {
         scope.launch {
+            viewModel.uiState.collect {
+                when (it) {
+                    BaseViewModel.UiState.Loading -> {
+                        showLoader()
+                        hideError()
+                    }
+                    is BaseViewModel.UiState.Error -> {
+                        hideLoader()
+                        showDialogError(it.title, it.message)
+                    }
+                }
+            }
+        }
+        scope.launch {
             viewModel.movie.collect { state ->
                 when (state) {
                     MovieDetailsViewModel.MovieState.NotStarted -> Unit
-                    MovieDetailsViewModel.MovieState.Loading -> showLoader()
                     is MovieDetailsViewModel.MovieState.Success -> {
                         binding.root.visibility = View.VISIBLE
                         setupInfo(state.movie)
                         hideLoader()
-                    }
-                    is MovieDetailsViewModel.MovieState.Error -> {
-                        hideLoader()
-                        showDialogError(state.title, state.message)
                     }
                 }
             }

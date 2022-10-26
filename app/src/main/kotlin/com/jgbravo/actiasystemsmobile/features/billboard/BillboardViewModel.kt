@@ -26,8 +26,8 @@ class BillboardViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     companion object {
-        const val NO_INTERNET_TITLE = R.string.dialog_error_no_internet_title
-        const val NO_INTERNET_MESSAGE = R.string.dialog_error_no_internet_body
+        private const val NO_INTERNET_TITLE = R.string.dialog_error_no_internet_title
+        private const val NO_INTERNET_MESSAGE = R.string.dialog_error_no_internet_body
     }
 
     private var page = 1
@@ -48,7 +48,7 @@ class BillboardViewModel @Inject constructor(
                 when (resource) {
                     is Resource.Success -> {
                         val newList = (resource.data as List<MovieDomainModel>).mapList(SummaryMovieUiMapper())
-                        //logger.d("Add ${newList.size} movies to list")
+                        logger?.d("Add ${newList.size} movies to list")
                         updateList(newList)
                         _movies.emit(filteredMovieList)
                     }
