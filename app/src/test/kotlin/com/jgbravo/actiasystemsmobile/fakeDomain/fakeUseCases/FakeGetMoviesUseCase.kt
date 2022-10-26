@@ -15,18 +15,4 @@ class FakeGetMoviesUseCase : GetMoviesUseCase {
         page: Int,
         lang: String?
     ): Flow<Resource<List<MovieDomainModel>>> = flow
-
-    /*override fun invoke(
-        page: Int,
-        lang: String?
-    ): Flow<Resource<List<MovieDomainModel>>> = flow {
-        emit(
-            when (page) {
-                1 -> moviesPage1
-                2 -> moviesPage2
-                else -> moviesError
-            }
-        )
-    }*/
 }
-

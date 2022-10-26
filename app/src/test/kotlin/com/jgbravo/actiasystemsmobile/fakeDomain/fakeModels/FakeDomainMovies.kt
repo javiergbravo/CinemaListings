@@ -1,10 +1,13 @@
 package com.jgbravo.actiasystemsmobile.fakeDomain.fakeModels
 
 import com.jgbravo.commons.models.Resource
+import com.jgbravo.domain.models.MovieDetailsDomainModel
 import com.jgbravo.domain.models.MovieDomainModel
 import java.util.*
 
 object FakeDomain {
+
+    private val resourceError = Resource.Error(exception = Exception())
 
     object Movies {
         val MOVIE_1 = MovieDomainModel(
@@ -80,5 +83,27 @@ object FakeDomain {
         )
 
         val MOVIES_LIST_ERROR: Resource<List<MovieDomainModel>> = Resource.Error(exception = Exception())
+    }
+
+
+    object MovieDetails {
+        val MOVIE_1 = MovieDetailsDomainModel(
+            id = 1,
+            title = "Movie1",
+            director = "",
+            banner = "fakeUrlBanner",
+            poster = "fakeUrlPoster",
+            releaseDate = Date(2022, 10, 19),
+            duration = 1,
+            description = "fakeDescription1",
+            score = 7.2,
+            votesAmount = 425
+        )
+    }
+
+    object ResourceMovieDetails {
+        val MOVIE_DETAILS = Resource.Success<MovieDetailsDomainModel>(MovieDetails.MOVIE_1)
+
+        val MOVIE_DETAILS_ERROR: Resource<MovieDetailsDomainModel> = resourceError
     }
 }

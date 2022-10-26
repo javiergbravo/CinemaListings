@@ -5,6 +5,7 @@ import com.jgbravo.actiasystemsmobile.R
 import com.jgbravo.actiasystemsmobile.features.movieDetails.models.MovieDetails
 import com.jgbravo.actiasystemsmobile.features.movieDetails.models.mappers.MovieDetailsUiMapper
 import com.jgbravo.commons.models.Resource
+import com.jgbravo.commons.utils.DispatcherProvider
 import com.jgbravo.domain.models.MovieDetailsDomainModel
 import com.jgbravo.domain.useCases.GetMovieDetailsUseCase
 import com.jgbravo.presentation.base.BaseViewModel
@@ -16,6 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MovieDetailsViewModel @Inject constructor(
+    private val dispatchers: DispatcherProvider,
     private val getMovieDetailsUseCase: GetMovieDetailsUseCase
 ) : BaseViewModel() {
 
@@ -28,7 +30,7 @@ class MovieDetailsViewModel @Inject constructor(
     val movie: StateFlow<MovieState> get() = _movie
 
     fun getMovieDetails(movieId: Int) {
-        viewModelScope.launch {
+        viewModelScope.launch(dispatchers.io) {
             emitLoading()
             getMovieDetailsUseCase.invoke(movieId).collect { res ->
                 when (res) {
