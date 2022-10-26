@@ -7,8 +7,6 @@ import java.util.*
 
 object FakeDomain {
 
-    private val resourceError = Resource.Error(exception = Exception())
-
     object Movies {
         val MOVIE_1 = MovieDomainModel(
             id = 1,
@@ -82,7 +80,7 @@ object FakeDomain {
             )
         )
 
-        val MOVIES_LIST_ERROR: Resource<List<MovieDomainModel>> = Resource.Error(exception = Exception())
+        val MOVIES_LIST_ERROR: Resource<List<MovieDomainModel>> = FakeResource.RESOURCE_ERROR
     }
 
 
@@ -104,6 +102,6 @@ object FakeDomain {
     object ResourceMovieDetails {
         val MOVIE_DETAILS = Resource.Success<MovieDetailsDomainModel>(MovieDetails.MOVIE_1)
 
-        val MOVIE_DETAILS_ERROR: Resource<MovieDetailsDomainModel> = resourceError
+        val MOVIE_DETAILS_ERROR: Resource<MovieDetailsDomainModel> = FakeResource.RESOURCE_ERROR
     }
 }
