@@ -6,13 +6,12 @@ import androidx.annotation.StringRes
 import com.jgbravo.actiasystemsmobile.R
 import com.jgbravo.actiasystemsmobile.databinding.ActivityMovieBinding
 import com.jgbravo.actiasystemsmobile.features.movieDetails.models.MovieDetails
-import com.jgbravo.presentation.BaseActivity
+import com.jgbravo.presentation.base.BaseActivity
 import com.jgbravo.presentation.extensions.getExtraInt
 import com.jgbravo.presentation.extensions.loadFromUrl
 import com.jgbravo.presentation.extensions.setUpExpandable
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint

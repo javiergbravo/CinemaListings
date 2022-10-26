@@ -19,7 +19,7 @@ class LoaderManagerImpl @Inject constructor(
                 setCancelable(false)
             }
             simpleLoader?.show()
-        } catch (e: Exception) {
+        } catch (_: Exception) {
         }
     }
 

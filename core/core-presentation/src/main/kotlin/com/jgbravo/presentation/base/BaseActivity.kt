@@ -1,4 +1,4 @@
-package com.jgbravo.presentation
+package com.jgbravo.presentation.base
 
 import android.content.DialogInterface
 import android.os.Bundle
@@ -10,16 +10,22 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.jgbravo.commons.timber.Logger
 import com.jgbravo.presentation.extensions.stringRes
+import com.jgbravo.presentation.managers.AnalyticsLoggerImpl
+import com.jgbravo.presentation.managers.LifecycleTracker
 import com.jgbravo.presentation.managers.LoaderManager
 import com.jgbravo.presentation.managers.ThemeManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
+abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity(),
+    LifecycleTracker by AnalyticsLoggerImpl() {
 
-    protected val TAG = this::class.java.simpleName
+
+    @Inject
+    protected lateinit var logger: Logger
 
     @Inject
     protected lateinit var themeManager: ThemeManager
@@ -37,7 +43,9 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //trackLifecycle("onCreate")
+        registerLifecycleOwner(this) {
+            logger.lifecycle(this::class.java, it.toString(), onlyDebug = false)
+        }
         binding = getViewBinding()
         setContentView(binding.root)
 
@@ -47,30 +55,17 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
         executeFlows()
     }
 
-    override fun onStart() {
-        //trackLifecycle("onStart")
-        super.onStart()
-    }
-
-    override fun onResume() {
-        //trackLifecycle("onResume")
-        super.onResume()
-    }
-
     override fun onPause() {
-        //trackLifecycle("onPause")
         hideLoader()
         super.onPause()
     }
 
     override fun onStop() {
-        //trackLifecycle("onStop")
         hideLoader()
         super.onStop()
     }
 
     override fun onDestroy() {
-        //trackLifecycle("onDestroy")
         hideLoader()
         super.onDestroy()
     }
@@ -95,12 +90,12 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
     protected abstract fun collectStateFlows(scope: CoroutineScope)
 
     fun showLoader() {
-        //log("Show loader...")
+        logger.d("Show loader...")
         loader.showDialog()
     }
 
     fun hideLoader() {
-        //log("Hide loader...")
+        logger.d("Hide loader...")
         loader.hideDialog()
     }
 
@@ -123,13 +118,4 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
     protected fun hideError() {
         errorDialog?.dismiss()
     }
-
-    /*fun log(msg: String) {
-        viewModel.debug(TAG, msg)
-    }
-
-    // ToDo: Use a delegate to track lifecycle
-    private fun trackLifecycle(function: String) {
-        viewModel.trackLifecycle(TAG, function)
-    }*/
 }

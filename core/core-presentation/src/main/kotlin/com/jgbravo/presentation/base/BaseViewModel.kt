@@ -1,27 +1,19 @@
-package com.jgbravo.presentation
+package com.jgbravo.presentation.base
 
 import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
+import com.jgbravo.commons.timber.Logger
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
+import javax.inject.Inject
 
 abstract class BaseViewModel : ViewModel() {
 
-    // ToDo: Do not inject logger inside base
-    /*@Inject
-    protected lateinit var logger: Logger*/
+    @Inject
+    protected lateinit var logger: Logger
 
     private val _uiState = MutableSharedFlow<UiState>()
     val uiState: SharedFlow<UiState> get() = _uiState
-
-
-    /*fun trackLifecycle(activityName: String, function: String) {
-        logger.activity(activityName, function)
-    }
-
-    fun debug(activityName: String, message: String) {
-        logger.d(activityName, message)
-    }*/
 
     protected suspend fun emitLoading() {
         _uiState.emit(UiState.Loading)

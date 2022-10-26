@@ -8,11 +8,10 @@ import com.jgbravo.actiasystemsmobile.features.movieDetails.models.mappers.Movie
 import com.jgbravo.commons.models.Resource
 import com.jgbravo.domain.models.MovieDetailsDomainModel
 import com.jgbravo.domain.useCases.GetMovieDetailsUseCase
-import com.jgbravo.presentation.BaseViewModel
+import com.jgbravo.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -34,7 +33,7 @@ class MovieDetailsViewModel @Inject constructor(
                         MovieState.Success(movieDetails)
                     }
                     is Resource.Error -> {
-                        //logger.e(res.exception)
+                        logger.e(res.exception)
                         MovieState.Error(R.string.dialog_error_unknown_title, R.string.dialog_error_unknown_body)
                     }
                 }

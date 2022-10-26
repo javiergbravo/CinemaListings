@@ -10,7 +10,10 @@ class ActiaLoggerImpl @Inject constructor() : LoggerImpl() {
         get() {
             val stackTraceElements = Throwable().stackTrace
             for (stackTraceElement in stackTraceElements) {
-                if (isActiaClass(stackTraceElement) && !isActiaLoggerClass(stackTraceElement)) {
+                if (isActiaClass(stackTraceElement)
+                    && !isActiaLoggerClass(stackTraceElement)
+                    && !isLoggerClass(stackTraceElement)
+                ) {
                     return buildTag(stackTraceElement)
                 }
             }

@@ -97,6 +97,8 @@ ext {
 
     /* CORE PRESENTATION DEPENDENCIES - MODULE [core-presentation] */
     corePresentationDependencies = [
+            timber            : library.timberLib,
+
             androidCoreKtx    : library.androidCoreKtxLib,
             appCompat         : library.appCompatLib,
             activityKtx       : library.activityKtxLib,

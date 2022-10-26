@@ -10,8 +10,8 @@ import com.jgbravo.actiasystemsmobile.databinding.ActivityBillboardBinding
 import com.jgbravo.actiasystemsmobile.features.billboard.adapters.BillboardAdapter
 import com.jgbravo.actiasystemsmobile.features.movieDetails.MovieDetailsActivity
 import com.jgbravo.actiasystemsmobile.features.movieDetails.MovieDetailsActivity.Companion.KEY_MOVIE_ID
-import com.jgbravo.presentation.BaseActivity
-import com.jgbravo.presentation.BaseViewModel
+import com.jgbravo.presentation.base.BaseActivity
+import com.jgbravo.presentation.base.BaseViewModel
 import com.jgbravo.presentation.extensions.cleanError
 import com.jgbravo.presentation.extensions.hideKeyboard
 import com.jgbravo.presentation.extensions.navigateTo
@@ -46,6 +46,7 @@ class BillboardActivity : BaseActivity<ActivityBillboardBinding>(), SearchView.O
                 when (it) {
                     BaseViewModel.UiState.Loading -> {
                         showLoader()
+                        hideError()
                     }
                     is BaseViewModel.UiState.Error -> {
                         hideLoader()

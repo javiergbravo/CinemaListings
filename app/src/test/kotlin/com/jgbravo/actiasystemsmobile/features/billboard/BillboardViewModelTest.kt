@@ -5,7 +5,7 @@ import com.google.common.truth.Truth
 import com.jgbravo.actiasystemsmobile.fakeDomain.fakeModels.FakeDomain
 import com.jgbravo.actiasystemsmobile.fakeDomain.fakeUseCases.FakeGetMoviesUseCase
 import com.jgbravo.actiasystemsmobile.utils.TestDispatchers
-import com.jgbravo.presentation.BaseViewModel
+import com.jgbravo.presentation.base.BaseViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Before

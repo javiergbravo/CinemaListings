@@ -12,7 +12,7 @@ import com.jgbravo.commons.models.Resource
 import com.jgbravo.commons.utils.DispatcherProvider
 import com.jgbravo.domain.models.MovieDomainModel
 import com.jgbravo.domain.useCases.GetMoviesUseCase
-import com.jgbravo.presentation.BaseViewModel
+import com.jgbravo.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

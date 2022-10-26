@@ -1,9 +1,7 @@
 package com.jgbravo.commons.timber
 
 import android.os.SystemClock
-import com.jgbravo.commons.timber.Logger.Companion.ACTIVITY_TAG
 import com.jgbravo.commons.timber.Logger.Companion.API_CALL
-import com.jgbravo.commons.timber.Logger.Companion.FRAGMENT_TAG
 import com.jgbravo.commons.timber.Logger.Companion.MAX_TAG_LENGTH
 import com.jgbravo.commons.timber.Logger.Companion.PATTERN_CLASS
 import timber.log.Timber
@@ -16,11 +14,15 @@ abstract class LoggerImpl : Logger {
 
     protected fun buildTag(stackTraceElement: StackTraceElement): String {
         return String.format(
-            "[Class:%s] [Function:%s] [Line:%s] ",
+            "[C:%s] [F:%s] [L:%s] ",
             createStackElementTag(stackTraceElement),
             stackTraceElement.methodName,
             stackTraceElement.lineNumber
         )
+    }
+
+    protected fun isLoggerClass(stackTraceElement: StackTraceElement): Boolean {
+        return stackTraceElement.className.contains(this::class.java.name)
     }
 
     private fun createStackElementTag(element: StackTraceElement): String {
@@ -79,11 +81,13 @@ abstract class LoggerImpl : Logger {
         Timber.tag(API_CALL).d(message, *objects)
     }
 
-    override fun activity(name: String, lifecycle: String, vararg objects: Any) {
-        Timber.tag("$ACTIVITY_TAG - $name").d(lifecycle, *objects)
-    }
-
-    override fun fragment(name: String, lifecycle: String, vararg objects: Any) {
-        Timber.tag("$FRAGMENT_TAG - $name").d(lifecycle, *objects)
+    override fun <T> lifecycle(clazz: Class<T>, lifecycleEvent: String, onlyDebug: Boolean) {
+        val tag = "lifecycle"
+        val message = "${clazz.simpleName} -> $lifecycleEvent"
+        if (onlyDebug) {
+            d(tag, message)
+        } else {
+            i(tag, message)
+        }
     }
 }

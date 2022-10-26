@@ -33,7 +33,5 @@ interface Logger {
 
     fun http(message: String, vararg objects: Any)
 
-    fun activity(name: String, lifecycle: String, vararg objects: Any)
-
-    fun fragment(name: String, lifecycle: String, vararg objects: Any)
+    fun <T> lifecycle(clazz: Class<T>, lifecycleEvent: String, onlyDebug: Boolean = false)
 }
