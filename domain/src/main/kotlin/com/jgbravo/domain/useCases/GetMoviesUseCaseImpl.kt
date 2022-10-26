@@ -7,7 +7,6 @@ import com.jgbravo.data.repository.models.BillboardDataModel
 import com.jgbravo.domain.models.MovieDomainModel
 import com.jgbravo.domain.models.mappers.MovieDomainMapper
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
@@ -20,10 +19,7 @@ class GetMoviesUseCaseImpl @Inject constructor(
             when (resource) {
                 is Resource.Success -> {
                     val movieList = (resource.data as BillboardDataModel).movieList
-                        .mapList(
-                            mapper = MovieDomainMapper(),
-                            canDiscard = true
-                        )
+                        .mapList(mapper = MovieDomainMapper())
                     emit(Resource.Success(movieList))
                 }
                 is Resource.Error -> emit(Resource.Error(resource.code, resource.exception))

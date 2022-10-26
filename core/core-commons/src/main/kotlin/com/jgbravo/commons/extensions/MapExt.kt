@@ -8,22 +8,23 @@ import com.jgbravo.commons.models.mappers.BaseMapper
 
 fun <IN : BaseModel, OUT : BaseModel> List<IN>?.mapList(
     mapper: BaseMapper<IN, OUT>,
-    canDiscard: Boolean = false
+    discardWrongItems: Boolean = true
 ): List<OUT> {
-    val outList = ArrayList<OUT>()
-    this?.forEach { inModel ->
+    return this?.mapNotNull { inModel ->
         try {
-            val newOutModel = mapper.map(inModel)
-            outList.add(newOutModel)
+            mapper.map(inModel)
         } catch (e: AppException) {
-            if (!canDiscard) {
+            if (discardWrongItems) {
+                null
+            } else {
                 throw MappingException(inModel::class.java.name, MappingReason.BUILD_OBJECT)
             }
         } catch (e: Exception) {
-            if (!canDiscard) {
+            if (discardWrongItems) {
+                null
+            } else {
                 throw e
             }
         }
-    }
-    return outList
+    } ?: emptyList()
 }

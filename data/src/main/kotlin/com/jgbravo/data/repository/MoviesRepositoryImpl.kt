@@ -30,6 +30,4 @@ class MoviesRepositoryImpl @Inject constructor(
         val resource = getDataFromResponse(apiResponse, MovieDetailsApiMapper())
         emit(resource)
     }.flowOn(Dispatchers.IO)
-
-
 }
