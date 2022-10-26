@@ -2,10 +2,11 @@ package com.jgbravo.actiasystemsmobile.features.billboard
 
 import app.cash.turbine.test
 import com.google.common.truth.Truth
+import com.jgbravo.actiasystemsmobile.fakeDomain.fakeModels.FakeDomain
 import com.jgbravo.actiasystemsmobile.fakeDomain.fakeUseCases.FakeGetMoviesUseCase
 import com.jgbravo.actiasystemsmobile.utils.TestDispatchers
+import com.jgbravo.presentation.BaseViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
@@ -15,78 +16,77 @@ class BillboardViewModelTest {
 
     private lateinit var viewModel: BillboardViewModel
     private lateinit var testDispatchers: TestDispatchers
+    private lateinit var getMoviesUseCase: FakeGetMoviesUseCase
 
 
     @Before
     fun setUp() {
         // Test Doubles
         testDispatchers = TestDispatchers()
+        getMoviesUseCase = FakeGetMoviesUseCase()
         viewModel = BillboardViewModel(
             dispatchers = testDispatchers,
-            getMoviesUseCase = FakeGetMoviesUseCase()
+            getMoviesUseCase = getMoviesUseCase
         )
     }
 
     @Test
-    fun `getMovies -Success-`() = runTest {
+    fun `moviesState update pagination list`() = runTest {
+        Truth.assertThat(viewModel.movies.value).isEmpty() // Initial value
+
         viewModel.getMovies()
-        val job = launch() {
-            viewModel.movies.test {
-                testDispatchers.testDispatcher.scheduler.apply {
-                    advanceTimeBy(1000L)
-                    runCurrent()
-                }
-                val emission = awaitItem()
-                println("movies sateFlow = $emission")
-                println("movies list size = ${emission.size}")
-                Truth.assertThat(emission.size).isEqualTo(3)
-                cancelAndConsumeRemainingEvents()
-            }
-        }
-        job.join()
-        job.cancel()
+
+        getMoviesUseCase.emit(FakeDomain.ResourceMoviesList.MOVIES_LIST_1)
+        Truth.assertThat(viewModel.movies.value.size).isEqualTo(3)
+
+        getMoviesUseCase.emit(FakeDomain.ResourceMoviesList.MOVIES_LIST_2)
+        Truth.assertThat(viewModel.movies.value.size).isEqualTo(6)
+
+        getMoviesUseCase.emit(FakeDomain.ResourceMoviesList.MOVIES_LIST_ERROR)
+        Truth.assertThat(viewModel.movies.value.size).isEqualTo(6)
     }
 
     @Test
-    fun `getMovies pagination -Success-`() = runTest {
-        viewModel.getMovies()
-        viewModel.getMovies()
-        val job = launch() {
-            viewModel.movies.test {
-                testDispatchers.testDispatcher.scheduler.apply {
-                    advanceTimeBy(2000L)
-                    runCurrent()
-                }
-                val emission = awaitItem()
-                println("movies sateFlow = $emission")
-                println("movies list size = ${emission.size}")
-                Truth.assertThat(emission.size).isEqualTo(6)
-                cancelAndConsumeRemainingEvents()
-            }
+    fun `uiState update to loading`() = runTest {
+        viewModel.uiState.test {
+            viewModel.getMovies()
+
+            getMoviesUseCase.emit(FakeDomain.ResourceMoviesList.MOVIES_LIST_1)
+            val emissionLoading = awaitItem()
+            Truth.assertThat(emissionLoading).isInstanceOf(BaseViewModel.UiState.Loading::class.java)
+
+            cancelAndConsumeRemainingEvents()
         }
-        job.join()
-        job.cancel()
     }
 
     @Test
-    fun `getMovies -Error-`() = runTest {
-        TODO("Comment code is not working")
-        /*viewModel.getMovies()
-        viewModel.getMovies()
-        viewModel.getMovies()
-        val job = launch() {
-            viewModel.uiState.test {
-                testDispatchers.testDispatcher.scheduler.apply {
-                    advanceTimeBy(5000L)
-                    runCurrent()
-                }
-                val emission = awaitItem()
-                println("emission = $emission")
-                Truth.assertThat(emission).isInstanceOf(BaseViewModel.UiState.Error::class.java)
-                cancelAndConsumeRemainingEvents()
-            }
+    fun `uiState update to error`() = runTest {
+        viewModel.uiState.test {
+            viewModel.getMovies()
+
+            getMoviesUseCase.emit(FakeDomain.ResourceMoviesList.MOVIES_LIST_ERROR)
+            skipItems(1) // Skip loading state
+            val emissionError = awaitItem()
+            Truth.assertThat(emissionError).isInstanceOf(BaseViewModel.UiState.Error::class.java)
+
+            cancelAndConsumeRemainingEvents()
         }
-        job.join()
-        job.cancel()*/
+    }
+
+    @Test
+    fun `uiState update to loading and then error`() = runTest {
+        viewModel.uiState.test {
+            viewModel.getMovies()
+
+            getMoviesUseCase.emit(FakeDomain.ResourceMoviesList.MOVIES_LIST_1)
+            val emissionLoading = awaitItem()
+            Truth.assertThat(emissionLoading).isInstanceOf(BaseViewModel.UiState.Loading::class.java)
+
+            getMoviesUseCase.emit(FakeDomain.ResourceMoviesList.MOVIES_LIST_ERROR)
+            val emissionError = awaitItem()
+            Truth.assertThat(emissionError).isInstanceOf(BaseViewModel.UiState.Error::class.java)
+
+            cancelAndConsumeRemainingEvents()
+        }
     }
 }

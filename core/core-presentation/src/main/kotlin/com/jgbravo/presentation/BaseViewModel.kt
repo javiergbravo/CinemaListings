@@ -2,16 +2,12 @@ package com.jgbravo.presentation
 
 import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.jgbravo.commons.timber.Logger
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 abstract class BaseViewModel : ViewModel() {
 
+    // ToDo: Do not inject logger inside base
     /*@Inject
     protected lateinit var logger: Logger*/
 
@@ -27,16 +23,12 @@ abstract class BaseViewModel : ViewModel() {
         logger.d(activityName, message)
     }*/
 
-    protected fun emitLoading() {
-        viewModelScope.launch(Dispatchers.IO) {
-            _uiState.emit(UiState.Loading)
-        }
+    protected suspend fun emitLoading() {
+        _uiState.emit(UiState.Loading)
     }
 
-    protected fun emitError(@StringRes title: Int, @StringRes message: Int) {
-        viewModelScope.launch(Dispatchers.IO) {
-            _uiState.emit(UiState.Error(title, message))
-        }
+    protected suspend fun emitError(@StringRes title: Int, @StringRes message: Int) {
+        _uiState.emit(UiState.Error(title, message))
     }
 
     sealed class UiState {

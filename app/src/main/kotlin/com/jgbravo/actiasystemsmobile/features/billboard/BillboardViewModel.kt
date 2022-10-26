@@ -42,8 +42,8 @@ class BillboardViewModel @Inject constructor(
     val yearFilterState: StateFlow<YearFilterState> get() = _yearFilterState
 
     fun getMovies() {
-        emitLoading()
         viewModelScope.launch(dispatchers.io) {
+            emitLoading()
             getMoviesUseCase.invoke(page++).collect { resource ->
                 when (resource) {
                     is Resource.Success -> {

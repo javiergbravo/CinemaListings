@@ -128,6 +128,7 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
         viewModel.debug(TAG, msg)
     }
 
+    // ToDo: Use a delegate to track lifecycle
     private fun trackLifecycle(function: String) {
         viewModel.trackLifecycle(TAG, function)
     }*/
