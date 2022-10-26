@@ -2,6 +2,7 @@ package com.jgbravo.actiasystemsmobile.fakeData.fakeModels
 
 import com.jgbravo.data.repository.models.BillboardDataModel
 import com.jgbravo.data.repository.models.MovieDataModel
+import com.jgbravo.data.repository.models.MovieDetailsDataModel
 import java.util.*
 
 object FakeDataModel {
@@ -79,6 +80,21 @@ object FakeDataModel {
             movieList = MoviesList.MOVIES_LIST_2,
             page = 2,
             totalPages = 2
+        )
+    }
+
+    object MovieDetails {
+        val MOVIE_DETAILS = MovieDetailsDataModel(
+            id = 4,
+            title = "Movie4",
+            poster = "fakeUrl",
+            releaseDate = Date(2011, 10, 19),
+            director = "fakeDirector",
+            banner = "fakeBanner",
+            duration = 2,
+            description = "fakeDescription",
+            score = 7.2,
+            votesAmount = 425,
         )
     }
 }

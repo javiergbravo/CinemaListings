@@ -18,8 +18,8 @@ import org.junit.Test
 @ExperimentalCoroutinesApi
 class GetMoviesUseCaseImplTest {
 
-    lateinit var getMoviesUseCase: GetMoviesUseCaseImpl
-    lateinit var moviesRepository: FakeMoviesRepository
+    private lateinit var getMoviesUseCase: GetMoviesUseCaseImpl
+    private lateinit var moviesRepository: FakeMoviesRepository
 
     @Before
     fun setUp() {
@@ -37,9 +37,7 @@ class GetMoviesUseCaseImplTest {
         }
 
         moviesRepository.emitBillboard(Resource.Success(FakeDataModel.BillboardModel.BILLBOARD_PAGE_1))
-        println("values = $values\n")
         val successDomainResult = values.getListFromFirstSuccessResult()
-        println("-> successDomainResult = $successDomainResult")
         Truth.assertThat(successDomainResult.first()).isInstanceOf(MovieDomainModel::class.java)
         Truth.assertThat(successDomainResult.size).isEqualTo(3)
 
@@ -51,7 +49,6 @@ class GetMoviesUseCaseImplTest {
         getMoviesUseCase.invoke(1, null).test {
             moviesRepository.emitBillboard(Resource.Success(FakeDataModel.BillboardModel.BILLBOARD_PAGE_1))
             val item = awaitItem()
-            println("item=$item")
             Truth.assertThat(item).isInstanceOf(Resource.Success::class.java)
             val successDomainResult = (item as Resource.Success).data as List<MovieDomainModel>
             Truth.assertThat(successDomainResult.size).isEqualTo(3)
@@ -60,7 +57,6 @@ class GetMoviesUseCaseImplTest {
         getMoviesUseCase.invoke(2, null).test {
             moviesRepository.emitBillboard(Resource.Success(FakeDataModel.BillboardModel.BILLBOARD_PAGE_2))
             val item = awaitItem()
-            println("item=$item")
             Truth.assertThat(item).isInstanceOf(Resource.Success::class.java)
             val successDomainResult = (item as Resource.Success).data as List<MovieDomainModel>
             Truth.assertThat(successDomainResult.size).isEqualTo(3)
