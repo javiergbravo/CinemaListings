@@ -1,9 +1,9 @@
-package com.jgbravo.data.di
+package com.jgbravo.remote.di
 
 import com.jgbravo.commons.utils.DispatcherProvider
-import com.jgbravo.data.repository.MoviesRepository
-import com.jgbravo.data.repository.MoviesRepositoryImpl
 import com.jgbravo.remote.datasources.RemoteMoviesDataSource
+import com.jgbravo.remote.datasources.RemoteMoviesDataSourceImpl
+import com.jgbravo.remote.themoviedb.TheMovieDbApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,15 +12,15 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RepositoriesModule {
+object RemoteDataSourceModule {
 
     @Singleton
     @Provides
-    fun providesMoviesRepository(
+    fun provideRemoteMoviesDataSource(
         dispatchers: DispatcherProvider,
-        remoteDataSource: RemoteMoviesDataSource
-    ): MoviesRepository = MoviesRepositoryImpl(
+        api: TheMovieDbApi
+    ): RemoteMoviesDataSource = RemoteMoviesDataSourceImpl(
         dispatchers = dispatchers,
-        remoteDataSource = remoteDataSource
+        api = api
     )
 }

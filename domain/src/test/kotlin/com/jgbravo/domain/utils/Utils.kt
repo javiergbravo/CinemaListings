@@ -1,6 +1,6 @@
 package com.jgbravo.domain.utils
 
-import com.jgbravo.commons.models.Resource
+import com.jgbravo.commons.models.wrappers.Resource
 import com.jgbravo.commons.models.base.DomainModel
 
 fun <T : DomainModel> MutableList<Resource<List<T>>>.getListFromFirstSuccessResult(): List<T> {

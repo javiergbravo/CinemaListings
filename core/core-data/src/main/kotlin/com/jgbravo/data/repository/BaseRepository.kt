@@ -5,7 +5,7 @@ import com.jgbravo.commons.exceptions.ApiCallReason
 import com.jgbravo.commons.exceptions.AppException
 import com.jgbravo.commons.extensions.isNotNull
 import com.jgbravo.commons.extensions.isNull
-import com.jgbravo.commons.models.Resource
+import com.jgbravo.commons.models.wrappers.Resource
 import com.jgbravo.commons.models.base.DTOModel
 import com.jgbravo.commons.models.base.DataModel
 import com.jgbravo.commons.models.mappers.ApiMapper

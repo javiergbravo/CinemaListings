@@ -1,4 +1,4 @@
-package com.jgbravo.commons.models
+package com.jgbravo.commons.models.wrappers
 
 import com.jgbravo.commons.exceptions.AppCodeException
 

@@ -1,6 +1,6 @@
 package com.jgbravo.actiasystemsmobile.fakeDomain.fakeModels
 
-import com.jgbravo.commons.models.Resource
+import com.jgbravo.commons.models.wrappers.Resource
 import com.jgbravo.domain.models.MovieDetailsDomainModel
 import com.jgbravo.domain.models.MovieDomainModel
 import java.util.*

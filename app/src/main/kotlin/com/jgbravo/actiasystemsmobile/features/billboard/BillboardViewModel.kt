@@ -8,7 +8,7 @@ import com.jgbravo.actiasystemsmobile.features.billboard.models.mappers.SummaryM
 import com.jgbravo.commons.extensions.isNotNull
 import com.jgbravo.commons.extensions.joinLists
 import com.jgbravo.commons.extensions.mapList
-import com.jgbravo.commons.models.Resource
+import com.jgbravo.commons.models.wrappers.Resource
 import com.jgbravo.commons.utils.DispatcherProvider
 import com.jgbravo.domain.models.MovieDomainModel
 import com.jgbravo.domain.useCases.GetMoviesUseCase

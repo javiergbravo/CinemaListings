@@ -4,7 +4,7 @@ import androidx.lifecycle.viewModelScope
 import com.jgbravo.actiasystemsmobile.R
 import com.jgbravo.actiasystemsmobile.features.movieDetails.models.MovieDetails
 import com.jgbravo.actiasystemsmobile.features.movieDetails.models.mappers.MovieDetailsUiMapper
-import com.jgbravo.commons.models.Resource
+import com.jgbravo.commons.models.wrappers.Resource
 import com.jgbravo.commons.utils.DispatcherProvider
 import com.jgbravo.domain.models.MovieDetailsDomainModel
 import com.jgbravo.domain.useCases.GetMovieDetailsUseCase

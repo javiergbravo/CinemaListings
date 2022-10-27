@@ -1,6 +1,6 @@
 package com.jgbravo.actiasystemsmobile.fakeDomain.fakeUseCases
 
-import com.jgbravo.commons.models.Resource
+import com.jgbravo.commons.models.wrappers.Resource
 import com.jgbravo.domain.models.MovieDetailsDomainModel
 import com.jgbravo.domain.useCases.GetMovieDetailsUseCase
 import kotlinx.coroutines.flow.Flow
