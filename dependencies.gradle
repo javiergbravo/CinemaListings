@@ -95,8 +95,16 @@ ext {
 
     /* CORE COMMONS DEPENDENCIES - MODULE [core-commons] */
     coreCommonsDependencies = [
-            timber        : library.timberLib,
-            coroutinesCore: library.coroutinesCoreLib
+            timber            : library.timberLib,
+            coroutinesCore    : library.coroutinesCoreLib,
+
+            daggerHilt        : library.daggerHiltLib,
+            hiltDaggerCompiler: library.hiltDaggerCompilerLib,
+            hiltCompiler      : library.hiltCompilerLib
+    ]
+    coreCommonsCompilerDependencies = [
+            hiltCompiler      : library.hiltCompilerLib,
+            hiltDaggerCompiler: library.hiltDaggerCompilerLib
     ]
 
     /* CORE PRESENTATION DEPENDENCIES - MODULE [core-presentation] */
@@ -141,10 +149,13 @@ ext {
             truth         : testLibrary.truthLib,
             junit         : testLibrary.junitLib,
             turbine       : testLibrary.turbineLib,
-            coroutinesTest: testLibrary.coroutinesTestLib
+            coroutinesTest: testLibrary.coroutinesTestLib,
+
+            daggerHiltTest: testLibrary.daggerHiltTestLib
     ]
 
     androidTestLibraryDependencies = [
+            truth         : testLibrary.truthLib,
             supportJunit  : testLibrary.supportJunitLib,
             espresso      : testLibrary.espressoLib,
             coroutinesTest: testLibrary.coroutinesTestLib,
