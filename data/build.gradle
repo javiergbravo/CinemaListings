@@ -18,9 +18,9 @@ android {
 }
 
 dependencies {
-    implementation implementation(project(":core:core-commons"))
-    implementation implementation(project(":core:core-data"))
-    implementation implementation(project(":data:data-remote"))
+    implementation(project(":core:core-commons"))
+    implementation(project(":core:core-data"))
+    implementation(project(":data:data-remote"))
 
     implementation dataDependencies.values()
     implementation 'androidx.core:core-ktx:+'

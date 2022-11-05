@@ -13,12 +13,12 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "CinemaListings"
-include ':app'
-include ':core'
-include ':data'
-include ':data:data-remote'
-include ':domain'
-include ':core:core-presentation'
-include ':core:core-commons'
-include ':core:core-domain'
-include ':core:core-data'
+include(":app")
+include(":core")
+include(":data")
+include(":data:data-remote")
+include(":domain")
+include(":core:core-presentation")
+include(":core:core-commons")
+include(":core:core-domain")
+include(":core:core-data")

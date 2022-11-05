@@ -16,8 +16,8 @@ android {
 }
 
 dependencies {
-    implementation implementation(project(":core:core-commons"))
-    implementation implementation(project(":core:core-domain"))
+    implementation(project(":core:core-commons"))
+    implementation(project(":core:core-domain"))
     implementation(project(":data"))
 
     implementation domainDependencies.values()
