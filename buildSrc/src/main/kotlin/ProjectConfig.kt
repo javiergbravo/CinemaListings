@@ -1,5 +1,6 @@
 object ProjectConfig {
-    const val appId = "com.jgbravo.cinemalistings"
+    const val mainPackage = "com.jgbravo"
+    const val appId = "$mainPackage.cinemalistings"
     const val buildToolsVersion = "30.0.3"
     const val minVersion = 24
     const val compileVersion = 33

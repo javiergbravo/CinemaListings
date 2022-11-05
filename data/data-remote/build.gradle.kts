@@ -3,12 +3,13 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
     compileSdk = ProjectConfig.compileVersion
 
-    namespace = "${ProjectConfig.mainPackage}.data"
+    namespace = "${ProjectConfig.mainPackage}.data.remote"
 
     defaultConfig {
         minSdk = ProjectConfig.minVersion
@@ -17,13 +18,11 @@ android {
 
 dependencies {
     implementation(project(":core:core-commons"))
-    implementation(project(":core:core-data"))
-    implementation(project(":data:data-remote"))
 
-    implementation(DataDependencies.libs)
-    kapt(DataDependencies.compilers)
-    testImplementation(DataDependencies.libs)
-    androidTestImplementation(DataDependencies.androidTestLibs)
+    implementation(RemoteDependencies.libs)
+    kapt(RemoteDependencies.compilers)
+    testImplementation(RemoteDependencies.libs)
+    androidTestImplementation(RemoteDependencies.androidTestLibs)
 }
 
 kapt {

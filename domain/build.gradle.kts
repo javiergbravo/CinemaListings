@@ -8,7 +8,7 @@ plugins {
 android {
     compileSdk = ProjectConfig.compileVersion
 
-    namespace = "${ProjectConfig.appId}.domain"
+    namespace = "${ProjectConfig.mainPackage}.domain"
 
     defaultConfig {
         minSdk = ProjectConfig.minVersion
