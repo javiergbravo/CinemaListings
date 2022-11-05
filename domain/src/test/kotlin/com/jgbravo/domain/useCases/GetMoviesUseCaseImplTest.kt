@@ -2,8 +2,8 @@ package com.jgbravo.domain.useCases
 
 import app.cash.turbine.test
 import com.google.common.truth.Truth
-import com.jgbravo.actiasystemsmobile.fakeData.fakeModels.FakeDataModel
-import com.jgbravo.actiasystemsmobile.fakeData.fakeRepository.FakeMoviesRepository
+import com.jgbravo.cinemalistings.fakeData.fakeModels.FakeDataModel
+import com.jgbravo.cinemalistings.fakeData.fakeRepository.FakeMoviesRepository
 import com.jgbravo.commons.models.wrappers.Resource
 import com.jgbravo.domain.models.MovieDomainModel
 import com.jgbravo.domain.utils.getListFromFirstSuccessResult

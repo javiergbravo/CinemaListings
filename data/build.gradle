@@ -23,6 +23,7 @@ dependencies {
     implementation implementation(project(":data:data-remote"))
 
     implementation dataDependencies.values()
+    implementation 'androidx.core:core-ktx:+'
     kapt dataCompilerDependencies.values()
     testImplementation testLibraryDependencies.values()
     androidTestImplementation androidTestLibraryDependencies.values()

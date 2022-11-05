@@ -23,6 +23,7 @@ dependencies {
     implementation implementation(project(":core:core-commons"))
 
     implementation corePresentationDependencies.values()
+    implementation 'androidx.core:core-ktx:+'
     kapt corePresentationCompilerDependencies.values()
 }
 

@@ -10,9 +10,9 @@ import javax.inject.Inject
 abstract class BaseViewModel : ViewModel() {
 
     @Inject
-    protected lateinit var actiaLogger: Logger
+    protected lateinit var cinemaListingsLogger: Logger
     protected val logger: Logger?
-        get() = if (::actiaLogger.isInitialized) actiaLogger else null
+        get() = if (::cinemaListingsLogger.isInitialized) cinemaListingsLogger else null
 
     private val _uiState = MutableSharedFlow<UiState>()
     val uiState: SharedFlow<UiState> get() = _uiState

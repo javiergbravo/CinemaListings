@@ -8,7 +8,7 @@
     android:foreground="?attr/selectableItemBackground"
     android:orientation="vertical">
 
-    <com.jgbravo.actiasystemsmobile.views.PosterView
+    <com.jgbravo.cinemalistings.views.PosterView
         android:id="@+id/imgPoster"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,7 +16,7 @@
         app:ratio="1.5"
         tools:src="@drawable/poster_test" />
 
-    <com.jgbravo.actiasystemsmobile.views.DeleteView
+    <com.jgbravo.cinemalistings.views.DeleteView
         android:id="@+id/viewDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

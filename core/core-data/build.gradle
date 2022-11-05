@@ -13,4 +13,5 @@ dependencies {
     implementation implementation(project(":core:core-commons"))
 
     implementation coreDataDependencies.values()
+    implementation 'androidx.core:core-ktx:+'
 }

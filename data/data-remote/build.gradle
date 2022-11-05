@@ -21,6 +21,7 @@ dependencies {
     implementation(project(":core:core-commons"))
 
     implementation remoteDependencies.values()
+    implementation 'androidx.core:core-ktx:+'
     kapt remoteCompilerDependencies.values()
     testImplementation remoteTestDependencies.values()
     androidTestImplementation androidTestLibraryDependencies.values()

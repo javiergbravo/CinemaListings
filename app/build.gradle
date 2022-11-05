@@ -9,7 +9,7 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
 
-    namespace 'com.jgbravo.actiasystemsmobile'
+    namespace 'com.jgbravo.cinemalistings'
 
     defaultConfig {
         multiDexEnabled true
@@ -63,6 +63,7 @@ dependencies {
     implementation(project(":domain"))
 
     implementation presentationDependencies.values()
+    implementation 'androidx.core:core-ktx:+'
     kapt presentationCompilerDependencies.values()
     testImplementation presentationTestDependencies.values()
     androidTestImplementation androidTestLibraryDependencies.values()

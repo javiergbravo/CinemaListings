@@ -21,6 +21,7 @@ dependencies {
     implementation(project(":data"))
 
     implementation domainDependencies.values()
+    implementation 'androidx.core:core-ktx:+'
     kapt domainCompilerDependencies.values()
     testImplementation testLibraryDependencies.values()
     androidTestImplementation androidTestLibraryDependencies.values()
