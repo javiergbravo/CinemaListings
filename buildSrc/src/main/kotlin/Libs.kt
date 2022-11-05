@@ -56,11 +56,10 @@ object Libs {
         const val interceptor = "com.squareup.okhttp3:logging-interceptor:${Version.okHttp}"
         const val retrofit = "com.squareup.retrofit2:retrofit:${Version.retrofit}"
         const val moshiKt = "com.squareup.moshi:moshi-kotlin:${Version.moshi}"
-        const val moshiCodegen = "com.squareup.moshi:moshi-kotlin-codegen:${Version.moshi}"
         const val moshiConverter = "com.squareup.retrofit2:converter-moshi:${Version.converterMoshi}"
     }
 
-    object TestyLibrary {
+    object TestLibrary {
         const val truth = "com.google.truth:truth:${Version.truth}"
         const val junit = "junit:junit:${Version.jUnit}"
         const val turbine = "app.cash.turbine:turbine:${Version.turbine}"
@@ -73,6 +72,7 @@ object Libs {
 
     object Compiler {
         const val glideCompiler = "com.github.bumptech.glide:compiler:${Version.glide}"
+        const val moshiCodegen = "com.squareup.moshi:moshi-kotlin-codegen:${Version.moshi}"
         const val hiltDaggerCompiler = "com.google.dagger:hilt-android-compiler:${Version.dagger}"
         const val hiltCompiler = "androidx.hilt:hilt-compiler:${Version.hilt}"
     }

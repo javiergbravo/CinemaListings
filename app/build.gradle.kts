@@ -63,12 +63,11 @@ dependencies {
     implementation(project(":core:core-presentation"))
     implementation(project(":domain"))
 
-
     // Libraries
-    implementation(AppDependencies.appLibraries)
-    kapt(AppDependencies.appKapt)
-    testImplementation(AppDependencies.appLibraries)
-    androidTestImplementation(AppDependencies.androidTest)
+    implementation(PresentationDependencies.libs)
+    kapt(PresentationDependencies.compilers)
+    testImplementation(PresentationDependencies.libs)
+    androidTestImplementation(PresentationDependencies.androidTestLibs)
 }
 
 kapt {
