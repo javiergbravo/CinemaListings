@@ -13,9 +13,9 @@ abstract class ReleaseTree : Timber.Tree() {
         }
     }
 
-    /** Send ERROR reports to Crashlytics, Sentry or other error monitoring platform **/
+    /** Send ERROR reports to Crashlytics, Sentry or another error monitoring platform **/
     abstract fun sendError(priority: Int, tag: String?, message: String, t: Throwable?)
 
-    /** Send WARNING reports to Crashlytics, Sentry or other error monitoring platform **/
+    /** Send WARNING reports to Crashlytics, Sentry or another error monitoring platform **/
     abstract fun sendWarning(priority: Int, tag: String?, message: String, t: Throwable?)
 }
