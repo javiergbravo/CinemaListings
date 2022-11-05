@@ -1,4 +1,4 @@
-package com.jgbravo.data.converters
+package com.jgbravo.commons.utils
 
 import com.jgbravo.commons.exceptions.AppException
 import com.jgbravo.commons.models.base.DTOModel

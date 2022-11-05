@@ -18,7 +18,6 @@ android {
 dependencies {
     // Modules
     implementation(project(":core:core-commons"))
-    implementation(project(":core:core-domain"))
     implementation(project(":data"))
 
     // Libraries

@@ -17,7 +17,6 @@ android {
 
 dependencies {
     implementation(project(":core:core-commons"))
-    implementation(project(":core:core-data"))
     implementation(project(":data:data-remote"))
 
     implementation(DataDependencies.libs)

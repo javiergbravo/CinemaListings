@@ -2,7 +2,7 @@ package com.jgbravo.data.repository
 
 import com.jgbravo.commons.models.wrappers.Resource
 import com.jgbravo.commons.utils.DispatcherProvider
-import com.jgbravo.data.converters.ResourceConverter
+import com.jgbravo.commons.utils.ResourceConverter
 import com.jgbravo.data.repository.mappers.BillboardApiMapper
 import com.jgbravo.data.repository.mappers.MovieDetailsApiMapper
 import com.jgbravo.data.repository.models.BillboardDataModel
