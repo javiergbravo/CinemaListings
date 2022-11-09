@@ -23,7 +23,7 @@ dependencies {
     // Libraries
     implementation(DomainDependencies.libs)
     kapt(DomainDependencies.compilers)
-    testImplementation(DomainDependencies.libs)
+    testImplementation(DomainDependencies.testLibs)
     androidTestImplementation(DomainDependencies.androidTestLibs)
 }
 

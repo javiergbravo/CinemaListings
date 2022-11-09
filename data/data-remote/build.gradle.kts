@@ -21,7 +21,7 @@ dependencies {
 
     implementation(RemoteDependencies.libs)
     kapt(RemoteDependencies.compilers)
-    testImplementation(RemoteDependencies.libs)
+    testImplementation(RemoteDependencies.testLibs)
     androidTestImplementation(RemoteDependencies.androidTestLibs)
 }
 

@@ -21,7 +21,7 @@ dependencies {
 
     implementation(DataDependencies.libs)
     kapt(DataDependencies.compilers)
-    testImplementation(DataDependencies.libs)
+    testImplementation(DataDependencies.testLibs)
     androidTestImplementation(DataDependencies.androidTestLibs)
 }
 

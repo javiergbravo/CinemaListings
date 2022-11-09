@@ -66,7 +66,7 @@ dependencies {
     // Libraries
     implementation(PresentationDependencies.libs)
     kapt(PresentationDependencies.compilers)
-    testImplementation(PresentationDependencies.libs)
+    testImplementation(PresentationDependencies.testLibs)
     androidTestImplementation(PresentationDependencies.androidTestLibs)
 }
 
