@@ -1,4 +1,4 @@
-package com.jgbravo.utils
+package com.jgbravo.core.commons.test.utils
 
 /**
  * Code taken by Elye
@@ -11,5 +11,5 @@ object FileTestUtils {
             .use { bufferReader -> bufferReader?.readText() } ?: ""
     }
 
-    private fun getInputStreamFromResource(fileName: String) = javaClass.classLoader?.getResourceAsStream(fileName)
+    fun getInputStreamFromResource(fileRoute: String) = javaClass.classLoader?.getResourceAsStream(fileRoute)
 }

@@ -5,7 +5,8 @@ plugins {
 
 android {
     compileSdk = ProjectConfig.compileVersion
-    namespace = "${ProjectConfig.mainPackage}.core.commons"
+
+    namespace = "${ProjectConfig.mainPackage}.core.data.remote"
 
     defaultConfig {
         minSdk = ProjectConfig.minVersion
@@ -13,9 +14,9 @@ android {
 }
 
 dependencies {
-    implementation(Libs.Library.timber)
-    implementation(Libs.Library.coroutinesCore)
+    implementation(project(":core:core-commons"))
 
-    debugImplementation(Libs.TestLibrary.junit)
     debugImplementation(Libs.TestLibrary.coroutinesTest)
+    debugImplementation(Libs.TestLibrary.arch)
+    debugImplementation(Libs.TestLibrary.mockWebServer)
 }

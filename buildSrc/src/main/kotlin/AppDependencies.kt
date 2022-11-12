@@ -112,9 +112,7 @@ object RemoteDependencies {
     val testLibs = arrayListOf<String>().apply {
         addAll(TestDependencies.testLibs)
         add(Libs.TestLibrary.mockito)
-    }
-
-    val androidTestLibs = arrayListOf<String>().apply {
-        addAll(TestDependencies.androidTestLibs)
+        add(Libs.TestLibrary.mockWebServer)
+        add(Libs.TestLibrary.arch)
     }
 }

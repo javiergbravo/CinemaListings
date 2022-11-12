@@ -1,29 +1,33 @@
-package com.jgbravo.remote.themoviedb.adapters
+package com.jgbravo.remote.themoviedb.moshi.adapters
 
 import com.google.common.truth.Truth
 import com.jgbravo.commons.extensions.toDate
 import com.jgbravo.remote.themoviedb.adapters.SimpleDateAdapter.Companion.DATE_PATTERN
-import com.jgbravo.utils.FileTestUtils
+import com.jgbravo.remote.themoviedb.models.MovieDTO
+import com.jgbravo.core.commons.test.utils.FileTestUtils
+import com.jgbravo.remote.themoviedb.adapters.SimpleDateAdapter
 import com.squareup.moshi.Moshi
 import org.junit.Before
 import org.junit.Test
+import java.util.Date
+import java.util.GregorianCalendar
 
 class MoshiAdapterTest {
 
-    private val moshi = Moshi.Builder().add(SimpleDateAdapter()).build()
-
+    private lateinit var moshi: Moshi
     private lateinit var json: String
 
     @Before
     fun readJson() {
-        json = FileTestUtils.kotlinReadFileWithNewLineFromResources("MovieInDTO.json")
+        json = FileTestUtils.kotlinReadFileWithNewLineFromResources("api-response/success/MovieInDTO.json")
     }
 
     @Test
     fun `parse movie`() {
-        val actual = moshi.adapter(com.jgbravo.remote.themoviedb.models.MovieDTO::class.java).fromJson(json)
+        moshi = Moshi.Builder().add(SimpleDateAdapter()).build()
+        val actual = moshi.adapter(MovieDTO::class.java).fromJson(json)
 
-        val expected = com.jgbravo.remote.themoviedb.models.MovieDTO(
+        val expected = MovieDTO(
             adult = false,
             backdropPath = "/iQFcwSGbZXMkeyKrxbPnwnRo5fl.jpg",
             genreIds = listOf(28, 12, 878),

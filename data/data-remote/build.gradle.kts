@@ -1,9 +1,9 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
-    id("dagger.hilt.android.plugin")
-    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    id(Plugins.androidLibrary)
+    id(Plugins.kotlinAndroid)
+    id(Plugins.kotlinKapt)
+    id(Plugins.hilt)
+    id(Plugins.secrets)
 }
 
 android {
@@ -18,11 +18,12 @@ android {
 
 dependencies {
     implementation(project(":core:core-commons"))
+    implementation(project(":core:core-data-remote"))
 
     implementation(RemoteDependencies.libs)
     kapt(RemoteDependencies.compilers)
+
     testImplementation(RemoteDependencies.testLibs)
-    androidTestImplementation(RemoteDependencies.androidTestLibs)
 }
 
 kapt {

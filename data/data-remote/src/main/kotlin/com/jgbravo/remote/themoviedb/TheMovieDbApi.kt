@@ -1,5 +1,6 @@
 package com.jgbravo.remote.themoviedb
 
+import com.jgbravo.core.Api
 import com.jgbravo.remote.themoviedb.models.BillboardDTO
 import com.jgbravo.remote.themoviedb.models.MovieDetailsDTO
 import com.jgbravo.remote.utils.TheMovieDbUtils.Endpoints
@@ -10,7 +11,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface TheMovieDbApi {
+interface TheMovieDbApi : Api {
 
     @GET(Endpoints.DISCOVER_MOVIE)
     suspend fun getAllMovies(

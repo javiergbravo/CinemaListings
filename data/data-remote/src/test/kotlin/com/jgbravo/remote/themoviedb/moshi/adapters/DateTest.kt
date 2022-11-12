@@ -1,8 +1,9 @@
-package com.jgbravo.remote.themoviedb.adapters
+package com.jgbravo.remote.themoviedb.moshi.adapters
 
 import com.google.common.truth.Truth
 import com.jgbravo.commons.extensions.toDate
 import com.jgbravo.commons.extensions.year
+import com.jgbravo.remote.themoviedb.adapters.SimpleDateAdapter
 import com.jgbravo.remote.themoviedb.adapters.SimpleDateAdapter.Companion.DATE_PATTERN
 import org.junit.Test
 

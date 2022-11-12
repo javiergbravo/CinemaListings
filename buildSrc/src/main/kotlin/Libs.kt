@@ -34,8 +34,10 @@ object Libs {
         const val jUnit = "4.13.2"
         const val turbine = "0.12.0"
         const val supportTest = "1.1.3"
+        const val arch = "2.1.0"
         const val espresso = "3.4.0"
         const val mockito = "4.8.1"
+        const val mockWebServer = "4.10.0"
     }
 
     object Library {
@@ -65,8 +67,10 @@ object Libs {
         const val turbine = "app.cash.turbine:turbine:${Version.turbine}"
         const val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Version.coroutines}"
         const val supportJunit = "androidx.test.ext:junit:${Version.supportTest}"
+        const val arch = "androidx.arch.core:core-testing:${Version.arch}"
         const val espresso = "androidx.test.espresso:espresso-core:${Version.espresso}"
         const val mockito = "org.mockito:mockito-core:${Version.mockito}"
+        const val mockWebServer = "com.squareup.okhttp3:mockwebserver:${Version.mockWebServer}"
         const val daggerHiltTest = "com.google.dagger:hilt-android-testing:${Version.dagger}"
     }
 
