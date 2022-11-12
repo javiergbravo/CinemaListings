@@ -1,15 +1,10 @@
 package com.jgbravo.core.commons.test.utils
 
-/**
- * Code taken by Elye
- * To see more details: https://github.com/elye/demo_android_mock_web_service/blob/master/app/src/test/java/com/example/mockserverexperiment/ChatTest.kt
- */
 object FileTestUtils {
 
-    fun kotlinReadFileWithNewLineFromResources(fileName: String): String {
-        return getInputStreamFromResource(fileName)?.bufferedReader()
-            .use { bufferReader -> bufferReader?.readText() } ?: ""
+    fun readFileFromResources(fileName: String): String {
+        return getJsonContent(fileName)?.bufferedReader().use { bufferReader -> bufferReader?.readText() } ?: ""
     }
 
-    fun getInputStreamFromResource(fileRoute: String) = javaClass.classLoader?.getResourceAsStream(fileRoute)
+    fun getJsonContent(fileRoute: String) = javaClass.classLoader?.getResourceAsStream(fileRoute)
 }
