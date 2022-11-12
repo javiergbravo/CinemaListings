@@ -4,6 +4,8 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.jgbravo.core.commons.test.rules.MainCoroutinesRule
 import com.jgbravo.core.commons.test.utils.FileTestUtils
 import com.jgbravo.core.Api
+import com.jgbravo.core.data.remote.network.MockStatus.Error
+import com.jgbravo.core.data.remote.network.MockStatus.Success
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -37,12 +39,16 @@ abstract class MockApiTest<T : Api> {
         mockWebServer.shutdown()
     }
 
-    fun enqueueResponse(fileRoute: String, headers: Map<String, String> = emptyMap()) {
+    fun enqueueResponse(fileRoute: String, status: MockStatus, headers: Map<String, String> = emptyMap()) {
         val inputStream = FileTestUtils.getInputStreamFromResource(fileRoute)
         val source = inputStream?.source()?.buffer()
         val mockResponse = MockResponse()
         for ((key, value) in headers) {
             mockResponse.addHeader(key, value)
+        }
+        when (status) {
+            is Error -> mockResponse.setResponseCode(status.statusCode)
+            Success -> Unit
         }
         mockWebServer.enqueue(mockResponse.setBody(source!!.readString(StandardCharsets.UTF_8)))
     }

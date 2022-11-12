@@ -1,6 +1,7 @@
-package com.jgbravo.remote.themoviedb
+package com.jgbravo.remote.themoviedb.network.server
 
 import com.google.common.truth.Truth
+import com.jgbravo.remote.themoviedb.TheMovieDbApi
 import com.jgbravo.remote.themoviedb.adapters.SimpleDateAdapter
 import com.jgbravo.remote.utils.TheMovieDbUtils
 import com.squareup.moshi.Moshi
