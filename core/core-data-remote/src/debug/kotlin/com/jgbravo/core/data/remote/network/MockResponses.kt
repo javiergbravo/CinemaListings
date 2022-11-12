@@ -1,8 +1,8 @@
 package com.jgbravo.core.data.remote.network
 
-sealed interface MockStatus {
+sealed class MockStatus(open val statusCode: Int) {
 
-    object Success : MockStatus
+    data class Success(override val statusCode: Int = 200) : MockStatus(statusCode)
 
-    data class Error(val statusCode: Int) : MockStatus
+    data class Error(override val statusCode: Int) : MockStatus(statusCode)
 }

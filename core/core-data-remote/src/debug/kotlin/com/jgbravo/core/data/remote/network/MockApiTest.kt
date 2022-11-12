@@ -46,10 +46,7 @@ abstract class MockApiTest<T : Api> {
         for ((key, value) in headers) {
             mockResponse.addHeader(key, value)
         }
-        when (status) {
-            is Error -> mockResponse.setResponseCode(status.statusCode)
-            Success -> Unit
-        }
+        mockResponse.setResponseCode(status.statusCode)
         mockWebServer.enqueue(mockResponse.setBody(source!!.readString(StandardCharsets.UTF_8)))
     }
 

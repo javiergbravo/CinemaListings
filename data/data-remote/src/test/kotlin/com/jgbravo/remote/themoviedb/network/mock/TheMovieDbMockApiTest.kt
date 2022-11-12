@@ -46,7 +46,10 @@ class TheMovieDbMockApiTest : MockApiTest<TheMovieDbApi>() {
 
     @Test
     fun getAllMoviesPaginated() = runTest {
-        enqueueResponse(fileRoute = "api-response/success/DiscoverMovie.json", status = MockStatus.Success)
+        enqueueResponse(
+            fileRoute = "${MockResource.SUCCESS}/DiscoverMovie.json",
+            status = MockStatus.Success()
+        )
         val response = api.getAllMovies(page = 1, language = "es_ES")
         val apiResponse = ResponseConverter.convertToApiResponse(response)
 
@@ -56,7 +59,10 @@ class TheMovieDbMockApiTest : MockApiTest<TheMovieDbApi>() {
 
     @Test
     fun getMovieDetails() = runTest {
-        enqueueResponse(fileRoute = "api-response/success/MovieDetails.json", status = MockStatus.Success)
+        enqueueResponse(
+            fileRoute = "${MockResource.SUCCESS}/MovieDetails.json",
+            status = MockStatus.Success()
+        )
         val response = api.getMovieDetails(movieId = 634649, language = "es_ES")
         val apiResponse = ResponseConverter.convertToApiResponse(response)
 
@@ -69,7 +75,10 @@ class TheMovieDbMockApiTest : MockApiTest<TheMovieDbApi>() {
 
     @Test
     fun `getMovieDetails with no ID`() = runTest {
-        enqueueResponse(fileRoute = "api-response/error/ResourceNotFound.json", status = MockStatus.Error(404))
+        enqueueResponse(
+            fileRoute = "${MockResource.ERROR}/ResourceNotFound.json",
+            status = MockStatus.Error(404)
+        )
         val response = api.getMovieDetails(movieId = -1, language = "es_ES")
         val apiResponse = ResponseConverter.convertToApiResponse(response)
 
@@ -81,7 +90,10 @@ class TheMovieDbMockApiTest : MockApiTest<TheMovieDbApi>() {
 
     @Test
     fun `getMovieDetails with invalid API key`() = runTest {
-        enqueueResponse(fileRoute = "api-response/error/InvalidApiKey.json", status = MockStatus.Error(401))
+        enqueueResponse(
+            fileRoute = "${MockResource.ERROR}/InvalidApiKey.json",
+            status = MockStatus.Error(401)
+        )
         val response = api.getMovieDetails(movieId = 634649, language = "es_ES")
         val apiResponse = ResponseConverter.convertToApiResponse(response)
 
