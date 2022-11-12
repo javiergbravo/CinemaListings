@@ -19,7 +19,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 @ExperimentalCoroutinesApi
-class TheMovieApiTest : MockApiTest<TheMovieDbApi>() {
+class TheMovieDbMockApiTest : MockApiTest<TheMovieDbApi>() {
 
     private lateinit var api: TheMovieDbApi
     private lateinit var moshi: Moshi

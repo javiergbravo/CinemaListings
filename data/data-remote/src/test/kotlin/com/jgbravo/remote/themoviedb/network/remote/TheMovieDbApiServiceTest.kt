@@ -1,4 +1,4 @@
-package com.jgbravo.remote.themoviedb.network.server
+package com.jgbravo.remote.themoviedb.network.remote
 
 import com.google.common.truth.Truth
 import com.jgbravo.remote.themoviedb.TheMovieDbApi
@@ -12,7 +12,7 @@ import org.junit.Test
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-class TheMovieDbApiTest {
+class TheMovieDbApiServiceTest {
 
     private lateinit var api: TheMovieDbApi
 
