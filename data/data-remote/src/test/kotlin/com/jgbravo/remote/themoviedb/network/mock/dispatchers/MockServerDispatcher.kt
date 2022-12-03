@@ -1,6 +1,7 @@
 package com.jgbravo.remote.themoviedb.network.mock.dispatchers
 
 import com.jgbravo.commons.extensions.isNull
+import com.jgbravo.commons.extensions.replaceArgumentsByCompletePath
 import com.jgbravo.core.commons.test.utils.FileTestUtils
 import com.jgbravo.core.data.remote.network.MockStatus
 import com.jgbravo.remote.themoviedb.network.mock.MockResource
@@ -19,10 +20,9 @@ class MockServerDispatcher {
         override fun dispatch(request: RecordedRequest): MockResponse {
             val mockResponse = MockResponse()
 
-            val fileRoute = when (request.path!!.split("?")[0].replaceFirst("/", "")) {
+            val fileRoute = when (val endpoint = request.path!!.split("?")[0].replaceFirst("/", "")) {
                 Endpoints.DISCOVER_MOVIE -> "${MockResource.SUCCESS}/DiscoverMovie.json"
-                // ToDo: fix endpoint with parameter inside path
-                // Endpoints.MOVIE_DETAILS -> "${MockResource.SUCCESS}/MovieDetails.json"
+                Endpoints.MOVIE_DETAILS.replaceArgumentsByCompletePath(endpoint) -> "${MockResource.SUCCESS}/MovieDetails.json"
                 else -> null
             }
             return if (fileRoute.isNull()) {

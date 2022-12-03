@@ -18,4 +18,6 @@ dependencies {
 
     debugImplementation(Libs.TestLibrary.junit)
     debugImplementation(Libs.TestLibrary.coroutinesTest)
+
+    testImplementation(Libs.TestLibrary.truth)
 }

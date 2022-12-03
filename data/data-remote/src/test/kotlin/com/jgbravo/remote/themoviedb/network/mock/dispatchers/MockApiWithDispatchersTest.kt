@@ -5,6 +5,7 @@ import com.jgbravo.commons.models.wrappers.ApiResponse
 import com.jgbravo.remote.themoviedb.TheMovieDbApi
 import com.jgbravo.remote.themoviedb.adapters.SimpleDateAdapter
 import com.jgbravo.remote.themoviedb.models.BillboardDTO
+import com.jgbravo.remote.themoviedb.models.MovieDetailsDTO
 import com.jgbravo.remote.utils.ResponseConverter
 import com.squareup.moshi.Moshi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -62,7 +63,7 @@ class MockApiWithDispatchersTest {
         Truth.assertThat((apiResponse as ApiResponse.Success<*>).data).isInstanceOf(BillboardDTO::class.java)
     }
 
-    /*@Test ToDo: fix endpoint with parameter inside path
+    @Test
     fun getMovieDetails() = runTest {
         val response = api.getMovieDetails(movieId = 634649, language = "es_ES")
         val apiResponse = ResponseConverter.convertToApiResponse(response)
@@ -72,5 +73,5 @@ class MockApiWithDispatchersTest {
 
         val title = (apiResponse.data as MovieDetailsDTO).title
         Truth.assertThat(title).isEqualTo("Spider-Man: No Way Home")
-    }*/
+    }
 }
