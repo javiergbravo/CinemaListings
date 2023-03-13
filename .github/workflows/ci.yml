@@ -19,13 +19,12 @@ jobs:
         with:
           java-version: 11
           distribution: 'temurin'
-          cache: gradle
 
       - name: Make gradle executable
         run: chmod +x ./gradlew
 
       - name: Build app with Gradle
-        run: ./gradlew assembleDebug --stacktrace --no-daemon
+        run: ./gradlew assembleDebug --stacktrace
 
   unit-tests:
     name: 🧪 Run Tests
