@@ -19,13 +19,17 @@ jobs:
         with:
           java-version: 11
           distribution: 'temurin'
-          cache: gradle
 
       - name: Make gradle executable
         run: chmod +x ./gradlew
 
+      - name: Access THEMOVIEDB_API_KEY
+        env:
+          THEMOVIEDB_API_KEY: $
+        run: echo THEMOVIEDB_API_KEY=\"THEMOVIEDB_API_KEY\" > ./././secrets.properties
+
       - name: Build app with Gradle
-        run: ./gradlew assembleRelease --stacktrace --no-daemon
+        run: ./gradlew assembleDebug --stacktrace
 
   unit-tests:
     name: 🧪 Run Tests
@@ -38,8 +42,13 @@ jobs:
       - name: Make gradle executable
         run: chmod +x ./gradlew
 
+      - name: Access THEMOVIEDB_API_KEY
+        env:
+          THEMOVIEDB_API_KEY: $
+        run: echo THEMOVIEDB_API_KEY=\"THEMOVIEDB_API_KEY\" > ./././secrets.properties
+
       - name: Execute unit tests
-        run: ./gradlew allTest
+        run: ./gradlew testDebug
 
       - name: Android Test Report
         uses: asadmansr/android-test-report-action@v1.2.0
