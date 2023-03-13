@@ -16,9 +16,10 @@ also exist a core module to be the base of app modules.
 ### Instructions
 
 To launch the application you need to get an API key from [TheMovieDb](https://www.themoviedb.org),
-registration is required. You need to add this line inside your *local.properties*:
+registration is required. You need to create file named *secrets.properties* ,as same level as *
+secrets.defaults.properties* file, and add the following line:
 
-`THEMOVIEDB_API_KEY = "your_api_key"`
+`THEMOVIEDB_API_KEY="your_api_key"`
 
 ### Versions
 
