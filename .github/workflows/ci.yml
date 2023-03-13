@@ -25,7 +25,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build app with Gradle
-        run: ./gradlew assembleRelease --stacktrace --no-daemon
+        run: ./gradlew assembleDebug --stacktrace --no-daemon
 
   unit-tests:
     name: 🧪 Run Tests
@@ -39,7 +39,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Execute unit tests
-        run: ./gradlew allTest
+        run: ./gradlew testDebug
 
       - name: Android Test Report
         uses: asadmansr/android-test-report-action@v1.2.0
