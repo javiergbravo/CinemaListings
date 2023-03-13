@@ -23,6 +23,12 @@ jobs:
       - name: Make gradle executable
         run: chmod +x ./gradlew
 
+      - name: Access THEMOVIEDB_API_KEY
+        env:
+          THEMOVIEDB_API_KEY: $
+        run: echo THEMOVIEDB_API_KEY=\"THEMOVIEDB_API_KEY\" > ./././secrets.properties
+
+
       - name: Build app with Gradle
         run: ./gradlew assembleDebug --stacktrace
 

@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     id(Plugins.androidLibrary)
     id(Plugins.kotlinAndroid)
@@ -13,6 +16,8 @@ android {
 
     defaultConfig {
         minSdk = ProjectConfig.minVersion
+
+        buildConfigField("String", "API_KEY", getApiKey())
     }
 }
 
@@ -33,4 +38,11 @@ dependencies {
 
 kapt {
     correctErrorTypes = true
+}
+
+fun getApiKey(): String {
+    val propFile = rootProject.file("./././secrets.properties")
+    val properties = Properties()
+    properties.load(FileInputStream(propFile))
+    return properties["THEMOVIEDB_API_KEY"] as? String ?: ""
 }
