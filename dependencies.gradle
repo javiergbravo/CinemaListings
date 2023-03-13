@@ -36,7 +36,7 @@ ext {
             converterMoshi  : "2.9.0",
 
             // Dependency injection
-            dagger          : "2.44",
+            dagger          : "2.45",
             hilt            : "1.0.0",
 
             // Test
