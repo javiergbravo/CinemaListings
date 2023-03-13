@@ -16,6 +16,11 @@ android {
     }
 }
 
+secrets {
+    propertiesFileName = "secrets.properties"
+    defaultPropertiesFileName = "secrets.defaults.properties"
+}
+
 dependencies {
     implementation(project(":core:core-commons"))
     implementation(project(":core:core-data-remote"))
