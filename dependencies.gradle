@@ -45,7 +45,7 @@ ext {
             turbine         : "0.12.0",
             supportTest     : "1.1.3",
             espresso        : "3.4.0",
-            mockito         : "4.8.1",
+            mockito         : "5.2.0",
     ]
 
 
