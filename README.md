@@ -11,6 +11,11 @@ also exist a core module to be the base of app modules.
 ![OS](https://img.shields.io/badge/OS-Android-3DDC84?logo=Android) ![Language](https://img.shields.io/badge/Language-Kotlin-0095D5?logo=kotlin)
 ![Architecture](https://img.shields.io/badge/Architecture-MVVM-brightgreen) ![UI](https://img.shields.io/badge/View-ViewBinding-00B0EA) ![Observable](https://img.shields.io/badge/Observable-StateFlow-CF202E)
 
+## 📜 Screenshots
+
+<br><img src="assets/billboard_screen_light.png" width="250"/> <img src="assets/movie_details_screen_light.png" width="250"/></br>
+<br><img src="assets/billboard_screen_dark.png" width="250"/> <img src="assets/movie_details_screen_dark.png" width="250"/></br>
+
 ## 📜 Project requirements
 
 ### Instructions
