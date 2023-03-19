@@ -17,7 +17,6 @@ class TheMovieDbApiServiceTest {
     private lateinit var api: TheMovieDbApi
 
     companion object {
-        //private const val API_KEY = BuildConfig.THEMOVIEDB_API_KEY
         private const val DEFAULT_LANG = "es-ES"
 
         private lateinit var moshi: Moshi
