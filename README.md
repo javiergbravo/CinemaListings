@@ -8,23 +8,18 @@ libraries with Kotlin language. Different models are used for each architecture 
 whose work is transforming the objects to the next layer. Each layer is represented by a module and
 also exist a core module to be the base of app modules.
 
-![OS](https://img.shields.io/badge/OS-Android-3DDC84?logo=Android) ![Language](https://img.shields.io/badge/Language-Kotlin-0095D5?logo=kotlin) ![Environment](https://img.shields.io/badge/Environment-Android_Studio-3DDC84?logo=android-studio)
-![Architecture](https://img.shields.io/badge/Architecture-MVVM-brightgreen) ![View](https://img.shields.io/badge/View-ViewBinding-00B0EA) ![Observable](https://img.shields.io/badge/Observable-StateFlow-CF202E)
+![OS](https://img.shields.io/badge/OS-Android-3DDC84?logo=Android) ![Language](https://img.shields.io/badge/Language-Kotlin-0095D5?logo=kotlin)
+![Architecture](https://img.shields.io/badge/Architecture-MVVM-brightgreen) ![UI](https://img.shields.io/badge/View-ViewBinding-00B0EA) ![Observable](https://img.shields.io/badge/Observable-StateFlow-CF202E)
 
 ## 📜 Project requirements
 
 ### Instructions
 
 To launch the application you need to get an API key from [TheMovieDb](https://www.themoviedb.org),
-registration is required. You need to create file named *secrets.properties* ,as same level as *
-secrets.defaults.properties* file, and add the following line:
+(registration is required). You need to create file named *secrets.properties* like *
+secrets.defaults.properties* file, and put your api key inside like this:
 
 `THEMOVIEDB_API_KEY="your_api_key"`
-
-### Versions
-
-![JavaVersion](https://img.shields.io/badge/Java-1.8-%2325c2c6) ![Gradle](https://img.shields.io/badge/Gradle-7.2-%23%2351db71) ![AndroidGradle](https://img.shields.io/badge/AndroidGradle-7.1.2-%230ed490) ![GradleJDK](https://img.shields.io/badge/GradleJDK-11-%13386b)
-![CompileSdk](https://img.shields.io/badge/CompileSdk-31-%230095D5) ![TarjetSdk](https://img.shields.io/badge/TarjetSdk-31-%23f0758f) ![minSdk](https://img.shields.io/badge/minSdk-24-CF202E) ![AndroidSdk](https://img.shields.io/badge/AndroidSdk-33.0.0-%23ec3266) ![AndroidCompileSdk](https://img.shields.io/badge/AndroidCompileSdk-30-green)
 
 ## 📚 Libraries used
 
@@ -62,31 +57,40 @@ features to the rest of modules.
 
 *Note: Presentation module is called 'App'
 
-| Module name | Type | Modules visibility | Description |
-| --- | --- | --- | --- |
-| app | Android Application | :domain :core-presentation :core-commons | Ui and base application features |
-| domain | Java/Kotlin Library | :data :core-domain :core-commons | Use-cases |
-| data | Java/Kotlin Library | :core-data :core-commons | Data sources (network) | 
-| core-commons | Java/Kotlin Library | - | Commons resources and classes that can be used in different applications |
-| core-presentation | Java/Kotlin Library | :core-commons | Base activity, adapters, managers to presentation layer |
-| core-domain | Java/Kotlin Library | :core-commons | Base classes to domain layer (now is empty) |
-| core-data | Java/Kotlin Library | :core-commons | Base repository |
+| Module name       | Type                | Modules visibility                       | Description                                                              |
+|-------------------|---------------------|------------------------------------------|--------------------------------------------------------------------------|
+| core-commons      | Java/Kotlin Library | -                                        | Commons resources and classes that can be used in different applications |
+| core-presentation | Java/Kotlin Library | :core-commons                            | Base activity, adapters, managers to presentation layer                  |
+| core-data-remote  | Java/Kotlin Library | :core-commons                            | Base remote data sources                                                 |
+| app               | Android Application | :core-commons :core-presentation :domain | Ui and base application features                                         |
+| domain            | Java/Kotlin Library | :core-commons :data                      | Use-cases                                                                |
+| data              | Java/Kotlin Library | :core-commons :data-remote               | Repositories                                                             | 
+| data-remote       | Java/Kotlin Library | :core-commons :core-data-remote          | Remote data sources (network)                                            |
 
 ## 📝 Test
 
-Currently there are two unit tests. They have been created out of necessity when the application was
-not working as expected.
+This project has test inside *:app* and *:data-remote* modules.
 
-- **MoshiAdapterTest** inside *:data* module to check if the date is parsed correctly.
-- **MovieFiltersTest** inside *:app* module to check if the release year of movies is filtered
-  correctly.
+Inside *:app* are tested some cases of ViewModels, and also filters are tested:
+
+- **MovieFiltersTest** to check if the release year of movies is filtered correctly.
+- **BillboardViewModelTest** to check pagination, loading state and errors.
+- **MovieDetailsViewModelTest** to check success, loading and error states.
+
+Inside *:data-remote* there are different tests:
+
+- **MoshiAdapterTest** to check if the date is parsed correctly.
+- **DateTest** to check if the date is mapped correctly by SimpleDateAdapter and by custom extension
+  function.
+- **TheMovieDbApiServiceTest** to check errors when api key is not implemented.
+- **TheMovieDbMockApiTest** to check data source with mock responses.
 
 ## Extras
 
-There are some extras implemented
-
-- [x] Add Dark/Light mode support
-- [x] Search by name
-- [x] Filter by year
-- [x] Remove movies from the list
-- [x] Proguard obfuscation in release build *(but not tested)*
+- [x] [Github Actions](https://github.com/features/actions) - The project uses GitHub actions for CI
+  operations such as running automated
+  build and test.
+- [x] [Renovate](https://github.com/apps/renovate) - The project uses Renovate bot to keep
+  dependencies up to date.
+- [x] [Proguard](https://developer.android.com/studio/build/shrink-code) Obfuscation code in release
+  build implemented *(but not tested)*
