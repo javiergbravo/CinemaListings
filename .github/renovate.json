@@ -1,0 +1,13 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base"
+  ],
+  "commitMessagePrefix": "[Renovate Bot] ",
+  "platformAutomerge": true,
+  "automerge": true,
+  "schedule": [
+    "after 8am and before 12pm every weekday",
+    "every weekend"
+  ]
+}
