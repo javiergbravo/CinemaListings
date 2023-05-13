@@ -37,7 +37,7 @@ object Libs {
         const val arch = "2.2.0"
         const val espresso = "3.5.1"
         const val mockito = "4.8.1"
-        const val mockWebServer = "4.10.0"
+        const val mockWebServer = "4.11.0"
     }
 
     object Library {
