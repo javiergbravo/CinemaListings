@@ -12,7 +12,7 @@ object Libs {
         // UI
         const val material = "1.7.0"
         const val constraintLayout = "2.1.4"
-        const val recyclerView = "1.2.1"
+        const val recyclerView = "1.3.0"
         const val activity = "1.7.1"
         const val lifecycle = "2.6.1"
         const val glide = "4.15.1"
