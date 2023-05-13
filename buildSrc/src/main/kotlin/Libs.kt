@@ -34,7 +34,7 @@ object Libs {
         const val jUnit = "4.13.2"
         const val turbine = "0.12.0"
         const val supportTest = "1.1.5"
-        const val arch = "2.1.0"
+        const val arch = "2.2.0"
         const val espresso = "3.4.0"
         const val mockito = "4.8.1"
         const val mockWebServer = "4.10.0"
