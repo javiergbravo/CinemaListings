@@ -22,7 +22,7 @@ object Libs {
         const val retrofit = "2.9.0"
 
         // JSO
-        const val moshi = "1.14.0"
+        const val moshi = "1.15.0"
         const val converterMoshi = "2.9.0"
 
         // Dependency injection
