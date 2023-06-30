@@ -4,7 +4,7 @@ object Libs {
         // Core
         const val coreKtx = "1.10.1"
         const val appCompat = "1.6.1"
-        const val coroutines = "1.7.1"
+        const val coroutines = "1.7.2"
 
         // Logs
         const val timber = "5.0.1"
