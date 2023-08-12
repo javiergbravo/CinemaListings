@@ -7,7 +7,6 @@ plugins {
 
 android {
     compileSdk = ProjectConfig.compileVersion
-    buildToolsVersion = ProjectConfig.buildToolsVersion
 
     namespace = ProjectConfig.appId
 
@@ -38,19 +37,14 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 
     buildFeatures {
         viewBinding = true
     }
-    packagingOptions {
+    packaging {
         resources {
             excludes += "META-INF/gradle/incremental.annotation.processors"
         }

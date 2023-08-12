@@ -14,10 +14,19 @@ android {
 
     namespace = "${ProjectConfig.mainPackage}.data.remote"
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     defaultConfig {
         minSdk = ProjectConfig.minVersion
 
         buildConfigField("String", "API_KEY", getApiKey())
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }
 
