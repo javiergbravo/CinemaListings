@@ -1,10 +1,10 @@
 package com.jgbravo.cinemalistings.features.billboard
 
 import androidx.lifecycle.viewModelScope
-import com.jgbravo.cinemalistings.R
 import com.jgbravo.cinemalistings.features.billboard.models.MovieFilterModel
 import com.jgbravo.cinemalistings.features.billboard.models.SummaryMovie
 import com.jgbravo.cinemalistings.features.billboard.models.mappers.SummaryMovieUiMapper
+import com.jgbravo.cinemalistings.utils.wrappers.UiError.NoInternetError
 import com.jgbravo.commons.extensions.isNotNull
 import com.jgbravo.commons.extensions.joinLists
 import com.jgbravo.commons.extensions.mapList
@@ -24,11 +24,6 @@ class BillboardViewModel @Inject constructor(
     private val dispatchers: DispatcherProvider,
     private val getMoviesUseCase: GetMoviesUseCase
 ) : BaseViewModel() {
-
-    companion object {
-        private const val NO_INTERNET_TITLE = R.string.dialog_error_no_internet_title
-        private const val NO_INTERNET_MESSAGE = R.string.dialog_error_no_internet_body
-    }
 
     private var page = 1
     private val filters = MovieFilterModel()
@@ -52,7 +47,7 @@ class BillboardViewModel @Inject constructor(
                         updateList(newList)
                         _movies.emit(filteredMovieList)
                     }
-                    is Resource.Error -> emitError(title = NO_INTERNET_TITLE, message = NO_INTERNET_MESSAGE)
+                    is Resource.Error -> emitError(title = NoInternetError.title, message = NoInternetError.message)
                 }
             }
         }

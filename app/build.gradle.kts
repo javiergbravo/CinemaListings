@@ -7,9 +7,12 @@ plugins {
 
 android {
     compileSdk = ProjectConfig.compileVersion
-    buildToolsVersion = ProjectConfig.buildToolsVersion
 
     namespace = ProjectConfig.appId
+
+    buildFeatures {
+        buildConfig = true
+    }
 
     defaultConfig {
         multiDexEnabled = true
@@ -38,19 +41,19 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     buildFeatures {
         viewBinding = true
     }
-    packagingOptions {
+    packaging {
         resources {
             excludes += "META-INF/gradle/incremental.annotation.processors"
         }
