@@ -1,9 +1,9 @@
 package com.jgbravo.cinemalistings.features.movieDetails
 
 import androidx.lifecycle.viewModelScope
-import com.jgbravo.cinemalistings.R
 import com.jgbravo.cinemalistings.features.movieDetails.models.MovieDetails
 import com.jgbravo.cinemalistings.features.movieDetails.models.mappers.MovieDetailsUiMapper
+import com.jgbravo.cinemalistings.utils.wrappers.UiError.UnknownError
 import com.jgbravo.commons.models.wrappers.Resource
 import com.jgbravo.commons.utils.DispatcherProvider
 import com.jgbravo.domain.models.MovieDetailsDomainModel
@@ -21,11 +21,6 @@ class MovieDetailsViewModel @Inject constructor(
     private val getMovieDetailsUseCase: GetMovieDetailsUseCase
 ) : BaseViewModel() {
 
-    companion object {
-        private const val UNKNOWN_ERROR_TITLE = R.string.dialog_error_unknown_title
-        private const val UNKNOWN_ERROR_MESSAGE = R.string.dialog_error_unknown_body
-    }
-
     private val _movie = MutableStateFlow<MovieState>(MovieState.NotStarted)
     val movie: StateFlow<MovieState> get() = _movie
 
@@ -40,8 +35,8 @@ class MovieDetailsViewModel @Inject constructor(
                     }
                     is Resource.Error -> emitErrorWithException(
                         exception = res.exception,
-                        title = UNKNOWN_ERROR_TITLE,
-                        message = UNKNOWN_ERROR_MESSAGE
+                        title = UnknownError.title,
+                        message = UnknownError.message
                     )
                 }
             }

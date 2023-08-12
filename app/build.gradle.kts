@@ -10,6 +10,10 @@ android {
 
     namespace = ProjectConfig.appId
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     defaultConfig {
         multiDexEnabled = true
         applicationId = ProjectConfig.appId
@@ -39,6 +43,11 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17.toString()
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     buildFeatures {
