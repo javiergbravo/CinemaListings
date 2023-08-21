@@ -15,7 +15,7 @@ object Libs {
         const val recyclerView = "1.3.1"
         const val activity = "1.7.2"
         const val lifecycle = "2.6.1"
-        const val glide = "4.15.1"
+        const val glide = "4.16.0"
 
         // API
         const val okHttp = "4.11.0"
