@@ -18,7 +18,7 @@ object Libs {
         const val glide = "4.16.0"
 
         // API
-        const val okHttp = "4.11.0"
+        const val okHttp = "4.12.0"
         const val retrofit = "2.9.0"
 
         // JSO
