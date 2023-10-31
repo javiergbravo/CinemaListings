@@ -2,7 +2,7 @@ object Plugins {
 
     object Versions {
         const val android = "8.1.0"
-        const val kotlin = "1.9.10"
+        const val kotlin = "1.9.20"
         const val secrets = "2.0.1"
         const val daggerHilt = Libs.Version.dagger
     }
