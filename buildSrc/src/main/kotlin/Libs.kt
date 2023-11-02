@@ -27,7 +27,7 @@ object Libs {
 
         // Dependency injection
         const val dagger = "2.48.1"
-        const val hilt = "1.0.0"
+        const val hilt = "1.1.0"
 
         // Test
         const val truth = "1.1.5"
