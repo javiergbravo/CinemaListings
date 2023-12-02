@@ -26,7 +26,7 @@ object Libs {
         const val converterMoshi = "2.9.0"
 
         // Dependency injection
-        const val dagger = "2.48.1"
+        const val dagger = "2.49"
         const val hilt = "1.1.0"
 
         // Test
