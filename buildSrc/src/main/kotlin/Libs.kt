@@ -30,7 +30,7 @@ object Libs {
         const val hilt = "1.1.0"
 
         // Test
-        const val truth = "1.4.0"
+        const val truth = "1.4.1"
         const val jUnit = "4.13.2"
         const val turbine = "1.0.0"
         const val supportTest = "1.1.5"
