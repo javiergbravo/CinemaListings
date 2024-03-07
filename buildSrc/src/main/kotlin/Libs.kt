@@ -32,7 +32,7 @@ object Libs {
         // Test
         const val truth = "1.4.2"
         const val jUnit = "4.13.2"
-        const val turbine = "1.0.0"
+        const val turbine = "1.1.0"
         const val supportTest = "1.1.5"
         const val arch = "2.2.0"
         const val espresso = "3.5.1"
