@@ -23,7 +23,7 @@ object Libs {
 
         // JSO
         const val moshi = "1.15.1"
-        const val converterMoshi = "2.9.0"
+        const val converterMoshi = "2.10.0"
 
         // Dependency injection
         const val dagger = "2.50"
