@@ -19,7 +19,7 @@ object Libs {
 
         // API
         const val okHttp = "4.12.0"
-        const val retrofit = "2.10.0"
+        const val retrofit = "2.11.0"
 
         // JSO
         const val moshi = "1.15.1"
