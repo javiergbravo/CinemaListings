@@ -36,7 +36,7 @@ object Libs {
         const val supportTest = "1.2.1"
         const val arch = "2.2.0"
         const val espresso = "3.6.1"
-        const val mockito = "5.14.1"
+        const val mockito = "5.14.2"
         const val mockWebServer = "4.12.0"
     }
 
