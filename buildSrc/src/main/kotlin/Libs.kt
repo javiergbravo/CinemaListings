@@ -10,7 +10,7 @@ object Libs {
         const val timber = "5.0.1"
 
         // UI
-        const val material = "1.9.0"
+        const val material = "1.12.0"
         const val constraintLayout = "2.2.0"
         const val recyclerView = "1.3.2"
         const val activity = "1.7.2"
